@@ -27,19 +27,46 @@
 			console.log("story2_txt" + story2_txt); 
 			if(story2_txt != "<p><br></p>"){
 				$("#story_content").html(story2_txt);
+			}else{
+				story_change();
 			}
 		}
 		//스토리 저장
 		function storySave() {
 			var story2_txt =  $('#summernote').summernote('code');
 			console.log("story2_txt" + story2_txt); 
-			if(story2_txt.length > 0){
+			alert(story2_txt);
+			if(story2_txt != "<p><br></p>"){
 				$("#st_story1").html(story2_txt);
+				story_change();
+				storyCancel();
 			}
+			else{
+				alert("스토리를 입력해 주세요");
+			}
+
 		}
 		$(document).ready(function() {
 			$("#st_story2").hide();
 		});
+		function story_change(){
+			var story2_txt =  $('#summernote').summernote('code');
+			if(story2_txt == "<p><br></p>"){
+				$("#check_tab3").html('<img id="check_tab3" src="../FTBC_Images/check1.png">');
+			} else{
+				$("#check_tab3").html('<img id="check_tab3" src="../FTBC_Images/check.png">');
+				
+			}
+		}
+		function story_check_count(){
+			var story2_txt =  $('#summernote').summernote('code');
+			if(story2_txt == "<p><br></p>"){
+				check = check+",스토리텔링";
+			}
+			else{
+				$("#check_tab3").html('<img id="check_tab3" src="../FTBC_Images/check.png">');
+			}
+		}
 </script>
 <div>
 	<p>프로젝트 스토리</p>
@@ -72,7 +99,7 @@
 		</div>
 		<div class="row">
 			<div id="editor">
-				<form id="f_summer" method="post">
+				<form id="f_summer" method="post" class="create_form" onSubmit="return false">
 					<textarea id="summernote" name="editordata"></textarea>
 				</form>
 				<script>

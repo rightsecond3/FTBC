@@ -33,12 +33,14 @@
 				<div class="row" id="content">
 					<div class="col-lg-8 ">
 						<ul class="nav nav-tabs">
-							<li class="active" id="tab1"><a class="tab_menu" data-toggle="tab" href="#menu1"><span id="check_tab">
-							<img src="../FTBC_Images/check1.png"></span>&nbsp;프로젝트 개요</a></li>
-						
-							<li id="tab2"><a class="tab_menu" data-toggle="tab" href="#menu2">펀딩 및 선물 구성</a></li>
-							<li><a class="tab_menu" data-toggle="tab" href="#menu3">스토리텔링</a></li>
-							<li><a class="tab_menu" data-toggle="tab" href="#menu4">계좌 설정</a></li>
+							<li class="active" id="tab1"><a class="tab_menu" data-toggle="tab" href="#menu1">
+							<span id="check_tab1"><img src="../FTBC_Images/check1.png"></span>&nbsp;프로젝트 개요</a></li>						
+							<li id="tab2"><a class="tab_menu" data-toggle="tab" href="#menu2">
+							<span id="check_tab2"><img src="../FTBC_Images/check1.png"></span>&nbsp;펀딩 및 선물 구성</a></li>
+							<li><a class="tab_menu" data-toggle="tab" href="#menu3">
+							<span id="check_tab3"><img src="../FTBC_Images/check1.png"></span>&nbsp;스토리텔링</a></li>
+							<li><a class="tab_menu" data-toggle="tab" href="#menu4">
+							<span id="check_tab4"><img src="../FTBC_Images/check1.png"></span>&nbsp;계좌 설정</a></li>
 						</ul>
 					</div>
 					<div class="col-lg-1 "></div>
@@ -92,29 +94,32 @@
     <script type="text/javascript">
     	function check_modal(){
      		check_count();
+     		story_check_count();
+    		account_check_count();
     		var count = null;
     		count = check.split(",");
     		$("#modal_check").empty();
-/*     		if(count.length>1){
+    		if(count.length>1){
 	    		for(var i=1;i<count.length;i++){
 	    			$("#modal_img").html('<img src="../FTBC_Images/pro.png" />');
 		    		$("#modal_check").append('<div id="blank_entry" style="border:2px solid #E6E6E6; padding:5px; margin-top:5px; margin-right:5px; margin-left:5px; align:center; border-radius:5px; float:left">'+count[i]+'</div>');
 	    		}
-    		}else if(count.length==1){ */
+    		}else if(count.length==1){ 
     			$("#modal_msg").html('<h5>작성 완료 하였습니다. 검토 요청을 보내겠습니다.</h5>');
     			$("#modal_img").html('<img src="../FTBC_Images/check3.png" />');
 				$("#modal-footer").html('<button type="button" onClick="save()" class="btn btn-default" data-dismiss="modal" style="background-color:#FF4643;border-radius:5px;color:#fff">Close</button>');
-    		/* } */
+    		
+    		}
     	}
  	function save(){
 		alert("?");
  	    $.post("/Project/createProject.ftbc", $(".create_form").serialize(), function(data){
  	    	alert("??");
-/*  	    	if(data=="ok"){
+  	    	if(data=="ok"){
  	    		location.href='/FTBC/FTBC_View/FTBC_MainView/FTBC_Main.jsp'; 
  	    	}else{
  	    		alert("등록에 실패하였습니다");
- 	    	} */
+ 	    	} 
  	    });
 			
 	} 
