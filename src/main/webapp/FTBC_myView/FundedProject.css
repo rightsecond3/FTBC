@@ -1,0 +1,137 @@
+@charset "UTF-8";
+	body{
+		background-color:#f6f5f5;
+	}
+	hr{
+		margin-top: 0;
+   		margin-bottom: 0;
+		background-color:#ffffff;
+	}
+	#FundedProject_top{
+		height: 250px;
+		width:110%;
+		background-color:#ffffff;
+		text-align:center;
+	}
+	
+	#FundedProject_ele{
+		text-align:center;
+	 	height: 150px;
+	 	left:55%;
+	    line-height: 200px;
+	    margin-right:120px;
+	}
+	
+	#Fpj_pfimg{
+		width: 120px;
+	}
+	
+	#FundedProject_ele h3{
+		text-align:center;
+		font-size: 18px;
+		font-weight:bold;
+		margin-top:-20px;
+	}
+	
+	#FundedProject_content{
+		background-color: #f6f5f5;
+	}
+	
+	/****************[ FPJ Content  ]**************/
+	#Fpj_content_top{
+		height: 75px;
+		padding: 14px 0 14px 0;
+	}
+	/*****************[버튼]********************/
+	.Fpj_btns{
+		cursor:pointer;
+		text-decoration:none;
+		font-size:14px;
+		line-height:40px;
+		vertical-align:middle;
+		color: #000000;
+		position: relative;
+		margin:10px;
+		border-radius:5px;
+		width:130px;
+	}
+	#Fpj_ing{
+		width:145px;
+	}
+	.Fpj_num{
+		background-color: #999999;
+		color: #FFFFFF;
+		font-size:12px;
+		line-height:12px;
+		margin-left: 10px;
+		height: 19px;
+		width: 24px;
+		padding: 4px 9px 4px 9px;
+		cursor: pointer;
+		display: inline;
+		border-radius: 5px;
+	}
+	
+	.Fpj_btns:hover{
+		background-color: #DDDDDD;
+		text-decoration: none;
+		width:130px;
+	}
+	
+	.Fpj_btns:focus {
+		background-color: #999999;
+		text-decoration: none;
+	}
+	/*****************[검색바]********************/
+	#Fpj_content_sbar{
+		line-height: 20px;
+		width: 350px;
+		height: 40px;
+		border-radius: 5px;
+		border: 2px solid gainsboro;
+		float:right;
+		margin:10px;
+		background-color: #FFFFFF;
+	}
+	
+	#Fpj_search{
+		border-right: none;
+		width: 92%;
+		height: 100%;
+		font-size: 14px;
+		color: gainsboro;
+		float: left;
+		display: inline;
+		outline: none;
+		border: none;
+		background-color: #FFFFFF;
+	}
+	#Fpj_search_btn{
+		display: inline;
+		width: 8%;
+		outline: none;
+		height: 100%;
+		background-image: url("../FTBC_Images/search.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 18px;
+		background-color:#FFFFFF;
+		border: none;
+		cursor: pointer;
+	}
+	
+	/*********************[후원 결과]*********************/
+	.Fpj_count{
+		color: #545454;
+		background-color:  #eeeded;
+		padding: 20px 24px 16px 24px;
+		height:60px;
+		min-height:16px;
+		border-radius:5px;
+		margin-left:10px;
+		margin-top:10px;
+	}
+	
+	.fa{
+		margin-right:10px;
+	}

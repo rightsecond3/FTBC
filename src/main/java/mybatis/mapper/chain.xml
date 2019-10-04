@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.MemberMapper">
+
+	<!-- #DB - 결제 시 - 펀딩하는 사람의 공개키가 해당 사람의 것이 맞는 지 확인하는 로직 -->
+	<select id="isPukRight" parameterType="vo.MemberVO" resultType="java.lang.String">
+		SELECT NVL2( (SELECT mem_email FROM mem WHERE mem_email = #{mem_email} AND mem_publicKey = #{mem_publickey}), '일치', '불일치')
+ 		  FROM dual
+	</select>
+	
+	<!-- #DB- 프로젝트 이름으로 프로젝트 코드, 공개키 가져오기 -->
+	<select id="getProjectInfo" parameterType="java.lang.String" resultType="map">
+		SELECT pj.project_code as project_code, pj_publickey as pj_publickey
+		  FROM project pj, pjoutline pjo
+		 WHERE pj.project_code = pjo.project_code
+		   AND pjo.pjo_longtitle = #{value}
+	</select>
+</mapper>

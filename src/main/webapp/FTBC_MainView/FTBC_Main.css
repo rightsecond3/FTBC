@@ -1,0 +1,106 @@
+@charset "UTF-8";
+	.container-fluid{
+	    padding: 0;
+	}	
+	/***************** 추천 프로젝트 클래스 속성    *******************/
+	.carousel-caption{
+		font-size:45px;
+		font-weight:700;
+		line-height: 60.06px;
+		color:  #FFFFFF;
+		text-align:left;		
+	}
+	.main_row{
+		margin-left: 0;
+		margin-top:15px;
+		text-align: left;
+	}
+	.Project_lists{
+		font-size: 14px;	
+		line-height: 23.8px;
+		padding: 14px 0 14px 0;
+		text-align: left;
+	}
+	
+	.main_span{
+		font-size: 14px;	
+		font-weight: bold;
+		line-height:24px;
+		cursor: pointer;
+		text-align: left;
+		padding: 10px 10px 0 10px;
+	}
+	
+	/********************************* [ 카 드 ] **********************************/
+	.card{
+		height: 340px;
+		width: 25%;
+		min-height: auto;
+		min-width: auto;
+		padding: 10px 14px 20px 14px;
+		margin:15px 0 15px 0;
+	}
+	.card-header{
+		height: 200px;
+		width: 230px;
+	}
+	.card-body{
+		border:1px solid;
+		height: 130px;
+		width: 230px;
+		border-top: 1px solid  #2224260;
+		min-height: auto;
+		min-width: auto;
+	}
+	/***************** 카드 클래스에 마우스 올려 놓았을 때   *******************/
+	.card:hover{
+		cursor:pointer;
+	}
+	/***************** 추천 프로젝트, 인기 프로젝트 이미지 속성   *******************/
+	.card_img{
+		height: 200px;
+		width: 230px;
+	}
+	
+	/***************** 프로젝트 제목 속성   *******************/
+	.project_title{
+		padding-left:10px;
+		display:block;
+		font-size:13px;
+		margin-top:5px;
+	}
+	
+	/***************** 프로젝트 만든이 닉네임 속성   *******************/
+	.project_nick{
+		display:block;
+		font-size:11px;
+		padding-left:10px;
+	}
+	/***************** 프로젝트 남은 날짜   *******************/
+	.project_date{
+		font-size:11px;
+		display:inline;
+		vertical-align: middle;
+		padding-left:10px;
+	}
+	
+	/***************** 프로젝트 남은 금액  *******************/
+	.project_cost{
+		font-size:11px;
+		display:inline;
+		vertical-align: middle;
+		text-align:right;
+	}
+	
+	/***************** hr태그 속성 (카드 안에 줄)   *******************/
+	.card_hr{
+		border:solid  1px ;
+		color:red;
+	}
+	
+	
+	/***************** 푸터 속성    *******************/
+	#footer{
+		margin-top:100px;
+		text-align: center;
+	}

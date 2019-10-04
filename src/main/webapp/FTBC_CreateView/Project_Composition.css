@@ -1,0 +1,121 @@
+@charset "UTF-8";
+	#goalMoney,#projectEndDate{
+		border: 1px solid #c5c5c5;
+		border-radius:5px;
+		background-color: white!important;
+		width:100%;
+		height:auto;
+		overflow:hidden;
+		padding-left:20px;
+	}
+	#giftConfigAddBox{
+		border: 1px solid #c5c5c5;
+		border-radius:5px;
+		background-color: white!important;
+		width:100%;
+		height:auto;
+		overflow:hidden;
+		padding-left:20px;
+		align:center;
+	}
+	#refundAndExchanges,#productInfoReport,#certificationDocument,#giftInfo{
+		border: 1px solid #c5c5c5;
+		border-radius:5px;
+		background-color: white!important;
+		width:100%;
+		height:auto;
+		overflow:hidden;
+		padding-left:20px;
+	}
+	#giftAddRow1,#giftAddRow2{
+		text-align:center;
+	}
+	#moneyEstimatedDate{
+		border: 1px solid #c5c5c5;
+		border-radius:5px;
+		width:100%;
+		height:auto;
+		overflow:hidden;
+		padding-left:20px;
+	}
+		/***************** 프로젝트 제목 박스 안 row 클래스 스타일 속성  *******************/
+	#goalMoney.row ,#projectEndDate.row,#moneyEstimatedDate.row,#giftConfigAddBox.row
+	,#refundAndExchanges.row,#productInfoReport.row,#certificationDocument.row,#giftInfo.row{
+		margin-top: 10px;
+	}
+	
+		/***************** 프로젝트 제목 박스 안 이미지 태그 스타일 속성 *******************/
+	#goalMoney img,#projectEndDate img,#refundAndExchanges img,#productInfoReport img
+	,#certificationDocument img,#giftInfo img
+	{
+		width:15px;
+	}
+	#goalMoneyShow {
+		border: 1px solid #c5c5c5;
+		border-radius:5px;
+		background-color:#F0F5FF;
+		width:100%;
+		height:auto;
+		overflow:hidden;
+		padding-left:20px;
+	}
+	#goalMoneyGuideTalk{
+		display:block;
+	}
+	#goalMoneyInput{
+		text-align:right;
+	}
+	#commissionCalculation{
+		background-color:#E8EDF7;
+		padding-right:20px;
+		padding-left:20px;
+	}
+	#goalPriceButton{
+		text-align:right;
+		padding-right:20px;
+		width:100%;
+		height:auto;
+	}
+	#goalPriceCancelButton{
+	background-color:#CACBCD;
+	color:#7B7B7D;
+	}
+	#goalPriceConfirmButton{
+	background-color:#FF4643;
+	color:#FFFFFF;
+	}
+	.button{
+	width:auto;
+	height:auto;
+	font-size:14px;
+	}
+	.btn {
+	font-size:14px;
+	}
+	#projectEndDateShow{
+		border: 1px solid #c5c5c5;
+		border-radius:5px;
+		background-color:#F0F5FF;
+		width:100%;
+		height:auto;
+		overflow:hidden;
+		padding-left:20px;
+	}
+	#endDateConfirmGuide{
+		background-color:#E8EDF7;
+		padding-right:20px;
+		padding-left:20px;
+	}
+ 	#moneyEstimatedDateShow{
+ 		border: 1px solid #c5c5c5;
+		border-radius:5px;
+		background-color:#F0F5FF;
+		width:100%;
+		height:auto;
+		overflow:hidden;
+		padding-left:20px;
+ 	}
+ 	#payEndDate,#receiptDate,#datepicker{
+ 		text-align: center;
+ 		padding-left:30px;
+ 	}

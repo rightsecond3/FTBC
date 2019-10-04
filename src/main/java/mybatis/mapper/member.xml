@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.MemberMapper">
+	
+	<select id="emailCheck" parameterType="vo.MemberVO" resultType="String">
+		select nvl2((SELECT mem_email
+		  			 FROM mem
+		 			WHERE mem_email = #{mem_email}),'0','1') FROM dual
+	</select>
+	<insert id="join" parameterType="vo.MemberVO">
+		INSERT INTO mem(mem_email,mem_name,mem_pw)
+			   VALUES(#{mem_email},#{mem_name},#{mem_pw})
+	</insert>
+	<select id="login" parameterType="vo.MemberVO" resultType="String">
+			
+	</select>
+</mapper>

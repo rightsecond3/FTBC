@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.ProjectMapper">
+   <resultMap id="summer" type="HashMap">
+      <result property="pjo_img_result " column="pjo_img_result " jdbcType="CLOB" javaType="java.lang.String" />
+      <result property="pjo_profile_img_result " column="pjo_profile_img_result " jdbcType="CLOB" javaType="java.lang.String" />
+      <result property="editordata " column="editordata" jdbcType="CLOB" javaType="java.lang.String" />
+   </resultMap>
+   <insert id="projectcreate" parameterType="map">
+   		INSERT INTO project (PROJECT_CODE,SUBCAT_CODE,PJ_NOWMONEY,MEM_EMAIL,PJ_ISEDIT,PJ_PUBLICKEY,PJ_PRIVATEKEY,PJ_ACCOUNT,PJ_STAT,PJ_ISSUCCESS)
+			values (#{pro_code},#{pjo_category_select_result},0,'zzlld20',1,1,1,1,1,1)
+   </insert>
+   <insert id="storytellinginsert" parameterType="map">
+   		INSERT INTO storytelling (project_code,st_story)
+   				values(#{pro_code},#{editordata})
+   </insert>
+   <insert id="pjoutlineinsert" parameterType="map">
+   		INSERT INTO pjoutline (project_code,pjo_introduce,pjo_longtitle,pjo_shorttitle,pjo_img,pjo_summary,Ol_category,pjo_pageaddr,pjo_searchtag)
+   				values(#{pro_code},#{pjo_introduction_edit_textarea},#{long_title},#{short_title},
+   				#{pjo_img_result},#{pjo_summary_edit_text},1,#{pjo_page_text},#{pjo_tag_text})
+   </insert>
+   <insert id="fundinginsert" parameterType="map">
+   		INSERT INTO funding(project_code,fd_targetmoney,fd_deadline)
+   				values(#{pro_code},1,1)<!-- 펀딩 인서트 -->
+   </insert>
+   <select id="proc_procode" parameterType="map" statementType="CALLABLE">
+      {call pro_project_code(#{pjo_category_select_result, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+      ,#{pro_code, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+      )}
+   </select>
+</mapper>

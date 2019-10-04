@@ -1,0 +1,105 @@
+@charset "UTF-8";
+	
+	#myProject_top{
+		height: 350px;
+		width:110%;
+		background-color: #dcd9ec;
+	}
+	#myProject_pfd{
+		text-align:center;
+		position:absolute; 
+	 	height: 300px;
+	 	left:50%;
+	    line-height: 300px;
+	}
+	#myProject_pfimg{
+		width:150px;
+	}
+	#myProject_spans{
+		margin-top:15px;
+	}
+	#created_project{
+		color:  #645353;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 26px;
+	}
+	
+	#created_num{
+		color:  #FA6462;
+		font-size: 16px;
+		line-height: 28px;
+	}
+	/********************************* [ 카 드 ] **********************************/
+	.card{
+		height: 340px;
+		width: 25%;
+		min-height: auto;
+		min-width: auto;
+		padding: 10px 14px 20px 14px;
+		margin:15px 0 15px 0;
+	}
+	.card-header{
+		height: 200px;
+		width: 230px;
+	}
+	.card-body{
+		border:1px solid;
+		height: 130px;
+		width: 230px;
+		border-top: 1px solid  #2224260;
+		min-height: auto;
+		min-width: auto;
+	}
+	/***************** 카드 클래스에 마우스 올려 놓았을 때   *******************/
+	.card:hover{
+		cursor:pointer;
+	}
+	/***************** 추천 프로젝트, 인기 프로젝트 이미지 속성   *******************/
+	.card_img{
+		height: 200px;
+		width: 230px;
+	}
+	
+	/***************** 프로젝트 제목 속성   *******************/
+	.project_title{
+		padding-left:10px;
+		display:block;
+		font-size:13px;
+		margin-top:5px;
+	}
+	
+	/***************** 프로젝트 만든이 닉네임 속성   *******************/
+	.project_nick{
+		display:block;
+		font-size:11px;
+		padding-left:10px;
+	}
+	/***************** 프로젝트 남은 날짜   *******************/
+	.project_date{
+		font-size:11px;
+		display:inline;
+		vertical-align: middle;
+		padding-left:10px;
+	}
+	
+	/***************** 프로젝트 남은 금액  *******************/
+	.project_cost{
+		font-size:11px;
+		display:inline;
+		vertical-align: middle;
+		text-align:right;
+	}
+	
+	/***************** hr태그 속성 (카드 안에 줄)   *******************/
+	.card_hr{
+		border:solid  1px ;
+		color:red;
+	}
+	
+	
+	/***************** 푸터 속성    *******************/
+	#footer{
+		margin-top:100px;
+		text-align: center;
+	}

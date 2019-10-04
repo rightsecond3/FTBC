@@ -1,0 +1,178 @@
+@charset "UTF-8";
+	.container-fluid{
+		background-color:#F6F5F5;
+		padding: 0;
+	}
+	
+	.Look_hr{
+		margin-top: 0;
+   		margin-bottom: 0;
+		background-color:#FFFFFF;
+	}
+	.Look_Top{
+		background-color:#FFFFFF;
+		text-align: center;
+		font-size: 14px;
+		height:200px;
+		min-height: 154px;
+	}
+	.Look_title{
+		font-size:45x;
+		font-weight: bold;
+		height: 51px;
+		min-height: 14px;
+		line-height: 150px;
+	}
+		.dropdown-toggle{
+		text-decoration:none;
+		color:black;
+	}
+	
+	.dropdown-toggle:hover{
+		text-decoration:none;
+		color:gray;
+	}
+	.dropdown-menu {
+		position: absolute !important;
+		text-align: center !important;
+		float:unset !important;
+		left: 40%  !important;
+		top: 15% !important;
+		height: 320px;
+		width: 420px;
+		margin-top: 40px !important;
+		border-top: 1px solid  #EFEFEF;
+		border-bottom: 1px solid  #EFEFEF;
+		background-color:  #FFFFFF;
+		padding: 14px 32px 14px 32px;
+		bottom: -320px;
+	}
+	#drop-item1{
+		margin-top:10px;
+		padding-top:10px;
+	}
+	.dropdown-item{
+		padding: 5px 0 5px 20px;	
+		color: gray;
+		line-height: 23.8px;
+		cursor: pointer;
+		text-align:left;
+		font-weight:bold;
+		font-size:14px;
+	}
+	.dropdown-item:hover{
+		text-decoration:none;
+		color:black;
+	}
+	
+	.Look_title a{
+		font-size:30px;
+		color:gray;
+		vertical-align:super;
+		padding-left: 5px;
+	}
+	.Look_title a:hover{
+		color: black;
+	}
+	.Look_Midbar{	
+		border-top: 1px solid  #EFEFEF;
+		background-color: #FFFFFF;
+		height: 60.5px;
+		padding: 15px 14px 0 14px;
+		font-size: 14px;
+		line-height: 23.8px;
+	}
+	
+	.Look_Select{
+		font-size: 14px;
+		font-weight:bold;
+		line-height: 17.5px;
+		white-space: pre;
+		background-color: #FFFFFF;
+		color: #000000;
+		height: 31.5px;
+		width: 112px;
+		cursor:pointer;
+	}
+	
+	.Look_Label{
+		font-size: 14px;
+		font-weight:bold;
+		line-height: 17.5px;
+		text-align: right;
+		cursor:pointer;
+	}
+	
+	.Look_Content{
+		border-top: 4px solid  #EFEFEF;
+		font-size: 14px;	
+		line-height: 23.8px;
+		padding: 14px 0 14px 0;
+		text-align: left;]
+	}
+	/********************************* [ 카 드 ] **********************************/
+	.card{
+		height: 340px;
+		width: 25%;
+		min-height: auto;
+		min-width: auto;
+		padding: 10px 14px 20px 14px;
+		margin-top:15px;
+	}
+	.card-header{
+		height: 200px;
+		width: 230px;
+	}
+	.card-body{
+		border:1px solid;
+		height: 130px;
+		width: 230px;
+		border-top: 1px solid  #2224260;
+		min-height: auto;
+		min-width: auto;
+	}
+	/***************** 카드 클래스에 마우스 올려 놓았을 때   *******************/
+	.card:hover{
+		cursor:pointer;
+	}
+	/***************** 추천 프로젝트, 인기 프로젝트 이미지 속성   *******************/
+	.card_img{
+		height: 200px;
+		width: 230px;
+	}
+	
+	/***************** 프로젝트 제목 속성   *******************/
+	.project_title{
+		display:block;
+		font-size:13px;
+		margin-top:5px;
+		padding-left:10px;
+	}
+	
+	/***************** 프로젝트 만든이 닉네임 속성   *******************/
+	.project_nick{
+		display:block;
+		font-size:11px;
+		padding-left:10px;
+	}
+	/***************** 프로젝트 남은 날짜   *******************/
+	.project_date{
+		font-size:11px;
+		display:inline;
+		vertical-align: middle;
+	}
+	
+	/***************** 프로젝트 남은 금액  *******************/
+	.project_cost{
+		font-size:11px;
+		display:inline;
+		vertical-align: middle;
+		text-align:right;
+	}
+	
+	/***************** hr태그 속성 (카드 안에 줄)   *******************/
+	.card_hr{
+		border:solid  1px ;
+		color:red;
+	}
+	
