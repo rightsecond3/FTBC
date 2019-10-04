@@ -62,10 +62,12 @@
 	    }, function(rsp) {
 	       // 결제가 성공되었을 시
 	        if ( rsp.success ) {
-	           location.href="/chain/addTransaction.ftbc?imp_uid="+rsp.imp_uid+"&paid_amount="+rsp.paid_amount
-	                 +"&merchant_uid="+rsp.merchant_uid+"&apply_num="+rsp.apply_num
-	                 +"&buyer_name="+rsp.buyer_name+"&buyer_tel="+rsp.buyer_tel+"&item_name="+rsp.name+"&p_title="+p_title
-	                 +"&pubtxt="+pubtxt+"&pritxt="+pritxt;
+	        	pubtxt = pubtxt.replace(/\+/g,"%2B");
+	        	pritxt = pritxt.replace(/\+/g,"%2B");
+	            location.href = "/chain/addTransaction.ftbc?imp_uid="+rsp.imp_uid+"&paid_amount="+rsp.paid_amount
+			  		+"&merchant_uid="+rsp.merchant_uid+"&apply_num="+rsp.apply_num
+  			  		+"&buyer_name="+rsp.buyer_name+"&buyer_tel="+rsp.buyer_tel+"&item_name="+rsp.name+"&p_title="+p_title
+ 			  		+"&pubtxt="+pubtxt+"&pritxt="+pritxt;
 	        } else {
 	            var msg = '결제에 실패하였습니다.';
 	            msg += '에러내용 : ' + rsp.error_msg;

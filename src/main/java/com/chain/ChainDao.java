@@ -27,8 +27,7 @@ public class ChainDao {
 	//#DB- 프로젝트 이름으로 프로젝트 코드, 공개키 가져오기
 	public Map<String, Object> getProjectInfo(String project_name) {
 		logger.info("getProjectInfo 호출");
-		Map<String, Object> rMap = null;
-		rMap = new HashMap<>();
+		Map<String, Object> rMap = new HashMap<>();
 		rMap = sqlSessionTemplate.selectOne("getProjectInfo", project_name);
 		return rMap;
 	}

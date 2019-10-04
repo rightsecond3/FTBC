@@ -2,7 +2,6 @@ package com.chain;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -20,7 +19,6 @@ import blockchain.util.CommonSet;
 import blockchain.util.StringUtil;
 import exe.util.Path;
 import exe.util.Protocol;
-import vo.MemberVO;
 
 @Controller
 @RequestMapping("/chain/*")
@@ -38,58 +36,10 @@ public class ChainController {
 	@RequestMapping(value="addTransaction")
 	public String addTransaction(@RequestParam Map<String,Object> pMap) throws Exception {
 		logger.info("addTransaction 호출");
-		String item_name = pMap.get("item_name").toString();
+		//#DB- 프로젝트 이름으로 프로젝트 코드, 공개키 가져오기, 개인키
 		String project_name = pMap.get("p_title").toString();
-		String buyer_name = pMap.get("buyer_name").toString();
-		String base64Puk = pMap.get("pubtxt").toString();
-		String base64Prk = pMap.get("pritxt").toString();
-		
-		//사용자 로컬에서 블록체인 파일 import해옴
-		// ㄴ>?? 공유 체인을 import 해옴 
-		String blockchain64 = Base64Conversion.importChain("FTBC", Path.SERVER_CHAIN_PATH);
-			
-		//blockchain, publickey, privatekey 디코딩. chain도  import해도 됨.
-		BlockChain blockChain = (BlockChain) Base64Conversion.decodeBase64(blockchain64);
-		// 화면에서 받아온 base64로 인코딩된 문자열을 받아 디코딩
-		
-		//펀딩하는 사람 임시 지갑
-		Wallet tempWallet = new Wallet();
-		
-		//펀딩 금액
-		long amount = Long.parseLong(pMap.get("paid_amount").toString());
-		
-		//펀딩하는 프로젝트의 키
-		CommonSet commonSet = CommonSet.getInstance();
-
-		//#DB- 프로젝트 이름으로 프로젝트 코드, 공개키 가져오기
-		logger.info("userPuk : "+base64Puk);
-		logger.info("userPrk : "+base64Prk);
-		logger.info("item_name : "+item_name);
-		logger.info("project_name : "+project_name);
-        Map<String, Object> rMap = chainLogic.getProjectInfo(project_name);
-		logger.info(rMap.get("PJ_PUBLICKEY").toString());
-		logger.info(rMap.get("PROJECT_CODE").toString());
-		
-//		Wallet projectWallet = commonSet.getProjectWallet("프로젝트 코드");
-		//##- 서버기동 시 가져오는 것으로 해야함.
-		Wallet projectWallet = new Wallet();
-		/*
-		Base64Conversion.
-		projectWallet.setPublicKey();
-		PublicKey projectPuk =  projectWallet.getPublicKey();
-		
-		//// [거래가 일어날 때 마다 newBlock에 addTransaction] ////
-		Block block = newBlock; //생성되어있는 블록 가져와야함
-		
-		
-		Wallet managerWallet = commonSet.getManagerWallet(); //genesisblock 만들때 generate keypair 해줘야함.
-		
-		//매니저 -> 펀딩하는 사람
-		block.addTransaction(blockChain, managerWallet.sendFunds(blockChain, userPuk, "충전", amount));
-		
-		//펀딩하는 사람 -> 프로젝트
-		block.addTransaction(blockChain, tempWallet.sendFunds(blockChain, projectPuk, project_key, amount));
-		*/
+		Map<String, Object> rMap = chainLogic.getProjectInfo(project_name);
+		chainLogic.addTransaction(newBlock, pMap, rMap);
 		//// [거래가 일어날 때 마다 newBlock에 addTransaction] ////
 		return "redirect:Fund_Success.jsp";
 	}
