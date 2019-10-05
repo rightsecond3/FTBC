@@ -6,9 +6,15 @@
 		border-top-left-radius: 3px;
    		border-top-right-radius: 5px;
 	}
+	#pjo_outline .col-sm-5{
+	margin: 1px;
+	padding: 1px;
+	float: right;
+	}
+	
 	#pjo_outline table{
-		border:1px solid #c5c5c5;
-		width:95%;
+		border:1px solid#c5c5c5;
+		width:100%;
 	    border-top-left-radius: 3px;
    		border-top-right-radius: 5px;
 	}
@@ -16,36 +22,35 @@
 		border:1px solid#c5c5c5;
 		height: auto;
 	}
-	a {
+	#pjo_outline a {
 		text-decoration:none ; 
 		color:#000000;
 		cursor : default;
 	}
-	.button{
+	#pjo_outline .button{
 		border: none;
-		width: 100px;
+		width: 100%;
 		text-align: center;
 		display: inline-block;
 		text-decoration: none;
-		margin: 15;
-		matgin-right:10px;
 		font-size: 13px;
 		border-radius:5px;
 		padding-top: 5px;
 		padding-bottom: 5px;
 	}
-	.button_cancle{
+	#pjo_outline .button_cancle{
 		background-color: #e0e1e2; 
 		color: black;
 	}
-	.button_save{
+	#pjo_outline .button_save{
 		background-color: #fa6462;
 		color: white;
 	}
-	.button_next{
+	#pjo_outline .button_next{
 		background-color: #1859FB;
 		color: white;
 		float: right;
+		width : 60px;
 		margin-right: 60px;
 	}
 	.summary_text{
@@ -67,7 +72,6 @@
 	    width:100%;
 	    max-width:100%;
 	}
-	 
 	.filebox input[type="file"] {  /* 파일 필드 숨기기 */
 	    position: absolute;
 	    width: 1px;
@@ -331,6 +335,42 @@
 		border:1px solid#c5c5c5;
 	}
 
+	#pjo_creator .col-sm-5{
+		margin: 1px;
+		padding: 1px;
+		float: right;
+	}
+	#pjo_creator a {
+		text-decoration:none ; 
+		color:#000000;
+		cursor : default;
+	}
+	#pjo_creator .button{
+		border: none;
+		width: 100%;
+		text-align: center;
+		display: inline-block;
+		text-decoration: none;
+		font-size: 13px;
+		border-radius:5px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	#pjo_creator .button_cancle{
+		background-color: #e0e1e2; 
+		color: black;
+	}
+	#pjo_creator .button_save{
+		background-color: #fa6462;
+		color: white;
+	}
+	#pjo_creator .button_next{
+		background-color: #1859FB;
+		color: white;
+		float: right;
+		width : 60px;
+		margin-right: 60px;
+	}
 		/***************** 창작자 이미지 박스  스타일 속성  *******************/
 	#pjo_profile_img{
 		border:none;

@@ -1,5 +1,6 @@
 package com.project;
 
+import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import blockchain.Block;
 import blockchain.BlockChain;
 import blockchain.Output;
 import blockchain.Project;
+import blockchain.Register;
 import blockchain.Transaction;
 import blockchain.Wallet;
 import blockchain.util.Base64Conversion;
@@ -305,17 +307,26 @@ public class ProjectLogic {
 	
 	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor= {DataAccessException.class})
 	@Pointcut(value="execution(* com.project.*Logic.*(..)")
-	public int CreateProject(Map<String, Object> pMap) {
+	public int CreateProject(Map<String, Object> pMap) throws Exception {
 		int result = 0;
 		try {
-			logger.info(pMap.get("pjo_category_select_result").toString());
-			pMap.put("pro_code",0);
 			String proc = projectDao.projectCode(pMap);
-			logger.info(proc);
-			result = projectDao.projectcreate(pMap);
-			result = projectDao.storytellinginsert(pMap);
-			result = projectDao.pjoutlineinsert(pMap);
-			result = projectDao.fundinginsert(pMap);
+			Register register = new Register();
+			Wallet wallet = register.createProjectWallet(pMap.get("PROJECT_CODE").toString());
+			Project project = register.createProject(pMap.get("PROJECT_CODE").toString());
+			String publickey = null; 
+			String privateKey =null; 
+			PublicKey i=wallet.getPublicKey();
+			publickey = Base64Conversion.encodePublicKey(i);
+			PrivateKey j = wallet.getPrivateKey();
+			privateKey = Base64Conversion.encodePrivateKey(j);
+			pMap.put("PJ_PUBLICKEY",publickey); 
+			pMap.put("PJ_PRIVATEKEY",privateKey);
+			projectDao.projectcreate(pMap); 
+			projectDao.storytellinginsert(pMap);
+			projectDao.pjoutlineinsert(pMap); 
+			projectDao.fundinginsert(pMap); 
+			result=1;
 		} catch (Exception e) {
 			throw e;
 		}

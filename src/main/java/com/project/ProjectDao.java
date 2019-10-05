@@ -70,31 +70,23 @@ public class ProjectDao {
 	}
 	
 	//프로젝트 생성하기
-	public int projectcreate(Map<String, Object> pMap) {
-		int result = 0;
+	public void projectcreate(Map<String, Object> pMap) {
 		sqlSessionTemplate.update("projectcreate",pMap);
-		return result;
 	}
 
 	//스토리텔링부분 INSERT
-	public int storytellinginsert(Map<String, Object> pMap) {
-		int result = 0;
+	public void storytellinginsert(Map<String, Object> pMap) {
 		sqlSessionTemplate.update("storytellinginsert",pMap);
-		return result;
 	}
 	
 	//아웃라인부분 INSERT
-	public int pjoutlineinsert(Map<String, Object> pMap) {
-		int result = 0;
+	public void pjoutlineinsert(Map<String, Object> pMap) {
 		sqlSessionTemplate.update("pjoutlineinsert",pMap);
-		return result;
 	}
 	
 	//펀딩부분 INSERT
-	public int fundinginsert(Map<String, Object> pMap) {
-		int result = 0;
+	public void fundinginsert(Map<String, Object> pMap) {
 		sqlSessionTemplate.update("fundinginsert",pMap);
-		return result;
 	}
 
 	public List<ProjectVO> recommnadProjects() {
