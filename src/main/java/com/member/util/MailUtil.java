@@ -11,10 +11,10 @@ public class MailUtil {
 		//이거 GMAIL로 해도 됨. GMAIL이면 당연히 호스트도 지메일 보내는사람도 지메일
 		String hostSMTP = "smtp.naver.com"; 
 		//테스트 해보니 호스트랑 보내는사람이 무조건 같아야함.
-		String hostSMTPid = "";// 서버로 쓸 이메일 입력
-		String hostSMTPpwd = ""; //서버로 쓸 이메일 비밀번호 입력
+		String hostSMTPid = "jwh8712@naver.com";// 서버로 쓸 이메일 입력
+		String hostSMTPpwd = "happychain52"; //서버로 쓸 이메일 비밀번호 입력
 		// 보내는 사람
-		String fromEmail = "";//보내는사람 이메일-호스트랑 똑같은것.
+		String fromEmail = "jwh8712@naver.com";//보내는사람 이메일-호스트랑 똑같은것.
 		String fromName = "[Funding Through Block Chain]";
 		// email 전송
 		try {

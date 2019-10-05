@@ -1,6 +1,7 @@
 package vo;
 
 import java.io.Serializable;
+import java.sql.Clob;
 
 import org.springframework.stereotype.Component;
 @Component
@@ -9,14 +10,20 @@ public class MemberVO implements Serializable{
 	private String mem_email     = null;
 	private String mem_name      = null;
 	private String mem_pw        = null;
-	private String mem_pfimg     = null;
+	private Clob   mem_pfimg     = null;
 	private String mem_loc       = null;
 	private String mem_hp        = null;
 	private String mem_publickey = null;
 	private String mem_authority = null;
 	private String mem_zipcode   = null;
 	private String mem_nickname  = null;
-	
+	private String msg			 = null;
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public String getMem_email() {
 		return mem_email;
 	}
@@ -34,12 +41,6 @@ public class MemberVO implements Serializable{
 	}
 	public void setMem_pw(String mem_pw) {
 		this.mem_pw = mem_pw;
-	}
-	public String getMem_pfimg() {
-		return mem_pfimg;
-	}
-	public void setMem_pfimg(String mem_pfimg) {
-		this.mem_pfimg = mem_pfimg;
 	}
 	public String getMem_loc() {
 		return mem_loc;
@@ -77,5 +78,10 @@ public class MemberVO implements Serializable{
 	public void setMem_nickname(String mem_nickname) {
 		this.mem_nickname = mem_nickname;
 	}
-
+	public Clob getMem_pfimg() {
+		return mem_pfimg;
+	}
+	public void setMem_pfimg(Clob mem_pfimg) {
+		this.mem_pfimg = mem_pfimg;
+	}
 }

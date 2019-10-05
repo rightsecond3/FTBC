@@ -44,10 +44,9 @@ public class MemberLogic {
 		return result;
 	}
 
-	public int login(MemberVO mVO) {
-		int result=0;
+	public MemberVO login(MemberVO mVO) {
 		logger.info("Logic login 호출 ");
-		result=memberDao.login(mVO);
-		return result;
+		memberDao.login(mVO);
+		return mVO;
 	}
 }

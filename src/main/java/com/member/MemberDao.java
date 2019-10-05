@@ -1,7 +1,6 @@
 package com.member;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,11 +43,12 @@ public class MemberDao {
 		return result;
 	}
 
-	public int login(MemberVO mVO) {
-		int result = 0;
+	public MemberVO login(MemberVO mVO) {
 		logger.info("Dao  join 호출 ");
-		//sqlSessionTemplate.selectMap("", mapKey)
-		return result;
+		sqlSessionTemplate.selectOne("login", mVO);
+		//sqlSessionTemplate.selectOne("test",mVO);
+		//logger.info("==================test:"+test);
+		return mVO;
 	}
 
 
