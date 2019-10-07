@@ -113,162 +113,8 @@ function pre_page(){//페이지 하단 이전 버튼
     $("#tab2").removeClass("active");
     $("#tab1").attr('class','active');
  }
- /////////////////////주관식 객관식  입력창 오픈 클로즈 관련 시작///////////////////////
- /////////////////////여긴 추가되어서 수정삭제하는곳이 아니고 그냥 추가버튼 눌렀을때 나오는거 관련된거임!/////////////
-$(document).ready(function(){ 
-	$("#itemAddShow").hide();
-	$("#multipleChoiceInput").hide();
-	$("#jugwanSicInput").hide();
-	$("#multipleChoiceInput0").hide();
-	$("#jugwanSicInput0").hide();
-	$("#multipleChoiceInput1").hide();
-	$("#jugwanSicInput1").hide();
-	$("#multipleChoiceInput2").hide();
-	$("#jugwanSicInput2").hide();
-	$("#multipleChoiceInput3").hide();
-	$("#jugwanSicInput3").hide();
-	$("#multipleChoiceInput4").hide();
-	$("#jugwanSicInput4").hide();
-	$("#refundAndExchangeOutput").hide();
-	$("#deliveryNecessity").hide();
-	$("#remainQuantity").hide();
-    $("#option1").click(function(){
-    	if(($("#option1").is(':checked'))){ 
-    		$("#multipleChoiceInput").hide();
-    		$("#jugwanSicInput").hide();
-    		$("#multipleChoiceInput0").hide();
-    		$("#jugwanSicInput0").hide();
-    		$("#multipleChoiceInput1").hide();
-    		$("#jugwanSicInput1").hide();
-    		$("#multipleChoiceInput2").hide();
-    		$("#jugwanSicInput2").hide();
-    		$("#multipleChoiceInput3").hide();
-    		$("#jugwanSicInput3").hide();
-    		$("#multipleChoiceInput4").hide();
-    		$("#jugwanSicInput4").hide();
-    	}
-    	else if(($("#option2").is(':checked'))){
-            $("#multipleChoiceInput").show();
-        	$("#jugwanSicInput").hide();
-            $("#multipleChoiceInput0").show();
-        	$("#jugwanSicInput0").hide();
-            $("#multipleChoiceInput1").show();
-        	$("#jugwanSicInput1").hide();
-            $("#multipleChoiceInput2").show();
-        	$("#jugwanSicInput2").hide();
-            $("#multipleChoiceInput3").show();
-        	$("#jugwanSicInput3").hide();
-            $("#multipleChoiceInput4").show();
-        	$("#jugwanSicInput4").hide();
-        }
-    	else if(($("#option3").is(':checked'))){
-            $("#jugwanSicInput").show();
-          	$("#multipleChoiceInput").hide();
-            $("#jugwanSicInput0").show();
-          	$("#multipleChoiceInput0").hide();
-            $("#jugwanSicInput1").show();
-          	$("#multipleChoiceInput1").hide();
-            $("#jugwanSicInput2").show();
-          	$("#multipleChoiceInput2").hide();
-            $("#jugwanSicInput3").show();
-          	$("#multipleChoiceInput3").hide();
-            $("#jugwanSicInput4").show();
-          	$("#multipleChoiceInput4").hide();
-        }
-    });
-    $("#option2").click(function(){
-    	if(($("#option1").is(':checked'))){
-    		$("#multipleChoiceInput").hide();
-    		$("#jugwanSicInput").hide();
-    		$("#multipleChoiceInput0").hide();
-    		$("#jugwanSicInput0").hide();
-    		$("#multipleChoiceInput1").hide();
-    		$("#jugwanSicInput1").hide();
-    		$("#multipleChoiceInput2").hide();
-    		$("#jugwanSicInput2").hide();
-    		$("#multipleChoiceInput3").hide();
-    		$("#jugwanSicInput3").hide();
-    		$("#multipleChoiceInput4").hide();
-    		$("#jugwanSicInput4").hide();
-    	}
-    	else if(($("#option2").is(':checked'))){
-            $("#multipleChoiceInput").show();
-        	$("#jugwanSicInput").hide();
-            $("#multipleChoiceInput0").show();
-        	$("#jugwanSicInput0").hide();
-            $("#multipleChoiceInput1").show();
-        	$("#jugwanSicInput1").hide();
-            $("#multipleChoiceInput2").show();
-        	$("#jugwanSicInput2").hide();
-            $("#multipleChoiceInput3").show();
-        	$("#jugwanSicInput3").hide();
-            $("#multipleChoiceInput4").show();
-        	$("#jugwanSicInput4").hide();
-        }
-    	else if(($("#option3").is(':checked'))){
-            $("#jugwanSicInput").show();
-          	$("#multipleChoiceInput").hide();
-            $("#jugwanSicInput0").show();
-          	$("#multipleChoiceInput0").hide();
-            $("#jugwanSicInput1").show();
-          	$("#multipleChoiceInput1").hide();
-            $("#jugwanSicInput2").show();
-          	$("#multipleChoiceInput2").hide();
-            $("#jugwanSicInput3").show();
-          	$("#multipleChoiceInput3").hide();
-            $("#jugwanSicInput4").show();
-          	$("#multipleChoiceInput4").hide(); 	
-        }
-    });
-    $("#option3").click(function(){
-    	if(($("#option1").is(':checked'))){ 
-    		$("#multipleChoiceInput").hide();
-    		$("#jugwanSicInput").hide();
-    		$("#multipleChoiceInput0").hide();
-    		$("#jugwanSicInput0").hide();
-    		$("#multipleChoiceInput1").hide();
-    		$("#jugwanSicInput1").hide();
-    		$("#multipleChoiceInput2").hide();
-    		$("#jugwanSicInput2").hide();
-    		$("#multipleChoiceInput3").hide();
-    		$("#jugwanSicInput3").hide();
-    		$("#multipleChoiceInput4").hide();
-    		$("#jugwanSicInput4").hide();	
-    	}
-    	else if(($("#option2").is(':checked'))){
-            $("#multipleChoiceInput").show();
-        	$("#jugwanSicInput").hide();
-            $("#multipleChoiceInput0").show();
-        	$("#jugwanSicInput0").hide();
-            $("#multipleChoiceInput1").show();
-        	$("#jugwanSicInput1").hide();
-            $("#multipleChoiceInput2").show();
-        	$("#jugwanSicInput2").hide();
-            $("#multipleChoiceInput3").show();
-        	$("#jugwanSicInput3").hide();
-            $("#multipleChoiceInput4").show();
-        	$("#jugwanSicInput4").hide();
-        	
-        }
-    	else if(($("#option3").is(':checked'))){
-            $("#jugwanSicInput").show();
-          	$("#multipleChoiceInput").hide();
-            $("#jugwanSicInput0").show();
-          	$("#multipleChoiceInput0").hide();
-            $("#jugwanSicInput1").show();
-          	$("#multipleChoiceInput1").hide();
-            $("#jugwanSicInput2").show();
-          	$("#multipleChoiceInput2").hide();
-            $("#jugwanSicInput3").show();
-          	$("#multipleChoiceInput3").hide();
-            $("#jugwanSicInput4").show();
-          	$("#multipleChoiceInput4").hide();
-        }
-    });
-});
-/////////////////////주관식 객관식  입력창 오픈 클로즈 관련 끝///////////////////////
 
-//////////////////여기서부터는 디폴트 페이지 쇼하이드 관련.
+//////////////////여기서부터는 처음 페이지 쇼하이드 관련./////////////////
 $(document).ready(function(){
 	$("#goalMoneyShow").hide();
 	$("#projectEndDateShow").hide();
@@ -563,6 +409,162 @@ function itemAddConfirm(){
 		$("#jugwanSicInput").hide();
 }//////////////end of function
 //////////////////////////////모달 안에 아이템 추가 옵션입력후 확인 버튼 눌렀을때 이벤트 끝/////////////////
+ /////////////////////아이템 관리하기 모달의 주관식 객관식  입력창 오픈 클로즈 관련///////////////////////
+ /////////////////////여긴 추가되어서 수정삭제하는곳이 아니고 그냥 추가버튼 눌렀을때 나오는거 관련된거임!/////////////
+$(document).ready(function(){ 
+	$("#itemAddShow").hide();
+	$("#multipleChoiceInput").hide();
+	$("#jugwanSicInput").hide();
+	$("#multipleChoiceInput0").hide();
+	$("#jugwanSicInput0").hide();
+	$("#multipleChoiceInput1").hide();
+	$("#jugwanSicInput1").hide();
+	$("#multipleChoiceInput2").hide();
+	$("#jugwanSicInput2").hide();
+	$("#multipleChoiceInput3").hide();
+	$("#jugwanSicInput3").hide();
+	$("#multipleChoiceInput4").hide();
+	$("#jugwanSicInput4").hide();
+	$("#refundAndExchangeOutput").hide();
+	$("#deliveryNecessity").hide();
+	$("#remainQuantity").hide();
+	$("#giftAddDefault").hide();
+    $("#option1").click(function(){
+    	if(($("#option1").is(':checked'))){ 
+    		$("#multipleChoiceInput").hide();
+    		$("#jugwanSicInput").hide();
+    		$("#multipleChoiceInput0").hide();
+    		$("#jugwanSicInput0").hide();
+    		$("#multipleChoiceInput1").hide();
+    		$("#jugwanSicInput1").hide();
+    		$("#multipleChoiceInput2").hide();
+    		$("#jugwanSicInput2").hide();
+    		$("#multipleChoiceInput3").hide();
+    		$("#jugwanSicInput3").hide();
+    		$("#multipleChoiceInput4").hide();
+    		$("#jugwanSicInput4").hide();
+    	}
+    	else if(($("#option2").is(':checked'))){
+            $("#multipleChoiceInput").show();
+        	$("#jugwanSicInput").hide();
+            $("#multipleChoiceInput0").show();
+        	$("#jugwanSicInput0").hide();
+            $("#multipleChoiceInput1").show();
+        	$("#jugwanSicInput1").hide();
+            $("#multipleChoiceInput2").show();
+        	$("#jugwanSicInput2").hide();
+            $("#multipleChoiceInput3").show();
+        	$("#jugwanSicInput3").hide();
+            $("#multipleChoiceInput4").show();
+        	$("#jugwanSicInput4").hide();
+        }
+    	else if(($("#option3").is(':checked'))){
+            $("#jugwanSicInput").show();
+          	$("#multipleChoiceInput").hide();
+            $("#jugwanSicInput0").show();
+          	$("#multipleChoiceInput0").hide();
+            $("#jugwanSicInput1").show();
+          	$("#multipleChoiceInput1").hide();
+            $("#jugwanSicInput2").show();
+          	$("#multipleChoiceInput2").hide();
+            $("#jugwanSicInput3").show();
+          	$("#multipleChoiceInput3").hide();
+            $("#jugwanSicInput4").show();
+          	$("#multipleChoiceInput4").hide();
+        }
+    });
+    $("#option2").click(function(){
+    	if(($("#option1").is(':checked'))){
+    		$("#multipleChoiceInput").hide();
+    		$("#jugwanSicInput").hide();
+    		$("#multipleChoiceInput0").hide();
+    		$("#jugwanSicInput0").hide();
+    		$("#multipleChoiceInput1").hide();
+    		$("#jugwanSicInput1").hide();
+    		$("#multipleChoiceInput2").hide();
+    		$("#jugwanSicInput2").hide();
+    		$("#multipleChoiceInput3").hide();
+    		$("#jugwanSicInput3").hide();
+    		$("#multipleChoiceInput4").hide();
+    		$("#jugwanSicInput4").hide();
+    	}
+    	else if(($("#option2").is(':checked'))){
+            $("#multipleChoiceInput").show();
+        	$("#jugwanSicInput").hide();
+            $("#multipleChoiceInput0").show();
+        	$("#jugwanSicInput0").hide();
+            $("#multipleChoiceInput1").show();
+        	$("#jugwanSicInput1").hide();
+            $("#multipleChoiceInput2").show();
+        	$("#jugwanSicInput2").hide();
+            $("#multipleChoiceInput3").show();
+        	$("#jugwanSicInput3").hide();
+            $("#multipleChoiceInput4").show();
+        	$("#jugwanSicInput4").hide();
+        }
+    	else if(($("#option3").is(':checked'))){
+            $("#jugwanSicInput").show();
+          	$("#multipleChoiceInput").hide();
+            $("#jugwanSicInput0").show();
+          	$("#multipleChoiceInput0").hide();
+            $("#jugwanSicInput1").show();
+          	$("#multipleChoiceInput1").hide();
+            $("#jugwanSicInput2").show();
+          	$("#multipleChoiceInput2").hide();
+            $("#jugwanSicInput3").show();
+          	$("#multipleChoiceInput3").hide();
+            $("#jugwanSicInput4").show();
+          	$("#multipleChoiceInput4").hide(); 	
+        }
+    });
+    $("#option3").click(function(){
+    	if(($("#option1").is(':checked'))){ 
+    		$("#multipleChoiceInput").hide();
+    		$("#jugwanSicInput").hide();
+    		$("#multipleChoiceInput0").hide();
+    		$("#jugwanSicInput0").hide();
+    		$("#multipleChoiceInput1").hide();
+    		$("#jugwanSicInput1").hide();
+    		$("#multipleChoiceInput2").hide();
+    		$("#jugwanSicInput2").hide();
+    		$("#multipleChoiceInput3").hide();
+    		$("#jugwanSicInput3").hide();
+    		$("#multipleChoiceInput4").hide();
+    		$("#jugwanSicInput4").hide();	
+    	}
+    	else if(($("#option2").is(':checked'))){
+            $("#multipleChoiceInput").show();
+        	$("#jugwanSicInput").hide();
+            $("#multipleChoiceInput0").show();
+        	$("#jugwanSicInput0").hide();
+            $("#multipleChoiceInput1").show();
+        	$("#jugwanSicInput1").hide();
+            $("#multipleChoiceInput2").show();
+        	$("#jugwanSicInput2").hide();
+            $("#multipleChoiceInput3").show();
+        	$("#jugwanSicInput3").hide();
+            $("#multipleChoiceInput4").show();
+        	$("#jugwanSicInput4").hide();
+        	
+        }
+    	else if(($("#option3").is(':checked'))){
+            $("#jugwanSicInput").show();
+          	$("#multipleChoiceInput").hide();
+            $("#jugwanSicInput0").show();
+          	$("#multipleChoiceInput0").hide();
+            $("#jugwanSicInput1").show();
+          	$("#multipleChoiceInput1").hide();
+            $("#jugwanSicInput2").show();
+          	$("#multipleChoiceInput2").hide();
+            $("#jugwanSicInput3").show();
+          	$("#multipleChoiceInput3").hide();
+            $("#jugwanSicInput4").show();
+          	$("#multipleChoiceInput4").hide();
+        }
+    });
+});
+/////////////////////주관식 객관식  입력창 오픈 클로즈 관련 끝///////////////////////
+
 //////////////////////////////모달 안에 아이템 리스트 한개씩 삭제하기 시작///////////////////////////////
 /*
  * 이 부분도 펑션을 5개로 나누어 놓은 이유가 추가 삭제를 산발적으로 반복하다보면 tr이 한쌍이 남았는데 그게 3~4번인 경우도 있음.
@@ -1109,9 +1111,10 @@ function itemListAddDeleteShowHide(){
 	$("#itemListDeleteShow3").hide();
 	$("#itemListDeleteShow4").hide();
 }
-/////////////////////여기까지 쇼하이드였음. 
+//////////////////////////////////모달 관련 끝/////////////////////////////////////////////////////
 
-///////////////////////////datepicker에 today 디폴트값으로 넣기
+
+///////////////////////////datepicker에 today 디폴트값으로 넣기//////////////////////
  window.onload = function(){ 
 	 	var dt=new Date();
 	    var Year = dt.getFullYear();        
@@ -1270,7 +1273,7 @@ function itemListAddDeleteShowHide(){
 		var receiptEstimateDate  =yy+"년"+mm+"월"+dd+"일";
 		document.getElementById("receiptDate").value=receiptEstimateDate;
 	}
-///////////////=============================edit창 입력한것들 input안에 넘기는것 시작====================//////////////
+///////////////=============================edit창 입력한것들 확인 눌렀을때  넘기는것 시작====================//////////////
 function goalMoneyRegistration(){
 	document.getElementById("goalMoneyOutput").value=$("#goalMoneyInput").val();
 	$("#goalMoneyInputHide").hide();
@@ -1293,12 +1296,12 @@ function projectEndDateOutputShow(){
 	$("#moneyEstimatedDate").hide();
 	
 }
+	var nonce=0;
 function giftAdd(){
-	alert("이건 호출");
-	document.getElementById("minDonationMoneyOutput").value=$("#minDonationMoneyInput").val();
-	document.getElementById("giftTextAreaOutput").value=$("#giftTextAreaInput").val();
-	document.getElementById("deliveryDayOutput").value=$("#deliveryDayInput").val();
-	document.getElementById("limitedQuantityInput").value=$("#limitedQuantity").val();
+	var giftTextAreaOutput = 'giftTextAreaOutput'+nonce;
+	var minDonationMoneyOutput ='minDonationMoneyOutput'+nonce;
+	var deliveryDayOutput = 'deliveryDayOutput'+nonce;
+	var limitedQuantityInput = 'limitedQuantityInput'+nonce;
 	if(limitedCheck.checked == true ){
 		$("#remainQuantity").show();
 	}
@@ -1306,54 +1309,60 @@ function giftAdd(){
 		$("#deliveryNecessity").show();
 	}
 	if($("#YesNoGroup0").length==1||$("#YesNoGroup1").length==1||$("#YesNoGroup2").length==1||$("#YesNoGroup3").length==1||$("#YesNoGroup4").length==1){
-	if(YesNoGroup0.checked==true){
-		var a = $("#defaultGiftUlList").html();
-		a=a.replace(/GiftUlListName/gi,"GiftUlListName0");
-		a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity0");
-		$("#giftUlList").append(a);
-		document.getElementById
-		document.getElementById("GiftUlListName0").value=$("#itemListNameOutput0").val();
-		document.getElementById("GiftUlListQuantity0").value=$("#itemQuantityOption0").val();
-	}
-	if(YesNoGroup1.checked==true){
-		var a = $("#defaultGiftUlList").html();
-		a=a.replace(/GiftUlListName/gi,"GiftUlListName1");
-		a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity1");
-		$("#giftUlList").append(a);
-		document.getElementById("GiftUlListName1").value=$("#itemListNameOutput1").val();
-		document.getElementById("GiftUlListQuantity1").value=$("#itemQuantityOption1").val();
-	}
-	if(YesNoGroup2.checked==true){
-		var a = $("#defaultGiftUlList").html();
-		a=a.replace(/GiftUlListName/gi,"GiftUlListName2");
-		a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity2");
-		$("#giftUlList").append(a);
-		document.getElementById("GiftUlListName2").value=$("#itemListNameOutput2").val();
-		document.getElementById("GiftUlListQuantity2").value=$("#itemQuantityOption2").val();
-	}
-	if(YesNoGroup3.checked==true){
-		var a = $("#defaultGiftUlList").html();
-		a=a.replace(/GiftUlListName/gi,"GiftUlListName3");
-		a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity3");
-		$("#giftUlList").append(a);
-		document.getElementById("GiftUlListName3").value=$("#itemListNameOutput3").val();
-		document.getElementById("GiftUlListQuantity3").value=$("#itemQuantityOption3").val();
-	}
-	if(YesNoGroup4.checked==true){
-		var a = $("#defaultGiftUlList").html();
-		a=a.replace(/GiftUlListName/gi,"GiftUlListName4");
-		a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity4");
-		$("#giftUlList").append(a);
-		document.getElementById("GiftUlListName4").value=$("#itemListNameOutput4").val();
-		document.getElementById("GiftUlListQuantity4").value=$("#itemQuantityOption4").val();
+		if($("#YesNoGroup0").length==1){
+			if(YesNoGroup0.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName0");
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity0");
+			$("#giftUlList").append(a);
+			document.getElementById
+			document.getElementById("GiftUlListName0").value=$("#itemListNameOutput0").val();
+			document.getElementById("GiftUlListQuantity0").value=$("#itemQuantityOption0").val();
+			}
+		}
+		if($("#YesNoGroup1").length==1){
+			if(YesNoGroup1.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName1");
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity1");
+			$("#giftUlList").append(a);
+			document.getElementById("GiftUlListName1").value=$("#itemListNameOutput1").val();
+			document.getElementById("GiftUlListQuantity1").value=$("#itemQuantityOption1").val();
+			}
+		}
+		if($("#YesNoGroup2").length==1){
+			if(YesNoGroup2.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName2");
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity2");
+			$("#giftUlList").append(a);
+			document.getElementById("GiftUlListName2").value=$("#itemListNameOutput2").val();
+			document.getElementById("GiftUlListQuantity2").value=$("#itemQuantityOption2").val();
+			}
+		}
+		if($("#YesNoGroup3").length==1){
+			if(YesNoGroup3.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName3");
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity3");
+			$("#giftUlList").append(a);
+			document.getElementById("GiftUlListName3").value=$("#itemListNameOutput3").val();
+			document.getElementById("GiftUlListQuantity3").value=$("#itemQuantityOption3").val();
+			}
+		}
+		if($("#YesNoGroup4").length==1){
+			if(YesNoGroup4.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName4");
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity4");
+			$("#giftUlList").append(a);
+			document.getElementById("GiftUlListName4").value=$("#itemListNameOutput4").val();
+			document.getElementById("GiftUlListQuantity4").value=$("#itemQuantityOption4").val();
+			}
 		}
 	}
 	$("#giftConfiguration").hide();
 	$("#giftAddButtonForm").show();
-	$("#giftAddInfo").show();
-	document.getElementById("minDonationMoneyInput").value=null;
-	document.getElementById("giftTextAreaInput").value=null;
-	document.getElementById("deliveryDayInput").value=null;
 	if($("#itemQuantityOption0").length==1){
 		document.getElementById("itemQuantityOption0").value=null;
 	}
@@ -1369,10 +1378,30 @@ function giftAdd(){
 	if($("#itemQuantityOption4").length==1){
 		document.getElementById("itemQuantityOption4").value=null;
 	}
-	document.getElementById("limitedQuantity").value=null;
 	$("input:checkbox[id='limitCheck']").prop('checked', false);
 	$("input:checkbox[id='deliveryCheckBox']").prop('checked', false);
+	var giftInfo = $("#giftAddTable").html();
+	giftInfo = giftInfo.replace(/minDonationMoneyOutput/gi,"minDonationMoneyOutput"+nonce);
+	giftInfo = giftInfo.replace(/giftTextAreaOutput/gi,"giftTextAreaOutput"+nonce);
+	giftInfo = giftInfo.replace(/deliveryDayOutput/gi,"deliveryDayOutput"+nonce);
+	giftInfo = giftInfo.replace(/limitedQuantityInput/gi,"limitedQuantityInput"+nonce);
+	giftInfo = giftInfo.replace(/deleveryNecessityValue/gi,"deleveryNecessityValue"+nonce);
+	$("#giftAddOutputTable").append(giftInfo);
+	alert($("#minDonationMoneyInput").val());
+	$('#'+minDonationMoneyOutput).val($("#minDonationMoneyInput").val());
+	$('#'+giftTextAreaOutput).val($("#giftTextAreaInput").val());
+	$('#'+deliveryDayOutput).val($("#deliveryDayInput").val());
+	$('#'+limitedQuantityInput).val($("#limitedQuantity").val());
+	$("#giftAddInfo").show();
+	document.getElementById("minDonationMoneyInput").value=null;
+	document.getElementById("giftTextAreaInput").value=null;
+	document.getElementById("deliveryDayInput").value=null;
+	document.getElementById("limitedQuantity").value=null;
+	nonce++;
+	
 }
+$(document).ready(function(){
+});
 function refundAndExchangesAdd(){
 	$("#refundAndExchangeOutputDefault").hide();
 	document.getElementById("refundAndExchangeSpan").value=$("#refundTextArea").val();
@@ -1385,8 +1414,25 @@ function refundAndExchangeOutputEdit(){
 	$("#refundAndExchangesShow").show();
 }
 ///////////////=============================edit창 입력한것들 디폴트input안으로 넘기는것 끝====================//////////////
+
+////////////////////////////////////////////////
+		function change(){
+			var project_composition = document.Project_Composition;
+			if(summary_all_form.short_title.value==""||summary_all_form.long_title.value==""
+			||summary_all_form.pjo_summary_edit_text.value==""||summary_all_form.pjo_page_text.value==""
+			||summary_all_form.pjo_tag_text.value==""||summary_all_form.pjo_name_text.value==""
+			||summary_all_form.pjo_introduction_edit_textarea.value==""||summary_all_form.pjo_active_area_text.value==""
+			){
+				$("#check_tab").html('<img id="check_tab2" src="../FTBC_Images/check1.png">');
+			} else{
+				$("#check_tab").html('<img id="check_tab2" src="../FTBC_Images/check.png">');
+				
+			}
+		}
+////////////////////////////////////////////////
 </script>
 </head>
+
 <body>
 <!-- =====================================폼의 시작============================================ -->
 <form id="Project_Composition" name="Project_Composition" onSubmit="return false" class="create_form">
@@ -1505,7 +1551,7 @@ function refundAndExchangeOutputEdit(){
 				<div><i class="glyphicon glyphicon-hand-right"></i><label>&nbsp; 프로젝트 마감일을 입력해주세요</label></div>
 			</div>
 			<div id="projectEndDateInputShow" class="col-xs-10">
-				<div><label><input type="text" id="projectEndDateOutput"></label></div>
+				<div><label><input type="text" id="projectEndDateOutput" name="projectEndDateOutput"></label></div>
 			</div>
 			<div id="projectEndDateEditHide" class="col-xs-2">
 				<div><i class="glyphicon glyphicon-edit"></i><label>&nbsp; 입력하기</label></div>
@@ -1819,50 +1865,9 @@ function refundAndExchangeOutputEdit(){
 		<!-- ===============================선물구성 추가하기 쇼폼 끝=================================== -->
 		<!-- ===============================선물구성 추가되는폼 시작====================================-->
 		<div id="giftAddInfo">
-		<table>
-		<tr><td>
-		 <div id="giftInfo">
-			<div class="row">
-				<div class="col-xs-3">
-					&nbsp;<input type="text" class="chundanwigubun" id="minDonationMoneyOutput" name="minDonationMoneyOutput">
-					<label>&nbsp;원 이상 밀어주시는 분께</label>
-				</div>
-				<div class="col-xs-9" style="text-align:right;padding-right:90px">
-					<div>
-						<i class="glyphicon glyphicon-trash"></i>&nbsp;삭제하기&nbsp;&nbsp;&nbsp;
-					</div>			
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-10">
-					<div><input type="text" id="giftTextAreaOutput" name="giftTextAreaOutput"></div>
-				</div>
-			</div>
-			<ul id="giftUlList">
-
-			</ul>
-			<div class="row">
-				<div class="col-xs-10">
-					<div>예상전달일:<input type="text" id="deliveryDayOutput" name="deliveryDayOutput"></div>
-				</div>
-			</div>
-			<hr>
-			<div id="limitedAndDeliveryInput">
-				<div class="row">
-					<div class="col-xs-2" style="margin-top:5px;">
-						<div><i class="glyphicon glyphicon-asterisk"></i>&nbsp;선택한 사람이 없음</div>
-					</div>
-					<div id="remainQuantity" class="col-xs-8">
-						<div><input class="chundanwigubun" type="text" id="limitedQuantityInput">개&nbsp;남음</div>
-					</div>
-					<div id="deliveryNecessity" class="col-xs-2" style="margin-top:5px;">
-						<input type="text" value="배송 필요" id="deleveryNecessityValue" name="deleveryNecessityValue" disabled>
-					</div>
-				</div>
-			</div>
-		</div>
-		</td></tr>
-		</table>
+			<Table id="giftAddOutputTable">
+			
+			</Table>
 		</div>
 		<!-- ===============================선물구성 추가되는폼 끝====================================-->
 		<!-- ===============================선물구성 추가버튼 폼 시작================================== -->
@@ -2349,6 +2354,53 @@ function refundAndExchangeOutputEdit(){
 		</tr>	
 	</tbody>
 </table>
+
+</div>
+<div id="giftAddDefault">
+<table id="giftAddTable">
+		<tr><td >
+		 <div id="giftInfo">
+			<div class="row">
+				<div class="col-xs-3">
+					&nbsp;<input type="text" class="chundanwigubun" id="minDonationMoneyOutput" name="minDonationMoneyOutput">
+					<label>&nbsp;원 이상 밀어주시는 분께</label>
+				</div>
+				<div class="col-xs-9" style="text-align:right;padding-right:90px">
+					<div>
+						<i class="glyphicon glyphicon-trash"></i>&nbsp;삭제하기&nbsp;&nbsp;&nbsp;
+					</div>			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-10">
+					<div><input type="text" id="giftTextAreaOutput" name="giftTextAreaOutput"></div>
+				</div>
+			</div>
+			<ul id="giftUlList">
+
+			</ul>
+			<div class="row">
+				<div class="col-xs-10">
+					<div>예상전달일:<input type="text" id="deliveryDayOutput" name="deliveryDayOutput"></div>
+				</div>
+			</div>
+			<hr>
+			<div id="limitedAndDeliveryInput">
+				<div class="row">
+					<div class="col-xs-2" style="margin-top:5px;">
+						<div><i class="glyphicon glyphicon-asterisk"></i>&nbsp;선택한 사람이 없음</div>
+					</div>
+					<div id="remainQuantity" class="col-xs-8">
+						<div><input class="chundanwigubun" type="text" id="limitedQuantityInput">개&nbsp;남음</div>
+					</div>
+					<div id="deliveryNecessity" class="col-xs-2" style="margin-top:5px;">
+						<input type="text" value="배송 필요" id="deleveryNecessityValue" name="deleveryNecessityValue" disabled>
+					</div>
+				</div>
+			</div>
+		</div>
+		</td></tr>
+		</table>
 </div>
 </body>
 </html>
