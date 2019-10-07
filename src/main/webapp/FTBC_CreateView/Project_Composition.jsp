@@ -16,12 +16,12 @@
 
 ///////////////////////////////////////////
 //////////////////////////////text박스 number만 입력받고 천단위 구분기호 넣기 시작//////////////////////////
-$(document).on("keypress", "input[class=ilbanText]", function () {
+/* $(document).on("keypress", "input[class=ilbanText]", function () {
     if  ((event.keyCode<48||event.keyCode>57)&&(event.keyCode<96||event.keyCode>105)
     	&&(event.keyCode!=8)&&(event.keyCode!=46)&&(event.keyCode!=32)){
         event.returnValue = false;
         }
-});
+}); */
 $(document).on("keyup","input[class=chundanwigubun]",function(){
     var $this = $(this);
     var num = $this.val().replace(/[,]/g, "");
