@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String name= null;
+	String mem_email = null;
+	if(session.getAttribute("mem_name")!=null){
+		name = session.getAttribute("mem_name").toString();
+	}
+	
+	if(session.getAttribute("mem_email")!=null){
+		mem_email = session.getAttribute("mem_email").toString();
+	}
+	if(request.getAttribute("mainProjects")!=null){
+		out.print("main"+request.getAttribute("mainProjects"));
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +38,19 @@
 		}
 		
 		function main_ajax(){
-			
+			$.ajax({
+				method:'get',
+				url:'/Project/getMainProjects',
+				success:function(data){
+					alert(data);
+					var i  = JSON.parse(data);
+					alert(i);
+					for(var j =0;j<i.length;j++){
+						alert(i[j].pjo_img);
+					}				
+				}
+					
+			});
 		}
 		$(document).ready(function() {
 			main_ajax();

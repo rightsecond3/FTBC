@@ -1,5 +1,17 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String name= null;
+	String mem_email = null;
+	if(session.getAttribute("mem_name")!=null){
+		name = session.getAttribute("mem_name").toString();
+	}
+	
+	if(session.getAttribute("mem_email")!=null){
+		mem_email = session.getAttribute("mem_email").toString();
+	}
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -548,6 +560,7 @@
 	<input type="hidden" id="pjo_img_result" name="pjo_img_result">
 	<input type="hidden" id="pjo_profile_img_result" name="pjo_profile_img_result">
 	<input type="hidden" id="pjo_category_select_result" name="pjo_category_select_result">
+	<input type="hidden" id="mem_email" name="mem_email" value="<%=mem_email%>">
 	<table>
 	<!-- ================================ 프로젝트 제목 =============================================== -->
 	<tr><td>

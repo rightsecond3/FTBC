@@ -18,9 +18,9 @@
 	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.0.251:1521:orcl11"/>
-		<property name="username" value="test"/>
-		<property name="password" value="123"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.0.211:1521:orcl11"/>
+		<property name="username" value="FTBC"/>
+		<property name="password" value="happychain"/>
 	</bean>
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig"/>

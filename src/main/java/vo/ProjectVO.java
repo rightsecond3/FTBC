@@ -14,6 +14,8 @@ public class ProjectVO {
 	private String pj_account = null;
 	private String pj_stat = null;
 	private String pj_issuccess = null;
+	private String PJO_IMG = null;
+	private String PJO_LONGTITLE = null;
 	
 	//프로젝트테이블이 아닌 테이블에서 가져와야 하는것
 	private Blob st_story = null;
@@ -153,11 +155,24 @@ public class ProjectVO {
 	public void setgList(List<GiftVO> gList) {
 		this.gList = gList;
 	}
+	/*
+	 * @Override public String toString() { return "UserInfo [num=" + support_num +
+	 * ", money=" + fundedMoney + ", code=" + project_code + "]"; }
+	 */
 
+	public String getPJO_IMG() {
+		return PJO_IMG;
+	}
 
-	
-	 @Override
-	    public String toString() {
-	        return "UserInfo [num=" + support_num + ", money=" + fundedMoney + ", code=" + project_code + "]";
-	    }
+	public void setPJO_IMG(String pJO_IMG) {
+		PJO_IMG = pJO_IMG;
+	}
+
+	public String getPJO_LONGTITLE() {
+		return PJO_LONGTITLE;
+	}
+
+	public void setPJO_LONGTITLE(String pJO_LONGTITLE) {
+		PJO_LONGTITLE = pJO_LONGTITLE;
+	}
 }

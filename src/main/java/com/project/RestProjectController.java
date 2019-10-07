@@ -24,7 +24,7 @@ public class RestProjectController {
 		result = projectLogic.CreateProject(pMap);
 		logger.info("123 : "+result);
 		if(result==1) {
-		return "redirect:FTBC_myProjectList.jsp";
+			return "redirect:FTBC_myProjectList.jsp";
 		}else{
 			return "redirect:no";
 		}

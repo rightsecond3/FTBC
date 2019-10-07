@@ -8,7 +8,7 @@
    </resultMap>
    <insert id="projectcreate" parameterType="map">
    		INSERT INTO project (PROJECT_CODE,SUBCAT_CODE,MEM_EMAIL,PJ_ISEDIT,PJ_PUBLICKEY,PJ_PRIVATEKEY,PJ_ACCOUNT,PJ_STAT,PJ_ISSUCCESS)
-			values (#{PROJECT_CODE},#{pjo_category_select_result},'zzlld20',1,#{PJ_PUBLICKEY},#{PJ_PRIVATEKEY},1,1,1)
+			values (#{PROJECT_CODE},#{pjo_category_select_result},#{mem_email},1,#{PJ_PUBLICKEY},#{PJ_PRIVATEKEY},1,1,1)
    </insert>
    <insert id="storytellinginsert" parameterType="map">
    		INSERT INTO storytelling (project_code,st_story)
@@ -20,7 +20,7 @@
    				#{pjo_img_result},#{pjo_summary_edit_text},1,#{pjo_page_text})
    </insert>
    <insert id="fundinginsert" parameterType="map">
-   		INSERT INTO funding(project_code,fd_targetmoney,afd_deadline)
+   		INSERT INTO funding(project_code,fd_targetmoney,fd_deadline)
    				values(#{PROJECT_CODE},1,1)<!-- 펀딩 인서트 -->
    </insert>
    <select id="proc_procode" parameterType="map" statementType="CALLABLE">

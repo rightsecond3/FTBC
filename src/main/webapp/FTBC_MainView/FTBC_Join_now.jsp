@@ -25,7 +25,7 @@ $(document).ready(function(){
 		if(check_pw=="<h6>비밀번호가 일치합니다</h6>"){
 			alert("회원가입 성공!");
 			$.post("/member/join", $("#join_form").serialize(),function(data){
-				location.href="/FTBC_MainView/FTBC_Login.jsp"
+				location.href="/FTBC_MainView/FTBC_LoginLayout.jsp"
 			});
 		}
 		else{

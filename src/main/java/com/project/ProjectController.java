@@ -54,7 +54,7 @@ public class ProjectController  {
 		logger.info("내가 펀딩한 프로젝트 getMainProject 호출");
 		Map<String, Object> mainProjects = projectLogic.getMainProjects();
 		mod.addAttribute("mainProjects",mainProjects);
-		return  "forward:FTBC_MainList.jsp";
+		return  "forward:/FTBC_MainView/FTBC_MainList.jsp";
 	}
 	
 	@GetMapping(value="projectDetail")

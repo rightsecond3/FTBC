@@ -18,6 +18,20 @@ public class MemberVO implements Serializable{
 	private String mem_zipcode   = null;
 	private String mem_nickname  = null;
 	private String msg			 = null;
+	private String loginResult = null;
+	private String isWalletExist = null;
+	public String getLoginResult() {
+		return loginResult;
+	}
+	public void setLoginResult(String loginResult) {
+		this.loginResult = loginResult;
+	}
+	public String getIsWalletExist() {
+		return isWalletExist;
+	}
+	public void setIsWalletExist(String isWalletExist) {
+		this.isWalletExist = isWalletExist;
+	}
 	public String getMsg() {
 		return msg;
 	}

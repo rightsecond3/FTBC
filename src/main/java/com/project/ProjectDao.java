@@ -92,7 +92,7 @@ public class ProjectDao {
 	//?
 	public List<ProjectVO> recommnadProjects() {
 		List<ProjectVO> recommnadProjects = new ArrayList<>();
-		recommnadProjects = sqlSessionTemplate.selectList("recommnadProjects");
+		recommnadProjects = sqlSessionTemplate.selectList("allProjects");
 		return recommnadProjects;
 	}
 	//?
@@ -118,6 +118,7 @@ public class ProjectDao {
 		giftOptionList = sqlSessionTemplate.selectList("getGiftOption",giftCode);
 		return giftOptionList;
 	}
+
 
 
 }

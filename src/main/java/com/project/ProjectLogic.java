@@ -143,13 +143,13 @@ public class ProjectLogic {
 		// DB에서 가져와야할 것 프로젝트명, 프로젝트 올린사람 닉네임, 목표금액, 마감일
 		List<ProjectVO> popularProjects = getPopularProjects(projectDao.allProjects());//인기 프로젝트
 		List<ProjectVO> recommnadProjects = projectDao.recommnadProjects(); //추천 프로젝트 
-		List<ProjectVO> vergeofProjects = getVergeofProejcts(projectDao.allProjects()); //성공임박 프로젝트
+		//List<ProjectVO> vergeofProjects = getVergeofProejcts(projectDao.allProjects()); //성공임박 프로젝트
 		
 		List<ProjectVO> bannerProjects = new ArrayList<>();
 		bannerProjects.add(popularProjects.get(0));
 		bannerProjects.add(recommnadProjects.get(0));
 		bannerProjects.add(recommnadProjects.get(1));
-		bannerProjects.add(vergeofProjects.get(0));
+		//bannerProjects.add(vergeofProjects.get(0));
 		
 		/*
 		 * DB에서 가져온 정보로 BlockChain에 있는 데이터 가져와야함.
@@ -157,10 +157,14 @@ public class ProjectLogic {
 		 */
 		
 		//프로젝트 리스트들로 putFundedMoney돌려서 블록체인에있는 펀딩금액 데이터 넣어서 Map에 담아줌.
-		mainProjects.put("popularProject", putFundedMoney(popularProjects));
-		mainProjects.put("recommnadProject", putFundedMoney(recommnadProjects));
-		mainProjects.put("vergeofProject", putFundedMoney(vergeofProjects));
-		
+		/*
+		 * mainProjects.put("popularProject", putFundedMoney(popularProjects));
+		 * mainProjects.put("recommnadProject", putFundedMoney(recommnadProjects));
+		 * mainProjects.put("vergeofProject", putFundedMoney(vergeofProjects));
+		 */
+		mainProjects.put("popularProject", popularProjects);
+		mainProjects.put("recommnadProject", recommnadProjects);
+		//mainProjects.put("vergeofProject", vergeofProjects);
 		return mainProjects;
 	}
 			
@@ -324,25 +328,11 @@ public class ProjectLogic {
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor= {DataAccessException.class})
 	@Pointcut(value="execution(* com.project.*Logic.*(..)")
-	public int CreateProject(Map<String, Object> pMap){
+	public int CreateProject(Map<String, Object> pMap) throws Exception{
 		int result = 0;
+		logger.info("email :"+pMap.get("mem_email").toString());
 		try {
 			pMap = projectDao.projectCode(pMap);
-			pMap = code(pMap);
-			projectDao.projectcreate(pMap); 
-			projectDao.storytellinginsert(pMap);
-			projectDao.pjoutlineinsert(pMap); 
-			projectDao.fundinginsert(pMap); 
-			result=1;	
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}
-		return result;
-	}
-	
-	
-	public Map<String,Object> code(Map<String, Object> pMap) throws IOException{
-
 			Register register = new Register();
 			Wallet wallet = register.createProjectWallet(pMap.get("PROJECT_CODE").toString());
 			Project project = register.createProject(pMap.get("PROJECT_CODE").toString());
@@ -354,6 +344,21 @@ public class ProjectLogic {
 			privateKey = Base64Conversion.encodePrivateKey(j);
 			pMap.put("PJ_PUBLICKEY",publickey); 
 			pMap.put("PJ_PRIVATEKEY",privateKey);
+			projectDao.projectcreate(pMap); 
+			projectDao.storytellinginsert(pMap);
+			projectDao.pjoutlineinsert(pMap); 
+			projectDao.fundinginsert(pMap); 
+			result=1;	
+		} catch (Exception e) {
+			throw e;
+		}
+		return result;
+	}
+	
+	
+	public Map<String,Object> code(Map<String, Object> pMap) throws IOException{
+
+		
 	
 		return pMap;
 	}

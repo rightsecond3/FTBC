@@ -115,11 +115,11 @@
  	    $.post("/Project/createProject.ftbc", $(".create_form").serialize(), function(data){
  	    	alert("data:"+data);
  	    	var result = data;
-  	    	if(result=="isok"){
- 	    		location.href='/FTBC/FTBC_View/FTBC_MainView/FTBC_Main.jsp'; 
- 	    	}else{
+ 	    	location.href='/FTBC/FTBC_View/FTBC_MainView/FTBC_Main.jsp'; 
+/*   	    	if(result=="no"){
  	    		alert("등록에 실패하였습니다");
- 	    	} 
+ 	    	}else{
+ 	    	}  */
  	    });
 			
 	} 

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,7 +87,7 @@
 					<li>
 					<a href="../FTBC_myView/myPage.jsp" id="mem_name">
 					<i class="fa fa-search"></i>
-					이름
+					<span id="mem_name_menubar"><%=name%></span>
 					<img src="../FTBC_Images/yh.png" id="mem_pfimg"></a>
 					</li>
 				</ul>
