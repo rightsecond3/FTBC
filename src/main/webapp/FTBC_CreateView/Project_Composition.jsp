@@ -16,7 +16,7 @@
 
 ///////////////////////////////////////////
 //////////////////////////////text박스 number만 입력받고 천단위 구분기호 넣기 시작//////////////////////////
-$(document).on("keypress", "input[type=text]", function () {
+$(document).on("keypress", "input[class=ilbanText]", function () {
     if  ((event.keyCode<48||event.keyCode>57)&&(event.keyCode<96||event.keyCode>105)
     	&&(event.keyCode!=8)&&(event.keyCode!=46)&&(event.keyCode!=32)){
         event.returnValue = false;
@@ -1315,7 +1315,6 @@ function giftAdd(){
 			a=a.replace(/GiftUlListName/gi,"GiftUlListName0");
 			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity0");
 			$("#giftUlList").append(a);
-			document.getElementById
 			document.getElementById("GiftUlListName0").value=$("#itemListNameOutput0").val();
 			document.getElementById("GiftUlListQuantity0").value=$("#itemQuantityOption0").val();
 			}
@@ -1385,7 +1384,7 @@ function giftAdd(){
 	giftInfo = giftInfo.replace(/giftTextAreaOutput/gi,"giftTextAreaOutput"+nonce);
 	giftInfo = giftInfo.replace(/deliveryDayOutput/gi,"deliveryDayOutput"+nonce);
 	giftInfo = giftInfo.replace(/limitedQuantityInput/gi,"limitedQuantityInput"+nonce);
-	giftInfo = giftInfo.replace(/deleveryNecessityValue/gi,"deleveryNecessityValue"+nonce);
+	giftInfo = giftInfo.replace(/deliveryNecessityValue/gi,"deliveryNecessityValue"+nonce);
 	$("#giftAddOutputTable").append(giftInfo);
 	alert($("#minDonationMoneyInput").val());
 	$('#'+minDonationMoneyOutput).val($("#minDonationMoneyInput").val());
@@ -1551,7 +1550,7 @@ function refundAndExchangeOutputEdit(){
 				<div><i class="glyphicon glyphicon-hand-right"></i><label>&nbsp; 프로젝트 마감일을 입력해주세요</label></div>
 			</div>
 			<div id="projectEndDateInputShow" class="col-xs-10">
-				<div><label><input type="text" id="projectEndDateOutput" name="projectEndDateOutput"></label></div>
+				<div><label><input type="text" class="ilbanText" id="projectEndDateOutput" name="projectEndDateOutput"></label></div>
 			</div>
 			<div id="projectEndDateEditHide" class="col-xs-2">
 				<div><i class="glyphicon glyphicon-edit"></i><label>&nbsp; 입력하기</label></div>
@@ -1630,8 +1629,8 @@ function refundAndExchangeOutputEdit(){
 			<div class="row">
 				<div class="col-xs-9">
 					<ul>
-						<li><b>&nbsp; 결제 종료일:</b>펀딩에 성공할 경우 마감일 다음날부터 7일간 결제가 진행되어,<input type="text" id="payEndDate" name="payEndDate">&nbsp;모든 후원자의 결제가 종료됩니다. </li>
-						<li><b>&nbsp; 예상 정산일:</b>결제 종료일로부터 7일 이후인 <input type="text" id="receiptDate" name="receiptDate">&nbsp;(공휴일인 경우 바로 다음 영업일)에 창작자님의 계좌로 입금됩니다.</li>
+						<li><b>&nbsp; 결제 종료일:</b>펀딩에 성공할 경우 마감일 다음날부터 7일간 결제가 진행되어,<input type="text" class="ilbanText" id="payEndDate" name="payEndDate">&nbsp;모든 후원자의 결제가 종료됩니다. </li>
+						<li><b>&nbsp; 예상 정산일:</b>결제 종료일로부터 7일 이후인 <input type="text" class="ilbanText" id="receiptDate" name="receiptDate">&nbsp;(공휴일인 경우 바로 다음 영업일)에 창작자님의 계좌로 입금됩니다.</li>
 					</ul>
 				</div>
 			</div>
@@ -1735,7 +1734,7 @@ function refundAndExchangeOutputEdit(){
 										<label>아이템 이름</label>
 								</div>
 								<div class="row">
-										<input id="newMakeItemName" name="newMakeItemName" type="text" placeholder="새로 만들 아이템의 이름을 입력하세요." >
+										<input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." >
 								</div>
 								<div class="row">
 									<label><strong>옵션 조건</strong></label>
@@ -1819,7 +1818,7 @@ function refundAndExchangeOutputEdit(){
 			</div>
 			<div class="row">
 				<div class="col-xs-10">
-					<input type="text" id="deliveryDayInput" name="deliveryDayInput" >
+					<input type="text" class="ilbanText" id="deliveryDayInput" name="deliveryDayInput" >
 					<script>
 					$("#deliveryDayInput").value=$("#deliveryDayInput").datepicker(
 				  			{dateFormat: 'yy-mm-dd'
@@ -1997,10 +1996,10 @@ function refundAndExchangeOutputEdit(){
 			<div id="">
 				<div class="row">
 					<div class="col-xs-2">
-						<input type="text" id="GiftUlListName" name="GiftUlListName">
+						<input type="text" class="ilbanText" id="GiftUlListName" name="GiftUlListName">
 					</div>
 					<div class="col-xs-1">
-						<input type="text" id="GiftUlListQuantity" name="GiftUlListQuantity">
+						<input type="text" class="ilbanText" id="GiftUlListQuantity" name="GiftUlListQuantity">
 					</div>
 				</div>
 			</div>
@@ -2010,7 +2009,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView0">
-<tr id="itemListEditShow0"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label>
+<tr id="itemListEditShow0"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label>
 															<div><label><input type="radio" id="tbodyoption01" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption0">
 																<div><label><input type="radio" id="tbodyoption02"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
@@ -2076,7 +2075,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView1" >
-<tr id="itemListEditShow1"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label>
+<tr id="itemListEditShow1"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label>
 															<div><label><input type="radio" id="tbodyoption11" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption1">
 																<div><label><input type="radio" id="tbodyoption12"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
@@ -2142,7 +2141,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView2" >
-<tr id="itemListEditShow2"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption21" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
+<tr id="itemListEditShow2"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption21" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption2">
 																<div><label><input type="radio" id="tbodyoption22"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
 																<div><textarea name="tbodyMultipleChoiceInput2" id="tbodyMultipleChoiceInput2" placeholder="옵션 항목을 입력해주세요.
@@ -2207,7 +2206,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView3" >
-<tr id="itemListEditShow3"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption31" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
+<tr id="itemListEditShow3"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption31" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption3">
 																<div><label><input type="radio" id="tbodyoption32"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
 																<div><textarea name="tbodyMultipleChoiceInput3" id="tbodyMultipleChoiceInput3" placeholder="옵션 항목을 입력해주세요.
@@ -2272,7 +2271,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView4" >
-<tr id="itemListEditShow4"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption41" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
+<tr id="itemListEditShow4"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption41" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption4">
 																<div><label><input type="radio" id="tbodyoption42"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
 																<div><textarea name="tbodyMultipleChoiceInput4" id="tbodyMultipleChoiceInput4" placeholder="옵션 항목을 입력해주세요.
@@ -2336,8 +2335,8 @@ function refundAndExchangeOutputEdit(){
 <table id="defaultHideListTable">
 <tbody id="defaultHideList">
 	<tr >
-		<td><input type="text"  id="itemListNameInput" name="itemListNameInput"></td>
-		<td><input type="text"id="itemListOptionInput"name="itemListOptionInput"></td>
+		<td><input type="text" class="ilbanText"  id="itemListNameInput" name="itemListNameInput"></td>
+		<td><input type="text" class="ilbanText" id="itemListOptionInput"name="itemListOptionInput"></td>
 		<td><button id="itemListEditButton"type="button"class="btn btn-default btn-lg">수정하기</button>
 			<button id="itemListDeleteButton" type="button" class="btn btn-default btn-lg">삭제하기</button></td>
 	</tr>
@@ -2347,8 +2346,8 @@ function refundAndExchangeOutputEdit(){
 	<tbody id="giftDefaultHideList">
 		<tr>
 			<td style="text-align:center"><input type="checkbox" id="YesNoGroup" name="YesNoGroup"></td>
-			<td><input type="text"  id="itemListNameOutput" name="itemListNameOutput"></td>
-			<td><input type="text"   id="itemListOptionOutput" name="itemListOptionOutput"></td>
+			<td><input type="text" class="ilbanText"  id="itemListNameOutput" name="itemListNameOutput"></td>
+			<td><input type="text" class="ilbanText"   id="itemListOptionOutput" name="itemListOptionOutput"></td>
 			<td style="text-align:center"><i onclick="itemQuantityOption('minus')" class="fa fa-minus c_pointer"></i>
 			<input type="text" class="chundanwigubun" id="itemQuantityOption" name="itemQuantityOption" value="0" placeholder="0"><i onclick="itemQuantityOption('plus')" class="fa fa-plus c_pointer"></i></td>
 		</tr>	
@@ -2373,7 +2372,7 @@ function refundAndExchangeOutputEdit(){
 			</div>
 			<div class="row">
 				<div class="col-xs-10">
-					<div><input type="text" id="giftTextAreaOutput" name="giftTextAreaOutput"></div>
+					<div><input type="text" class="ilbanText" id="giftTextAreaOutput" name="giftTextAreaOutput"></div>
 				</div>
 			</div>
 			<ul id="giftUlList">
@@ -2381,7 +2380,7 @@ function refundAndExchangeOutputEdit(){
 			</ul>
 			<div class="row">
 				<div class="col-xs-10">
-					<div>예상전달일:<input type="text" id="deliveryDayOutput" name="deliveryDayOutput"></div>
+					<div>예상전달일:<input type="text"  class="ilbanText" id="deliveryDayOutput" name="deliveryDayOutput"></div>
 				</div>
 			</div>
 			<hr>
@@ -2394,7 +2393,7 @@ function refundAndExchangeOutputEdit(){
 						<div><input class="chundanwigubun" type="text" id="limitedQuantityInput">개&nbsp;남음</div>
 					</div>
 					<div id="deliveryNecessity" class="col-xs-2" style="margin-top:5px;">
-						<input type="text" value="배송 필요" id="deleveryNecessityValue" name="deleveryNecessityValue" disabled>
+						<input type="text" class="ilbanText" value="배송 필요" id="deliveryNecessityValue" name="deliveryNecessityValue" disabled>
 					</div>
 				</div>
 			</div>
