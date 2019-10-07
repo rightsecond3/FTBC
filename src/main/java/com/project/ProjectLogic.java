@@ -316,6 +316,12 @@ public class ProjectLogic {
 			result = projectDao.storytellinginsert(pMap);
 			result = projectDao.pjoutlineinsert(pMap);
 			result = projectDao.fundinginsert(pMap);
+			String gift_code = projectDao.giftCode(pMap);
+			logger.info(gift_code);
+			result = projectDao.giftinsert(pMap);
+			String gop_code = projectDao.giftOptionCode(pMap);
+			logger.info(gop_code);
+			result = projectDao.giftoptioninsert(pMap);
 		} catch (Exception e) {
 			throw e;
 		}

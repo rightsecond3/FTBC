@@ -152,12 +152,13 @@
     	border-radius: 4px;
 		}
 	#goalMoneyOutput{
-		border:none;
 		text-align:center;
 		width:120px;
 		padding-right:5px;
 		display:inline-block;
 		background-color:transparent;
+		border: 1px solid #ccdafc;
+    	border-radius: 4px;
 	}
 	#commissionCalculation{
 		background-color:#E8EDF7;
@@ -204,7 +205,7 @@
 		padding-bottom:15px;
 	}
 	#projectEndDateLabel{
-	padding-left:20px;
+		padding-left:20px;
 	}
 	#endDateConfirmGuide{
 		background-color:#E8EDF7;
@@ -342,7 +343,7 @@
 		padding-bottom :15px;
 		margin-bottom:20px;
 	}
-	#itemListAddEditShow{
+	#itemListAddEditShow0,#itemListAddEditShow1,#itemListAddEditShow2,#itemListAddEditShow3,#itemListAddEditShow4{
 		border: none;
 		border-radius:5px;
 		background-color:#F0F5FF;
@@ -375,9 +376,11 @@
 	#itemAddShow .row label{
 		padding-left:20px;
 	}
-	#newMakeItemName{
+	#newMakeItemName0,#newMakeItemName1,#newMakeItemName2,#newMakeItemName3,#newMakeItemName4,#newMakeItemName5{
 		margin-left:20px;
 		width:95%;
+		border: 1px solid #ccdafc;
+    	border-radius: 4px;
 	}
 	#modalFooterCloseButton{
 		background-color:#CACBCD;
@@ -623,6 +626,14 @@
     	border-radius: 4px;
 	}
 	#projectEndDateOutput{
+		border: 1px solid #ccdafc;
+    	border-radius: 4px;
+	}
+	.ilbanText{
+		border: 1px solid #ccdafc;
+    	border-radius: 4px;
+	}
+	.chundanwigubun{
 		border: 1px solid #ccdafc;
     	border-radius: 4px;
 	}

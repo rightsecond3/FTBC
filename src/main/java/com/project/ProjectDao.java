@@ -96,7 +96,19 @@ public class ProjectDao {
 		sqlSessionTemplate.update("fundinginsert",pMap);
 		return result;
 	}
-
+	//선물부분 INSERT
+	public int giftinsert(Map<String, Object> pMap) {
+		int result = 0;
+		sqlSessionTemplate.update("giftinsert",pMap);
+		return result;
+	}
+	//상품옵션부분 INSERT
+	public int giftoptioninsert(Map<String, Object> pMap) {
+		int result = 0;
+		sqlSessionTemplate.update("giftoptioninsert",pMap);
+		return result;
+	}
+	
 	public List<ProjectVO> recommnadProjects() {
 		List<ProjectVO> recommnadProjects = new ArrayList<>();
 		recommnadProjects = sqlSessionTemplate.selectList("recommnadProjects");
@@ -114,6 +126,20 @@ public class ProjectDao {
 		sqlSessionTemplate.selectOne("proc_procode",pMap);
 		return procCode;
 	}
+
+	public String giftCode(Map<String, Object> pMap) {
+		String gift_code = null;
+		gift_code = sqlSessionTemplate.selectOne("proc_giftcode",pMap);
+		return gift_code;
+	}
+
+	public String giftOptionCode(Map<String, Object> pMap) {
+		String gop_code = null;
+		gop_code = sqlSessionTemplate.selectOne("proc_giftoption",pMap);
+		return gop_code;
+	}
+
+
 
 
 }

@@ -14,10 +14,13 @@ public class MemberVO implements Serializable{
 	private String mem_loc       = null;
 	private String mem_hp        = null;
 	private String mem_publickey = null;
-	private String mem_authority = null;
+	private String mem_isauthority = null;
 	private String mem_zipcode   = null;
 	private String mem_nickname  = null;
 	private String msg			 = null;
+	private String loginResult = null;
+	
+	private String isWalletExist = null;
 	public String getMsg() {
 		return msg;
 	}
@@ -60,11 +63,11 @@ public class MemberVO implements Serializable{
 	public void setMem_publickey(String mem_publickey) {
 		this.mem_publickey = mem_publickey;
 	}
-	public String getMem_authority() {
-		return mem_authority;
+	public String getMem_isauthority() {
+		return mem_isauthority;
 	}
-	public void setMem_authority(String mem_authority) {
-		this.mem_authority = mem_authority;
+	public void setMem_isauthority(String mem_isauthority) {
+		this.mem_isauthority = mem_isauthority;
 	}
 	public String getMem_zipcode() {
 		return mem_zipcode;
@@ -83,5 +86,17 @@ public class MemberVO implements Serializable{
 	}
 	public void setMem_pfimg(Clob mem_pfimg) {
 		this.mem_pfimg = mem_pfimg;
+	}
+	public String getLoginResult() {
+		return loginResult;
+	}
+	public void setLoginResult(String loginResult) {
+		this.loginResult = loginResult;
+	}
+	public String getIsWalletExist() {
+		return isWalletExist;
+	}
+	public void setIsWalletExist(String isWalletExist) {
+		this.isWalletExist = isWalletExist;
 	}
 }

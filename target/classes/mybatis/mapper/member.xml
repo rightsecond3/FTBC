@@ -18,7 +18,7 @@
 		#{mem_email, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
       	,#{mem_pw, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
       	,#{mem_name, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
-      	,#{mem_authority, mode=OUT, jdbcType=NUMERIC, javaType=java.lang.String}
+      	,#{mem_isauthority, mode=OUT, jdbcType=NUMERIC, javaType=java.lang.String}
       	,#{msg,mode=OUT,jdbcType=VARCHAR, javaType=java.lang.String}
       )}
 	</select>

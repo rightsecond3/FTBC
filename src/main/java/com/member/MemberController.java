@@ -92,13 +92,12 @@ public class MemberController {
 		memberLogic.login(mVO);
 		//logger.info("mem_pimage===========:"+mVO.getMem_pfimg());
 		logger.info("mem_name============:"+mVO.getMem_name());
-		logger.info("mem_authority============:"+mVO.getMem_authority());
+		logger.info("mem_authority============:"+mVO.getMem_isauthority());
 		logger.info("msg============:"+mVO.getMsg());
 		session.setAttribute("mem_email",mVO.getMem_email());
 		//session.setAttribute("mem_pfimg",mVO.getMem_pfimg());
 		session.setAttribute("mem_name",mVO.getMem_name());
-		session.setAttribute("mem_authority",mVO.getMem_authority());
-		
+		session.setAttribute("mem_isauthority",mVO.getMem_isauthority());
 		return "redirect:/FTBC_MainView/FTBC_Main.jsp";
 	}
 	

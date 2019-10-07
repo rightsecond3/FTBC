@@ -14,6 +14,8 @@ public class ProjectVO {
 	private String pj_account = null;
 	private String pj_stat = null;
 	private String pj_issuccess = null;
+	private String gift_code = null;
+	private String gop_code = null;
 	
 	//프로젝트테이블이 아닌 테이블에서 가져와야 하는것
 	private Blob st_story = null;
@@ -160,4 +162,20 @@ public class ProjectVO {
 	    public String toString() {
 	        return "UserInfo [num=" + support_num + ", money=" + fundedMoney + ", code=" + project_code + "]";
 	    }
+
+	public String getGift_code() {
+		return gift_code;
+	}
+
+	public void setGift_code(String gift_code) {
+		this.gift_code = gift_code;
+	}
+
+	public String getGop_code() {
+		return gop_code;
+	}
+
+	public void setGop_code(String gop_code) {
+		this.gop_code = gop_code;
+	}
 }

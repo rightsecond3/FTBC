@@ -132,7 +132,6 @@
         </div>
         <div class="modal-body" >
 	        <div id="modal_img" style="text-align:center;">
-
 	        </div>
 	        <div style="text-align:center;" id="modal_msg">
 	        	<h5>아직 프로젝트가 완성되지 않았습니다</h5>

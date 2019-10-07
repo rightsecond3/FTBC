@@ -10,18 +10,8 @@
 	펀딩 및 선물 구성
 ================================================================================================  -->
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
-<link rel="stylesheet" type="text/css" href="Project_Composition.css?5">
+<link rel="stylesheet" type="text/css" href="Project_Composition.css?11">
 <script>
-////////////한정판 선물 입력한값 설정////////////////
-
-///////////////////////////////////////////
-//////////////////////////////text박스 number만 입력받고 천단위 구분기호 넣기 시작//////////////////////////
-/* $(document).on("keypress", "input[class=ilbanText]", function () {
-    if  ((event.keyCode<48||event.keyCode>57)&&(event.keyCode<96||event.keyCode>105)
-    	&&(event.keyCode!=8)&&(event.keyCode!=46)&&(event.keyCode!=32)){
-        event.returnValue = false;
-        }
-}); */
 $(document).on("keyup","input[class=chundanwigubun]",function(){
     var $this = $(this);
     var num = $this.val().replace(/[,]/g, "");
@@ -251,8 +241,8 @@ function itemAddConfirm(){
 				e=e.replace(/itemListOptionOutput/gi,"itemListOptionOutput0");
 				e=e.replace(/YesNoGroup/gi,"YesNoGroup0");
 				$("#giftConfigListTbody").append(e);
-				document.getElementById("itemListNameInput0").value = $("#newMakeItemName").val();
-				document.getElementById("itemListNameOutput0").value = $("#newMakeItemName").val();
+				document.getElementById("itemListNameInput0").value = $("#newMakeItemName0").val();
+				document.getElementById("itemListNameOutput0").value = $("#newMakeItemName0").val();
 				if($("input:radio[id='option1']:checked").length==1){
 					document.getElementById("itemListOptionInput0").value = "없음";
 					document.getElementById("itemListOptionOutput0").value = "없음";
@@ -283,8 +273,8 @@ function itemAddConfirm(){
 				e=e.replace(/itemListOptionOutput/gi,"itemListOptionOutput1");
 				e=e.replace(/YesNoGroup/gi,"YesNoGroup1");
 				$("#giftConfigListTbody").append(e);
-				document.getElementById("itemListNameInput1").value = $("#newMakeItemName").val();
-				document.getElementById("itemListNameOutput1").value = $("#newMakeItemName").val();
+				document.getElementById("itemListNameInput1").value = $("#newMakeItemName0").val();
+				document.getElementById("itemListNameOutput1").value = $("#newMakeItemName0").val();
 				if($("input:radio[id='option1']:checked").length==1){
 					document.getElementById("itemListOptionInput1").value = "없음";
 					document.getElementById("itemListOptionOutput1").value = "없음";
@@ -315,8 +305,8 @@ function itemAddConfirm(){
 				e=e.replace(/itemListOptionOutput/gi,"itemListOptionOutput2");
 				e=e.replace(/YesNoGroup/gi,"YesNoGroup2");
 				$("#giftConfigListTbody").append(e);
-				document.getElementById("itemListNameInput2").value = $("#newMakeItemName").val();
-				document.getElementById("itemListNameOutput2").value = $("#newMakeItemName").val();
+				document.getElementById("itemListNameInput2").value = $("#newMakeItemName0").val();
+				document.getElementById("itemListNameOutput2").value = $("#newMakeItemName0").val();
 				if($("input:radio[id='option1']:checked").length==1){
 					document.getElementById("itemListOptionInput2").value = "없음";
 					document.getElementById("itemListOptionOutput2").value = "없음";
@@ -347,8 +337,8 @@ function itemAddConfirm(){
 				e=e.replace(/itemListOptionOutput/gi,"itemListOptionOutput3");
 				e=e.replace(/YesNoGroup/gi,"YesNoGroup3");
 				$("#giftConfigListTbody").append(e);
-				document.getElementById("itemListNameInput3").value = $("#newMakeItemName").val();
-				document.getElementById("itemListNameOutput3").value = $("#newMakeItemName").val();
+				document.getElementById("itemListNameInput3").value = $("#newMakeItemName0").val();
+				document.getElementById("itemListNameOutput3").value = $("#newMakeItemName0").val();
 				if($("input:radio[id='option1']:checked").length==1){
 					document.getElementById("itemListOptionInput3").value = "없음";
 					document.getElementById("itemListOptionOutput3").value = "없음";
@@ -379,8 +369,8 @@ function itemAddConfirm(){
 				e=e.replace(/itemListOptionOutput/gi,"itemListOptionOutput4");
 				e=e.replace(/YesNoGroup/gi,"YesNoGroup4");
 				$("#giftConfigListTbody").append(e);
-				document.getElementById("itemListNameInput4").value = $("#newMakeItemName").val();
-				document.getElementById("itemListNameOutput4").value = $("#newMakeItemName").val();
+				document.getElementById("itemListNameInput4").value = $("#newMakeItemName0").val();
+				document.getElementById("itemListNameOutput4").value = $("#newMakeItemName0").val();
 				if($("input:radio[id='option1']:checked").length==1){
 					document.getElementById("itemListOptionInput4").value = "없음";
 					document.getElementById("itemListOptionOutput4").value = "없음";
@@ -401,7 +391,7 @@ function itemAddConfirm(){
 	}//////////////end of if
 		$("#itemAdd").show();//등록하면 아이템 추가하기 창을띄워주고
 		$("#itemAddShow").hide();//edit창 닫아주는것.
-		document.getElementById("newMakeItemName").value = null;
+		document.getElementById("newMakeItemName0").value = null;
 		document.getElementById("multipleChoiceInput").value = null;
 		document.getElementById("jugwanSicInput").value = null;
 		$("input:radio[id='option1']").prop('checked', true);
@@ -426,7 +416,6 @@ $(document).ready(function(){
 	$("#multipleChoiceInput4").hide();
 	$("#jugwanSicInput4").hide();
 	$("#refundAndExchangeOutput").hide();
-	$("#deliveryNecessity").hide();
 	$("#remainQuantity").hide();
 	$("#giftAddDefault").hide();
     $("#option1").click(function(){
@@ -564,7 +553,428 @@ $(document).ready(function(){
     });
 });
 /////////////////////주관식 객관식  입력창 오픈 클로즈 관련 끝///////////////////////
-
+//////////////////////////모달 안에 아이템 리스트 수정하기/////////////////////////////
+function ltemListAddEdit0(){
+	var i =$("#itemListEditShow0").index();//tr의 index뽑아서 비교
+	if(i<=2){//수정버튼을 호출한 tr인덱스가 1~3번줄
+ 		 $("#itemListNameInput0").val($("#newMakeItemName1").val());
+ 		 $("#itemListNameInput0").val($("#newMakeItemName1").val());
+	     if($("input:radio[id='tbodyoption01']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption02']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput0").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption03']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput0").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput0").val();
+			}
+	     $("#itemListAddEditShow0").hide();
+	}else if(i>2&&i<=5){//수정버튼을 호출한 tr인덱스가 4~6번줄
+		$("#itemListNameInput1").val($("#newMakeItemName2").val());
+		 if($("input:radio[id='tbodyoption11']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption12']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput1").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption13']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput1").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput1").val();
+			}
+		$("#itemListAddEditShow1").hide();
+	}else if(i>5&&i<=8){//수정버튼을 호출한 tr인덱스가 7~9번줄
+		$("#itemListNameInput2").val($("#newMakeItemName3").val());
+		 if($("input:radio[id='tbodyoption21']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption22']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput2").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption23']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput2").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput2").val();
+			}
+		$("#itemListAddEditShow2").hide();
+	}else if(i>8&&i<=11){//수정버튼을 호출한 tr인덱스가 10~12번줄
+		$("#itemListNameInput3").val($("#newMakeItemName4").val());
+		 if($("input:radio[id='tbodyoption31']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption32']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput3").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption33']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput3").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput3").val();
+			}
+		$("#itemListAddEditShow3").hide();
+	}else if(i>11&&i<=14){//수정버튼을 호출한 tr인덱스가 13~15번줄
+		$("#itemListNameInput4").val($("#newMakeItemName5").val());
+		 if($("input:radio[id='tbodyoption41']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption42']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput4").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption43']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput4").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput4").val();
+			}
+		$("#itemListAddEditShow4").hide();
+	}
+}
+function ltemListAddEdit1(){
+	var i =$("#itemListEditShow1").index();//tr의 index뽑아서 비교
+	if(i<=2){//수정버튼을 호출한 tr인덱스가 1~3번줄
+ 		 $("#itemListNameInput0").val($("#newMakeItemName1").val());
+ 		 if($("input:radio[id='tbodyoption01']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption02']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput0").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption03']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput0").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput0").val();
+			}
+	     $("#itemListAddEditShow0").hide();
+	}else if(i>2&&i<=5){//수정버튼을 호출한 tr인덱스가 4~6번줄
+		$("#itemListNameInput1").val($("#newMakeItemName2").val());
+		 if($("input:radio[id='tbodyoption11']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption12']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput1").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption13']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput1").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput1").val();
+			}
+		$("#itemListAddEditShow1").hide();
+	}else if(i>5&&i<=8){//수정버튼을 호출한 tr인덱스가 7~9번줄
+		$("#itemListNameInput2").val($("#newMakeItemName3").val());
+		 if($("input:radio[id='tbodyoption21']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption22']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput2").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption23']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput2").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput2").val();
+			}
+		$("#itemListAddEditShow2").hide();
+	}else if(i>8&&i<=11){//수정버튼을 호출한 tr인덱스가 10~12번줄
+		$("#itemListNameInput3").val($("#newMakeItemName4").val());
+		 if($("input:radio[id='tbodyoption31']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption32']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput3").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption33']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput3").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput3").val();
+			}
+		$("#itemListAddEditShow3").hide();
+	}else if(i>11&&i<=14){//수정버튼을 호출한 tr인덱스가 13~15번줄
+		$("#itemListNameInput4").val($("#newMakeItemName5").val());
+		 if($("input:radio[id='tbodyoption41']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption42']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput4").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption43']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput4").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput4").val();
+			}
+		$("#itemListAddEditShow4").hide();
+	}
+}
+function ltemListAddEdit2(){
+	var i =$("#itemListEditShow2").index();//tr의 index뽑아서 비교
+	if(i<=2){//수정버튼을 호출한 tr인덱스가 1~3번줄
+ 		 $("#itemListNameInput0").val($("#newMakeItemName1").val());
+ 		 if($("input:radio[id='tbodyoption01']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption02']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput0").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption03']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput0").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput0").val();
+			}
+	     $("#itemListAddEditShow0").hide();
+	}else if(i>2&&i<=5){//수정버튼을 호출한 tr인덱스가 4~6번줄
+		$("#itemListNameInput1").val($("#newMakeItemName2").val());
+		 if($("input:radio[id='tbodyoption11']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption12']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput1").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption13']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput1").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput1").val();
+			}
+		$("#itemListAddEditShow1").hide();
+	}else if(i>5&&i<=8){//수정버튼을 호출한 tr인덱스가 7~9번줄
+		$("#itemListNameInput2").val($("#newMakeItemName3").val());
+		 if($("input:radio[id='tbodyoption21']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption22']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput2").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption23']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput2").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput2").val();
+			}
+		$("#itemListAddEditShow2").hide();
+	}else if(i>8&&i<=11){//수정버튼을 호출한 tr인덱스가 10~12번줄
+		$("#itemListNameInput3").val($("#newMakeItemName4").val());
+		 if($("input:radio[id='tbodyoption31']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption32']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput3").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption33']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput3").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput3").val();
+			}
+		$("#itemListAddEditShow3").hide();
+	}else if(i>11&&i<=14){//수정버튼을 호출한 tr인덱스가 13~15번줄
+		$("#itemListNameInput4").val($("#newMakeItemName5").val());
+		 if($("input:radio[id='tbodyoption41']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption42']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput4").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption43']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput4").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput4").val();
+			}
+		$("#itemListAddEditShow4").hide();
+	}
+}
+function ltemListAddEdit3(){
+	var i =$("#itemListEditShow3").index();//tr의 index뽑아서 비교
+	if(i<=2){//수정버튼을 호출한 tr인덱스가 1~3번줄
+ 		 $("#itemListNameInput0").val($("#newMakeItemName1").val());
+ 		 if($("input:radio[id='tbodyoption01']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption02']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput0").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption03']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput0").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput0").val();
+			}
+	     $("#itemListAddEditShow0").hide();
+	}else if(i>2&&i<=5){//수정버튼을 호출한 tr인덱스가 4~6번줄
+		$("#itemListNameInput1").val($("#newMakeItemName2").val());
+		 if($("input:radio[id='tbodyoption11']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption12']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput1").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption13']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput1").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput1").val();
+			}
+		$("#itemListAddEditShow1").hide();
+	}else if(i>5&&i<=8){//수정버튼을 호출한 tr인덱스가 7~9번줄
+		$("#itemListNameInput2").val($("#newMakeItemName3").val());
+		 if($("input:radio[id='tbodyoption21']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption22']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput2").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption23']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput2").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput2").val();
+			}
+		$("#itemListAddEditShow2").hide();
+	}else if(i>8&&i<=11){//수정버튼을 호출한 tr인덱스가 10~12번줄
+		$("#itemListNameInput3").val($("#newMakeItemName4").val());
+		 if($("input:radio[id='tbodyoption31']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption32']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput3").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption33']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput3").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput3").val();
+			}
+		$("#itemListAddEditShow3").hide();
+	}else if(i>11&&i<=14){//수정버튼을 호출한 tr인덱스가 13~15번줄
+		$("#itemListNameInput4").val($("#newMakeItemName5").val());
+		 if($("input:radio[id='tbodyoption41']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption42']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput4").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption43']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput4").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput4").val();
+			}
+		$("#itemListAddEditShow4").hide();
+	}
+}
+function ltemListAddEdit4(){
+	var i =$("#itemListEditShow4").index();//tr의 index뽑아서 비교
+	if(i<=2){//수정버튼을 호출한 tr인덱스가 1~3번줄
+ 		 $("#itemListNameInput0").val($("#newMakeItemName1").val());
+ 		 if($("input:radio[id='tbodyoption01']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption02']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput0").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption03']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput0").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput0").val();
+			}
+	     $("#itemListAddEditShow0").hide();
+	}else if(i>2&&i<=5){//수정버튼을 호출한 tr인덱스가 4~6번줄
+		$("#itemListNameInput1").val($("#newMakeItemName2").val());
+		 if($("input:radio[id='tbodyoption11']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption12']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput1").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption03']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput1").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput1").val();
+			}
+		$("#itemListAddEditShow1").hide();
+	}else if(i>5&&i<=8){//수정버튼을 호출한 tr인덱스가 7~9번줄
+		$("#itemListNameInput2").val($("#newMakeItemName3").val());
+		 if($("input:radio[id='tbodyoption21']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption22']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput2").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption23']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput2").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput2").val();
+			}
+		$("#itemListAddEditShow2").hide();
+	}else if(i>8&&i<=11){//수정버튼을 호출한 tr인덱스가 10~12번줄
+		$("#itemListNameInput3").val($("#newMakeItemName4").val());
+		 if($("input:radio[id='tbodyoption31']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption32']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput3").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption33']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput3").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput3").val();
+			}
+		$("#itemListAddEditShow3").hide();
+	}else if(i>11&&i<=14){//수정버튼을 호출한 tr인덱스가 13~15번줄
+		$("#itemListNameInput4").val($("#newMakeItemName5").val());
+		 if($("input:radio[id='tbodyoption41']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value = "없음";
+				document.getElementById("itemListOptionOutput0").value = "없음";
+			}else if($("input:radio[id='tbodyoption42']:checked").length==1){
+				var select = "선택:";
+				var change = $("#tbodyMultipleChoiceInput4").val();
+				select = select.concat(change);
+				document.getElementById("itemListOptionInput0").value =select.replace(/\n/gi,",");
+				document.getElementById("itemListOptionOutput0").value =select.replace(/\n/gi,",");
+			}else if($("input:radio[id='tbodyoption43']:checked").length==1){
+				document.getElementById("itemListOptionInput0").value =$("#tbodyJugwanSicInput4").val();
+				document.getElementById("itemListOptionOutput0").value =$("#tbodyJugwanSicInput4").val();
+			}
+		$("#itemListAddEditShow4").hide();
+	}
+}
 //////////////////////////////모달 안에 아이템 리스트 한개씩 삭제하기 시작///////////////////////////////
 /*
  * 이 부분도 펑션을 5개로 나누어 놓은 이유가 추가 삭제를 산발적으로 반복하다보면 tr이 한쌍이 남았는데 그게 3~4번인 경우도 있음.
@@ -771,6 +1181,7 @@ function itemListEditShow0(){
 	    });
 	});
 	$("#itemListEditShow0").show();
+	$("#itemListAddEditShow0").show();
 	$("#itemListDeleteShow0").hide();
 	$("#itemListEditShow1").hide();
 	$("#itemListDeleteShow1").hide();
@@ -845,6 +1256,7 @@ function itemListEditShow1(){
 	    });
 	});
 	$("#itemListEditShow1").show();
+	$("#itemListAddEditShow1").show();
 	$("#itemListDeleteShow1").hide();
 	$("#itemListEditShow0").hide();
 	$("#itemListDeleteShow0").hide();
@@ -919,6 +1331,7 @@ function itemListEditShow2(){
 	    });
 	});
 	$("#itemListEditShow2").show();
+	$("#itemListAddEditShow2").show();
 	$("#itemListDeleteShow2").hide();
 	$("#itemListEditShow0").hide();
 	$("#itemListDeleteShow0").hide();
@@ -993,6 +1406,7 @@ function itemListEditShow3(){
 	    });
 	});
 	$("#itemListEditShow3").show();
+	$("#itemListAddEditShow3").show();
 	$("#itemListDeleteShow3").hide();
 	$("#itemListEditShow0").hide();
 	$("#itemListDeleteShow0").hide();
@@ -1067,6 +1481,7 @@ function itemListEditShow4(){
 	    });
 	});
 	$("#itemListEditShow4").show();
+	$("#itemListAddEditShow4").show();
 	$("#itemListDeleteShow4").hide();
 	$("#itemListEditShow1").hide();
 	$("#itemListDeleteShow1").hide();
@@ -1296,102 +1711,114 @@ function projectEndDateOutputShow(){
 	$("#moneyEstimatedDate").hide();
 	
 }
+
+
+//////////////////////////선물 추가////////////////////////////////////////////////
 	var nonce=0;
 function giftAdd(){
 	var giftTextAreaOutput = 'giftTextAreaOutput'+nonce;
 	var minDonationMoneyOutput ='minDonationMoneyOutput'+nonce;
 	var deliveryDayOutput = 'deliveryDayOutput'+nonce;
 	var limitedQuantityInput = 'limitedQuantityInput'+nonce;
-	if(limitedCheck.checked == true ){
-		$("#remainQuantity").show();
-	}
-	if(deliveryCheckBox.checked==true){
-		$("#deliveryNecessity").show();
-	}
-	if($("#YesNoGroup0").length==1||$("#YesNoGroup1").length==1||$("#YesNoGroup2").length==1||$("#YesNoGroup3").length==1||$("#YesNoGroup4").length==1){
-		if($("#YesNoGroup0").length==1){
-			if(YesNoGroup0.checked==true){
-			var a = $("#defaultGiftUlList").html();
-			a=a.replace(/GiftUlListName/gi,"GiftUlListName0");
-			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity0");
-			$("#giftUlList").append(a);
-			document.getElementById("GiftUlListName0").value=$("#itemListNameOutput0").val();
-			document.getElementById("GiftUlListQuantity0").value=$("#itemQuantityOption0").val();
-			}
-		}
-		if($("#YesNoGroup1").length==1){
-			if(YesNoGroup1.checked==true){
-			var a = $("#defaultGiftUlList").html();
-			a=a.replace(/GiftUlListName/gi,"GiftUlListName1");
-			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity1");
-			$("#giftUlList").append(a);
-			document.getElementById("GiftUlListName1").value=$("#itemListNameOutput1").val();
-			document.getElementById("GiftUlListQuantity1").value=$("#itemQuantityOption1").val();
-			}
-		}
-		if($("#YesNoGroup2").length==1){
-			if(YesNoGroup2.checked==true){
-			var a = $("#defaultGiftUlList").html();
-			a=a.replace(/GiftUlListName/gi,"GiftUlListName2");
-			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity2");
-			$("#giftUlList").append(a);
-			document.getElementById("GiftUlListName2").value=$("#itemListNameOutput2").val();
-			document.getElementById("GiftUlListQuantity2").value=$("#itemQuantityOption2").val();
-			}
-		}
-		if($("#YesNoGroup3").length==1){
-			if(YesNoGroup3.checked==true){
-			var a = $("#defaultGiftUlList").html();
-			a=a.replace(/GiftUlListName/gi,"GiftUlListName3");
-			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity3");
-			$("#giftUlList").append(a);
-			document.getElementById("GiftUlListName3").value=$("#itemListNameOutput3").val();
-			document.getElementById("GiftUlListQuantity3").value=$("#itemQuantityOption3").val();
-			}
-		}
-		if($("#YesNoGroup4").length==1){
-			if(YesNoGroup4.checked==true){
-			var a = $("#defaultGiftUlList").html();
-			a=a.replace(/GiftUlListName/gi,"GiftUlListName4");
-			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity4");
-			$("#giftUlList").append(a);
-			document.getElementById("GiftUlListName4").value=$("#itemListNameOutput4").val();
-			document.getElementById("GiftUlListQuantity4").value=$("#itemQuantityOption4").val();
-			}
-		}
-	}
-	$("#giftConfiguration").hide();
-	$("#giftAddButtonForm").show();
-	if($("#itemQuantityOption0").length==1){
-		document.getElementById("itemQuantityOption0").value=null;
-	}
-	if($("#itemQuantityOption1").length==1){
-		document.getElementById("itemQuantityOption1").value=null;
-	}
-	if($("#itemQuantityOption2").length==1){
-		document.getElementById("itemQuantityOption2").value=null;
-	}
-	if($("#itemQuantityOption3").length==1){
-		document.getElementById("itemQuantityOption3").value=null;
-	}
-	if($("#itemQuantityOption4").length==1){
-		document.getElementById("itemQuantityOption4").value=null;
-	}
-	$("input:checkbox[id='limitCheck']").prop('checked', false);
-	$("input:checkbox[id='deliveryCheckBox']").prop('checked', false);
+	var giftUlList = 'giftUlList'+nonce;
+	var choicePersonX = 'choicePersonX'+nonce;
+	var remainQuantity = 'remainQuantity'+nonce;
 	var giftInfo = $("#giftAddTable").html();
 	giftInfo = giftInfo.replace(/minDonationMoneyOutput/gi,"minDonationMoneyOutput"+nonce);
 	giftInfo = giftInfo.replace(/giftTextAreaOutput/gi,"giftTextAreaOutput"+nonce);
 	giftInfo = giftInfo.replace(/deliveryDayOutput/gi,"deliveryDayOutput"+nonce);
 	giftInfo = giftInfo.replace(/limitedQuantityInput/gi,"limitedQuantityInput"+nonce);
-	giftInfo = giftInfo.replace(/deliveryNecessityValue/gi,"deliveryNecessityValue"+nonce);
+	giftInfo = giftInfo.replace(/giftUlList/gi,"giftUlList"+nonce);
+	giftInfo = giftInfo.replace(/choicePersonX/gi,"choicePersonX"+nonce);
+	giftInfo = giftInfo.replace(/remainQuantity/gi,"remainQuantity"+nonce);
 	$("#giftAddOutputTable").append(giftInfo);
-	alert($("#minDonationMoneyInput").val());
+	if(limitedCheck.checked == true ){
+		$('#'+remainQuantity).show();
+		$('#'+choicePersonX).hide();
+	}else{
+		$('#'+remainQuantity).hide();
+		$('#'+choicePersonX).show();
+	}
+	/////////////////////////////////아이템 포함 체크 여부에 따라 추가하기 눌렀을때 추가되는것 분류
+	if($("#YesNoGroup0").length==1||$("#YesNoGroup1").length==1||$("#YesNoGroup2").length==1||$("#YesNoGroup3").length==1||$("#YesNoGroup4").length==1){
+		if($("#YesNoGroup0").length==1){
+			if(YesNoGroup0.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName0"+nonce);
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity0"+nonce);
+			$('#'+giftUlList).append(a);
+			document.getElementById("GiftUlListName0"+nonce).value=$("#itemListNameOutput0").val();
+			document.getElementById("GiftUlListQuantity0"+nonce).value=$("#itemQuantityOption0").val();
+			}
+		}
+		if($("#YesNoGroup1").length==1){
+			if(YesNoGroup1.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName1"+nonce);
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity1"+nonce);
+			$('#'+giftUlList).append(a);
+			document.getElementById("GiftUlListName1"+nonce).value=$("#itemListNameOutput1").val();
+			document.getElementById("GiftUlListQuantity1"+nonce).value=$("#itemQuantityOption1").val();
+			}
+		}
+		if($("#YesNoGroup2").length==1){
+			if(YesNoGroup2.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName2"+nonce);
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity2"+nonce);
+			$('#'+giftUlList).append(a);
+			document.getElementById("GiftUlListName2"+nonce).value=$("#itemListNameOutput2").val();
+			document.getElementById("GiftUlListQuantity2"+nonce).value=$("#itemQuantityOption2").val();
+			}
+		}
+		if($("#YesNoGroup3").length==1){
+			if(YesNoGroup3.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName3"+nonce);
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity3"+nonce);
+			$('#'+giftUlList).append(a);
+			document.getElementById("GiftUlListName3"+nonce).value=$("#itemListNameOutput3").val();
+			document.getElementById("GiftUlListQuantity3"+nonce).value=$("#itemQuantityOption3").val();
+			}
+		}
+		if($("#YesNoGroup4").length==1){
+			if(YesNoGroup4.checked==true){
+			var a = $("#defaultGiftUlList").html();
+			a=a.replace(/GiftUlListName/gi,"GiftUlListName4"+nonce);
+			a=a.replace(/GiftUlListQuantity/gi,"GiftUlListQuantity4"+nonce);
+			$('#'+giftUlList).append(a);
+			document.getElementById("GiftUlListName4"+nonce).value=$("#itemListNameOutput4").val();
+			document.getElementById("GiftUlListQuantity4"+nonce).value=$("#itemQuantityOption4").val();
+			}
+		}
+	}
+	$("#giftConfiguration").hide();
+	$("#giftAddButtonForm").show();
+	//////////////////////////저장 후 입력했던것들 초기화///////////////////////////
+	if($("#itemQuantityOption0").length==1){
+		document.getElementById("itemQuantityOption0").value=0;
+	}
+	if($("#itemQuantityOption1").length==1){
+		document.getElementById("itemQuantityOption1").value=0;
+	}
+	if($("#itemQuantityOption2").length==1){
+		document.getElementById("itemQuantityOption2").value=0;
+	}
+	if($("#itemQuantityOption3").length==1){
+		document.getElementById("itemQuantityOption3").value=0;
+	}
+	if($("#itemQuantityOption4").length==1){
+		document.getElementById("itemQuantityOption4").value=0;
+	}
+	$("input:checkbox[id='limitCheck']").prop('checked', false);
+//////////////////////////저장 후 입력했던것들 초기화 끝///////////////////////////
+
 	$('#'+minDonationMoneyOutput).val($("#minDonationMoneyInput").val());
 	$('#'+giftTextAreaOutput).val($("#giftTextAreaInput").val());
 	$('#'+deliveryDayOutput).val($("#deliveryDayInput").val());
 	$('#'+limitedQuantityInput).val($("#limitedQuantity").val());
 	$("#giftAddInfo").show();
+//////////////////////////저장 후 입력했던것들 초기화 시작///////////////////////////
 	document.getElementById("minDonationMoneyInput").value=null;
 	document.getElementById("giftTextAreaInput").value=null;
 	document.getElementById("deliveryDayInput").value=null;
@@ -1399,6 +1826,8 @@ function giftAdd(){
 	nonce++;
 	
 }
+/////////////////////////선물 추가 끝/////////////////////////////////
+
 $(document).ready(function(){
 });
 function refundAndExchangesAdd(){
@@ -1435,6 +1864,8 @@ function refundAndExchangeOutputEdit(){
 <body>
 <!-- =====================================폼의 시작============================================ -->
 <form id="Project_Composition" name="Project_Composition" onSubmit="return false" class="create_form">
+	<!-- 펀딩하기했을때 뿌려주는 화면에서 선물 포함 여부 -->
+	<input id="gift_isinclude" name="gift_isinclude" type="hidden" value=1>
 	<!-- ========================펀딩 및 선물 구성 프론트 시작 ======================-->
 	<!-- =========================목표금액 디폴트 화면 시작=========================== -->
 	<p>펀딩 목표 설정</p>
@@ -1734,7 +2165,7 @@ function refundAndExchangeOutputEdit(){
 										<label>아이템 이름</label>
 								</div>
 								<div class="row">
-										<input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." >
+										<input id="newMakeItemName0" name="newMakeItemName0" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." >
 								</div>
 								<div class="row">
 									<label><strong>옵션 조건</strong></label>
@@ -1844,9 +2275,6 @@ function refundAndExchangeOutputEdit(){
 							  	   <input type="text" id="limitedQuantity" name="limitedQuantity" class="chundanwigubun" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"disabled>
 							   		&nbsp;개로 제한합니다.</label>
 						</div>
-						<div class="col-xs-7">
-							<input id="deliveryCheckBox" name="deliveryCheckBox" type="checkbox">&nbsp;<b>배송이 필요한 선물입니다.</b>
-						</div>
 				</div>
 			</div>
 			<div id="giftConfigButton">
@@ -1883,7 +2311,7 @@ function refundAndExchangeOutputEdit(){
 				<div id="giftAddRow2" class="col-xs-12">
 					<div><label>선물을 만들기 전에 프로젝트 마감일을 설정해주세요.</label></div>
 					<div id="giftAddRowInputButton">
-						<button type="BUTTON" onclick="giftAdd()"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;<b>추가하기</b></button>
+						<button type="BUTTON"><i class="glyphicon glyphicon-plus-sign"></i>&nbsp;<b>추가하기</b></button>
 					</div>
 				</div>	
 			</div>
@@ -2009,7 +2437,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView0">
-<tr id="itemListEditShow0"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label>
+<tr id="itemListEditShow0"><td colspan="3"><div><div id="itemListAddEditShow0"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName1" name="newMakeItemName1" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label>
 															<div><label><input type="radio" id="tbodyoption01" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption0">
 																<div><label><input type="radio" id="tbodyoption02"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
@@ -2029,7 +2457,7 @@ function refundAndExchangeOutputEdit(){
 															<button id="itemAddCancelButton" onclick="itemListAddEditShowHide()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;취소하기
 															</button>
-															<button id="itemAddConfirmButton" onclick="" type="button" class="btn btn-default btn-lg">
+															<button id="itemAddConfirmButton" onclick="ltemListAddEdit0()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;저장하기
 															</button>
 														</div>
@@ -2075,7 +2503,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView1" >
-<tr id="itemListEditShow1"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label>
+<tr id="itemListEditShow1"><td colspan="3"><div><div id="itemListAddEditShow1"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName2" name="newMakeItemName2" type="text" class="ilbanText"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label>
 															<div><label><input type="radio" id="tbodyoption11" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption1">
 																<div><label><input type="radio" id="tbodyoption12"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
@@ -2095,7 +2523,7 @@ function refundAndExchangeOutputEdit(){
 															<button id="itemAddCancelButton" onclick="itemListAddEditShowHide()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;취소하기
 															</button>
-															<button id="itemAddConfirmButton" onclick="" type="button" class="btn btn-default btn-lg">
+															<button id="itemAddConfirmButton" onclick="ltemListAddEdit1()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;저장하기
 															</button>
 														</div>
@@ -2141,7 +2569,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView2" >
-<tr id="itemListEditShow2"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption21" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
+<tr id="itemListEditShow2"><td colspan="3"><div><div id="itemListAddEditShow2"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName3" name="newMakeItemName3" type="text" class="ilbanText"  placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption21" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption2">
 																<div><label><input type="radio" id="tbodyoption22"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
 																<div><textarea name="tbodyMultipleChoiceInput2" id="tbodyMultipleChoiceInput2" placeholder="옵션 항목을 입력해주세요.
@@ -2160,7 +2588,7 @@ function refundAndExchangeOutputEdit(){
 															<button id="itemAddCancelButton" onclick="itemListAddEditShowHide()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;취소하기
 															</button>
-															<button id="itemAddConfirmButton" onclick="" type="button" class="btn btn-default btn-lg">
+															<button id="itemAddConfirmButton" onclick="ltemListAddEdit2()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;저장하기
 															</button>
 														</div>
@@ -2206,7 +2634,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView3" >
-<tr id="itemListEditShow3"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption31" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
+<tr id="itemListEditShow3"><td colspan="3"><div><div id="itemListAddEditShow3"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName4" name="newMakeItemName4" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption31" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption3">
 																<div><label><input type="radio" id="tbodyoption32"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
 																<div><textarea name="tbodyMultipleChoiceInput3" id="tbodyMultipleChoiceInput3" placeholder="옵션 항목을 입력해주세요.
@@ -2225,7 +2653,7 @@ function refundAndExchangeOutputEdit(){
 															<button id="itemAddCancelButton" onclick="itemListAddEditShowHide()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;취소하기
 															</button>
-															<button id="itemAddConfirmButton" onclick="" type="button" class="btn btn-default btn-lg">
+															<button id="itemAddConfirmButton" onclick="ltemListAddEdit3()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;저장하기
 															</button>
 														</div>
@@ -2271,7 +2699,7 @@ function refundAndExchangeOutputEdit(){
 <table>
 <thead></thead>
 <tbody id="itemListEditShowView4" >
-<tr id="itemListEditShow4"><td colspan="3"><div><div id="itemListAddEditShow"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName" name="newMakeItemName" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption41" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
+<tr id="itemListEditShow4"><td colspan="3"><div><div id="itemListAddEditShow4"><div class="row"><label>아이템 이름</label></div><div><input id="newMakeItemName5" name="newMakeItemName5" type="text" class="ilbanText" placeholder="새로 만들 아이템의 이름을 입력하세요." ></div><div class="row"><label><strong>옵션 조건</strong></label><div><label><input type="radio" id="tbodyoption41" name="group" >&nbsp; 옵션이 필요없는 아이템입니다.</label></div>
 															<div id="multipleChoiceOption4">
 																<div><label><input type="radio" id="tbodyoption42"name="group" >&nbsp; 객관식 옵션이 필요한 아이템입니다.(사이즈,색상 등)</label></div>
 																<div><textarea name="tbodyMultipleChoiceInput4" id="tbodyMultipleChoiceInput4" placeholder="옵션 항목을 입력해주세요.
@@ -2290,7 +2718,7 @@ function refundAndExchangeOutputEdit(){
 															<button id="itemAddCancelButton" onclick="itemListAddEditShowHide()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;취소하기
 															</button>
-															<button id="itemAddConfirmButton" onclick="" type="button" class="btn btn-default btn-lg">
+															<button id="itemAddConfirmButton" onclick="ltemListAddEdit4()" type="button" class="btn btn-default btn-lg">
 																<i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;저장하기
 															</button>
 														</div>
@@ -2357,6 +2785,7 @@ function refundAndExchangeOutputEdit(){
 </div>
 <div id="giftAddDefault">
 <table id="giftAddTable">
+<tbody>
 		<tr><td >
 		 <div id="giftInfo">
 			<div class="row">
@@ -2365,8 +2794,8 @@ function refundAndExchangeOutputEdit(){
 					<label>&nbsp;원 이상 밀어주시는 분께</label>
 				</div>
 				<div class="col-xs-9" style="text-align:right;padding-right:90px">
-					<div>
-						<i class="glyphicon glyphicon-trash"></i>&nbsp;삭제하기&nbsp;&nbsp;&nbsp;
+					<div >
+						<label onclick="giftAddDelete()"><i class="glyphicon glyphicon-trash"></i>&nbsp;삭제하기</label>&nbsp;&nbsp;&nbsp;
 					</div>			
 				</div>
 			</div>
@@ -2386,19 +2815,17 @@ function refundAndExchangeOutputEdit(){
 			<hr>
 			<div id="limitedAndDeliveryInput">
 				<div class="row">
-					<div class="col-xs-2" style="margin-top:5px;">
+					<div id="choicePersonX" class="col-xs-2" style="margin-top:5px;">
 						<div><i class="glyphicon glyphicon-asterisk"></i>&nbsp;선택한 사람이 없음</div>
 					</div>
 					<div id="remainQuantity" class="col-xs-8">
 						<div><input class="chundanwigubun" type="text" id="limitedQuantityInput">개&nbsp;남음</div>
 					</div>
-					<div id="deliveryNecessity" class="col-xs-2" style="margin-top:5px;">
-						<input type="text" class="ilbanText" value="배송 필요" id="deliveryNecessityValue" name="deliveryNecessityValue" disabled>
-					</div>
 				</div>
 			</div>
 		</div>
 		</td></tr>
+		</tbody>
 		</table>
 </div>
 </body>
