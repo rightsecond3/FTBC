@@ -1,11 +1,14 @@
 package com.project;
 
+import java.io.IOException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.management.RuntimeErrorException;
 
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
@@ -214,13 +217,16 @@ public class ProjectLogic {
 		return myProjects;
 	}
 	
-	//프로젝트 상세보기 
+	//프로젝트 상세보기  지우랑 얘기할 곳
 	public ProjectVO getProjectDetail(String projectCode) {
-		ProjectVO projectDetail = projectDao.getProjectDetail(projectCode);
+		Map<String,Object> pMap = new HashMap<String, Object>();
+		ProjectVO projectDetail =null;
+		/////////////////////////// 받아올 데이터 테이블이 4개라서 vo말고 맵으로 받았음
+		pMap = projectDao.getProjectDetail(projectCode);
 		//상세보기할 프로젝트의 공개키
 		PublicKey project_key = null;
 		try {
-			project_key = (PublicKey)Base64Conversion.decodeBase64(projectDetail.getPj_publickey());
+			project_key = (PublicKey)Base64Conversion.decodeBase64(pMap.get("PJ_PUBLICKEY").toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -244,7 +250,19 @@ public class ProjectLogic {
 				}
 			}
 		}
-		projectDetail.setSupport_num(sup_num);
+		List<Map<String,Object>> giftList = new ArrayList<>();
+		giftList = projectDao.getGift(projectCode);
+		List<String> giftCode = new ArrayList<>();
+		for(int i = 0 ; i < giftList.size();i++) {
+			Map<String,Object> gift = new HashMap<String, Object>();
+			giftCode.add(gift.get("GIFT_CODE").toString());
+		}
+		List<Map<String,Object>> giftOptionList = new ArrayList<>();
+		giftOptionList = projectDao.getGiftOption(giftCode);
+		pMap.put("giftList",giftList);
+		pMap.put("giftOptionList",giftOptionList);
+		pMap.put("Support_num",sup_num);
+		//projectDetail.setSupport_num(sup_num);
 		
 		
 		return projectDetail;
@@ -304,13 +322,27 @@ public class ProjectLogic {
 		return plist;
 		
 	}
-	
 	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor= {DataAccessException.class})
 	@Pointcut(value="execution(* com.project.*Logic.*(..)")
-	public int CreateProject(Map<String, Object> pMap) throws Exception {
+	public int CreateProject(Map<String, Object> pMap){
 		int result = 0;
 		try {
-			String proc = projectDao.projectCode(pMap);
+			pMap = projectDao.projectCode(pMap);
+			pMap = code(pMap);
+			projectDao.projectcreate(pMap); 
+			projectDao.storytellinginsert(pMap);
+			projectDao.pjoutlineinsert(pMap); 
+			projectDao.fundinginsert(pMap); 
+			result=1;	
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
+		return result;
+	}
+	
+	
+	public Map<String,Object> code(Map<String, Object> pMap) throws IOException{
+
 			Register register = new Register();
 			Wallet wallet = register.createProjectWallet(pMap.get("PROJECT_CODE").toString());
 			Project project = register.createProject(pMap.get("PROJECT_CODE").toString());
@@ -322,17 +354,8 @@ public class ProjectLogic {
 			privateKey = Base64Conversion.encodePrivateKey(j);
 			pMap.put("PJ_PUBLICKEY",publickey); 
 			pMap.put("PJ_PRIVATEKEY",privateKey);
-			projectDao.projectcreate(pMap); 
-			projectDao.storytellinginsert(pMap);
-			projectDao.pjoutlineinsert(pMap); 
-			projectDao.fundinginsert(pMap); 
-			result=1;
-		} catch (Exception e) {
-			throw e;
-		}
-		return result;
-	}
 	
-
+		return pMap;
+	}
 	
 }

@@ -501,9 +501,9 @@
 			||summary_all_form.pjo_tag_text.value==""||summary_all_form.pjo_name_text.value==""
 			||summary_all_form.pjo_introduction_edit_textarea.value==""||summary_all_form.pjo_active_area_text.value==""
 			){
-				$("#check_tab").html('<img id="check_tab1" src="../FTBC_Images/check1.png">');
+				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check1.png">');
 			} else{
-				$("#check_tab").html('<img id="check_tab1" src="../FTBC_Images/check.png">');
+				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check.png">');
 				
 			}
 		}
@@ -535,9 +535,9 @@
 				check = check+",창작자 지역";
 			}
 			if(check!="check"){
-				$("#check_tab").html('<img id="check_tab1" src="../FTBC_Images/check1.png">');
+				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check1.png">');
 			}else{
-				$("#check_tab").html('<img id="check_tab1" src="../FTBC_Images/check.png">');
+				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check.png">');
 			}
 		}
 

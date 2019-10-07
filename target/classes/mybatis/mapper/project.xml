@@ -20,7 +20,7 @@
    				#{pjo_img_result},#{pjo_summary_edit_text},1,#{pjo_page_text})
    </insert>
    <insert id="fundinginsert" parameterType="map">
-   		INSERT INTO funding(project_code,fd_targetmoney,fd_deadline)
+   		INSERT INTO funding(project_code,fd_targetmoney,afd_deadline)
    				values(#{PROJECT_CODE},1,1)<!-- 펀딩 인서트 -->
    </insert>
    <select id="proc_procode" parameterType="map" statementType="CALLABLE">
@@ -28,4 +28,90 @@
       ,#{PROJECT_CODE, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
       )}
    </select>
+   <select id="allProjects" resultType="vo.ProjectVO">
+	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
+		  from project,pjoutline
+		 where project.project_code = pjoutline.project_code
+		 and pj_stat = 1
+   </select>
+   <select id="keywordProjects" parameterType="String" resultType="vo.ProjectVO">
+	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
+		  from project,pjoutline
+		 where project.project_code = pjoutline.project_code
+		   and pjo_longtitle in #{value}
+		   and pj_stat = 1
+   </select>
+   <select id="categoryProjects" parameterType="String" resultType="vo.ProjectVO">
+	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
+		  from project,pjoutline
+		 where project.project_code = pjoutline.project_code
+		   and subcat_code = #{value}
+		   and pj_stat = 1
+   </select>
+   <select id="fundedProject" parameterType="List" resultType="vo.ProjectVO">
+	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
+		  from project,pjoutline
+		 where project.project_code in
+		 	<foreach collection="list" item="item" index="index"
+		 		open="()" separator="," close=")">
+		 		#{item}
+		 	</foreach>
+		 	and pj_stat = 1
+   </select>
+    <select id="myProjects" parameterType="List" resultType="vo.ProjectVO">
+	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
+		  from project,pjoutline
+		 where project.project_code in
+		 	<foreach collection="list" item="item" index="index"
+		 		open="()" separator="," close=")">
+		 		#{item}
+		 	</foreach>
+		 	and pj_stat = 1
+   </select>
+   <select id="projectDetail" parameterType="String" resultType="map">
+		select 
+		  PROJECT_CODE,PJ_PUBLICKEY,PJO_SUMMARY,PJO_PAGEADDR,PJO_INTRODUCE,PJO_SHORTTITLE,PJO_LONGTITLE,PJO_IMG,ST_STORY,subcat_code,FD_TARGETMONEY,FD_DEADLINE
+		from project p NATURAL JOIN pjoutline o NATURAL JOIN funding f NATURAL JOIN storytelling s 
+		where pj_stat = 1  
+		 and project_code = #{value}  
+   </select>
+   <select id="getGift" parameterType="String" resultType="map">
+   		select 
+   			 GIFT_UNITMONEY,GIFT_NAME,GIFT_INCLUDE,GIFT_EXPLANATION,GIFT_DELIVERYDATE,GIFT_LIMITED       
+  				,PROJECT_CODE,GIFT_CODE    
+  		from gift
+  		where project_code = #{value}    
+   </select>
+   <select id="getGiftOption" parameterType="String" resultType="map">
+   		select
+   			GOP_OPTION,GOP_AMMOUNT,GOP_CODE,GIFT_CODE,GOP_DESCRIPTION
+   		  from giftoption
+   		  where gift_code in
+   		  <foreach collection="list" item="item" index="index"
+		 		open="()" separator="," close=")">
+		 		#{item}
+		 </foreach>
+			and 1=1
+   </select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
