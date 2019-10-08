@@ -48,13 +48,15 @@ public class MemberDao {
 		return result;
 	}
 
-	public MemberVO login(MemberVO mVO) {
-		Map<String,Object> rMap = new HashMap<>();
+	public String login(MemberVO mVO) {
+		String result = null;
+		//Map<String,Object> rMap = new HashMap<>();
 		logger.info("Dao  join 호출 ");
-		sqlSessionTemplate.selectOne("login", mVO);
-		rMap=sqlSessionTemplate.selectOne("test",mVO);
-		logger.info("=========="+rMap.get("mem_pfimg").toString());
-		return mVO;
+		result = sqlSessionTemplate.selectOne("login", mVO);
+		//sqlSessionTemplate.selectOne("test",mVO);
+		logger.info("====================:"+mVO);
+		logger.info("=========="+mVO.getMem_pfimg());
+		return result;
 	}
 
 

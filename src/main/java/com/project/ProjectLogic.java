@@ -288,7 +288,7 @@ public class ProjectLogic {
 		 */
 		for(int i=0; i<plist.size();i++) {
 			ProjectVO pVO = plist.get(i);
-			double percentage = pVO.getFundedMoney()/pVO.getTargetMoney();
+			double percentage = pVO.getFundedMoney()/pVO.getFd_targetMoney();
 			if(percentage >= 0.9) { //90퍼센트 이상일 경우
 				rlist.add(pVO);
 			}

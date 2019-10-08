@@ -10,7 +10,7 @@ public class MemberVO implements Serializable{
 	private String mem_email     = null;
 	private String mem_name      = null;
 	private String mem_pw        = null;
-	private Clob   mem_pfimg     = null;
+	private String mem_pfimg     = null;
 	private String mem_loc       = null;
 	private String mem_hp        = null;
 	private String mem_publickey = null;
@@ -81,10 +81,10 @@ public class MemberVO implements Serializable{
 	public void setMem_nickname(String mem_nickname) {
 		this.mem_nickname = mem_nickname;
 	}
-	public Clob getMem_pfimg() {
+	public String getMem_pfimg() {
 		return mem_pfimg;
 	}
-	public void setMem_pfimg(Clob mem_pfimg) {
+	public void setMem_pfimg(String mem_pfimg) {
 		this.mem_pfimg = mem_pfimg;
 	}
 	public String getLoginResult() {

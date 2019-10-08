@@ -90,7 +90,7 @@ public class MemberController {
 		logger.info("Mem_email"+mVO.getMem_email());
 		logger.info("Mem_pw"+mVO.getMem_pw());
 		memberLogic.login(mVO);
-		//logger.info("mem_pimage===========:"+mVO.getMem_pfimg());
+		logger.info("mem_pimage===========:"+mVO.getMem_pfimg());
 		logger.info("mem_name============:"+mVO.getMem_name());
 		logger.info("mem_authority============:"+mVO.getMem_isauthority());
 		logger.info("msg============:"+mVO.getMsg());

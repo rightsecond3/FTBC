@@ -24,6 +24,10 @@ public class RestProjectController {
 		logger.info(pMap.toString());
 		logger.info(pMap.get("editordata").toString());
 		logger.info(pMap.get("long_title").toString());
+		logger.info(pMap.get("goalMoneyOutput").toString());
+		logger.info(pMap.get("projectEndDateOutput").toString());
+		logger.info(pMap.get("long_title").toString());
+		logger.info(pMap.get("long_title").toString());
 		result = projectLogic.CreateProject(pMap);
 		if(result==0) {
 		return "forward:FTBC_Main.jsp";
