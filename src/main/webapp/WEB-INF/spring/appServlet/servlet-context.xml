@@ -25,6 +25,8 @@
 	<resources location="/FTBC_MainView/" mapping="/FTBC_MainView/**"/>
 	<resources location="/FTBC_myView/" mapping="/FTBC_myView/**"/>
 	<resources location="/FTBC_WalletView/" mapping="/FTBC_WalletView/**"/>
+	<resources location="/js/" mapping="/js/**"/>
+	
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
