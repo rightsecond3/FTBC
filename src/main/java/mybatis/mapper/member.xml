@@ -26,6 +26,6 @@
 		select  mem_pfimg from mem where mem_email=#{mem_email}
 	</select>
    <select id="getPublicKey" parameterType="String" resultType="String">
-   		SELECT MEM_PUBLICKEY from mem where mem_email = #{mem_email}
+   		SELECT MEM_PUBLICKEY from mem where mem_email = #{value}
    </select>
 </mapper>

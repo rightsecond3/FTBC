@@ -14,7 +14,9 @@
 </head>
 <body>
 <script type="text/javascript">
-	
+	function Discover_Project(cat){
+				
+	}
 
 </script>
 	<!-- 상단 바 바꿀   -->
@@ -50,30 +52,30 @@
 				 			<span  class="col-xs-3 Look_span">카테고리</span>
 				 		</div>
 				 		<div class="row category_row">
-					 		<a href="Discover_Project.jsp"  class="dropdown-toggle" data-toggle="dropdown" >
+					 		<a href="javascript:Discover_Project()" class="dropdown-toggle" data-toggle="dropdown" >
 					 		<span class="col-xs-3" > 게임<i class="fa fa-sort-down"></i></span> </a>
-								<ul class="dropdown-menu" aria-labelledby="about-us">
+					<!-- 			<ul class="dropdown-menu" aria-labelledby="about-us">
 								  <li><a href="../FTBC_LookView/LookAround_Project.jsp">프로젝트 둘러보기 </a></li>
 					              <li><a href="../FTBC_CreateView/CreatProject_Terms.jsp">프로젝트 올리기</a></li>
 					              <li><a href="../FTBC_BlockChainView/BlockChain_Main.jsp">프로젝트 블록체인</a></li>  
-								</ul>
-				 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 디자인<i class="fa fa-sort-down"></i></span></a>	
-				 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 만화<i class="fa fa-sort-down"></i></span></a>	
-				 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 미술<i class="fa fa-sort-down"></i></span></a>
+								</ul> -->
+				 			<a href="javascript:Discover_Project('디자인')"><span class="col-xs-3"> 디자인<i class="fa fa-sort-down"></i></span></a>	
+				 			<a href="javascript:Discover_Project('만화')"><span class="col-xs-3"> 만화<i class="fa fa-sort-down"></i></span></a>	
+				 			<a href="javascript:Discover_Project('미술')"><span class="col-xs-3"> 미술<i class="fa fa-sort-down"></i></span></a>
 				 		</div>
 				 		
 				 		<div class="row category_row">
-					 		<a href="Discover_Project.jsp"><span class="col-xs-3"> 공예<i class="fa fa-sort-down"></i></span></a>
-				 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 사진<i class="fa fa-sort-down"></i></span></a>	
-				 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 영화  <i class="fa fa-sort-down"></i></span></a>	
-				 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 푸드<i class="fa fa-sort-down"></i></span></a>
+					 		<a href="javascript:Discover_Project('공예')"><span class="col-xs-3"> 공예<i class="fa fa-sort-down"></i></span></a>
+				 			<a href="javascript:Discover_Project('사진')"><span class="col-xs-3"> 사진<i class="fa fa-sort-down"></i></span></a>	
+				 			<a href="javascript:Discover_Project('영화')"><span class="col-xs-3"> 영화  <i class="fa fa-sort-down"></i></span></a>	
+				 			<a href="javascript:Discover_Project('푸드')"><span class="col-xs-3"> 푸드<i class="fa fa-sort-down"></i></span></a>
 				 		</div>
 				 		
 				 		<div class="row category_row">
-					 		<a href="Discover_Project.jsp"><span class="col-xs-3"> 음악 <i class="fa fa-sort-down"></i></span></a>
-				 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 출판<i class="fa fa-sort-down"></i></span></a>	
-				 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 패션<i class="fa fa-sort-down"></i> </span></a>	
-				 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 캠페인<i class="fa fa-sort-down"></i> </span></a>
+					 		<a href="javascript:Discover_Project('음악')"><span class="col-xs-3"> 음악 <i class="fa fa-sort-down"></i></span></a>
+				 			<a href="javascript:Discover_Project('출판')"><span class="col-xs-3"> 출판<i class="fa fa-sort-down"></i></span></a>	
+				 			<a href="javascript:Discover_Project('패션')"><span class="col-xs-3"> 패션<i class="fa fa-sort-down"></i> </span></a>	
+				 			<a href="javascript:Discover_Project('캠페인')"><span class="col-xs-3"> 캠페인<i class="fa fa-sort-down"></i> </span></a>
 				 		</div>
 			 		</div>
 		 		</div>

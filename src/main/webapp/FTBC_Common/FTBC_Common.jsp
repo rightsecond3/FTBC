@@ -20,6 +20,7 @@
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="<c:url value="../js/jquery-3.4.1.min.js" />"></script>
 
 <!--PG  -->
 

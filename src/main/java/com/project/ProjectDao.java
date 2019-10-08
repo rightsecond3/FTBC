@@ -28,6 +28,7 @@ public class ProjectDao {
 	//퍼블릭키 가져오기 - v
 	public String getPublicKey(String mem_email) {
 		String publicKey = sqlSessionTemplate.selectOne("getPublicKey",mem_email);
+		logger.info(publicKey);
 		return publicKey;
 	}
 	
@@ -64,10 +65,10 @@ public class ProjectDao {
 		return myProjects;
 	}
 	//프로젝트 상세보기 - v
-	public Map<String,Object> getProjectDetail(String projectCode) {
-		Map<String,Object> rMap = new HashMap<String, Object>();
-		rMap = sqlSessionTemplate.selectMap("projectDetail", projectCode);
-		return rMap;
+	public ProjectVO getProjectDetail(String projectCode) {
+		ProjectVO projectDetail =null;
+		projectDetail = sqlSessionTemplate.selectOne("projectDetail", projectCode);
+		return projectDetail;
 	}
 	
 	//프로젝트 생성하기 - v

@@ -223,20 +223,19 @@ public class ProjectLogic {
 	
 	//프로젝트 상세보기  지우랑 얘기할 곳
 	public ProjectVO getProjectDetail(String projectCode) {
-		Map<String,Object> pMap = new HashMap<String, Object>();
 		ProjectVO projectDetail =null;
 		/////////////////////////// 받아올 데이터 테이블이 4개라서 vo말고 맵으로 받았음
-		pMap = projectDao.getProjectDetail(projectCode);
+		projectDetail = projectDao.getProjectDetail(projectCode);
 		//상세보기할 프로젝트의 공개키
 		PublicKey project_key = null;
 		try {
-			project_key = (PublicKey)Base64Conversion.decodeBase64(pMap.get("PJ_PUBLICKEY").toString());
+			project_key = (PublicKey)Base64Conversion.decodeBase64(projectDetail.getPj_publickey());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		// 상세보기할 프로젝트의 후원자 수 담을 변수
 		int sup_num = 0;
-		BlockChain blockChain = getBlockChain();
+		//BlockChain blockChain = getBlockChain();
 		/*
 		 * 후원자 명수 가져오기
 		 * 1. 로컬에서 가져온 블록체인의 사이즈 만큼 for문 돌려서 Block을 뽑아냄
@@ -245,6 +244,7 @@ public class ProjectLogic {
 		 *    후원자 명 수 ++
 		 * 4. projectDetail 맵에 후원자 수 도 put
 		 */
+		/*
 		for(int i=0;i<blockChain.blockChain.size();i++) {
 			Block block = blockChain.blockChain.get(i);
 			for(int j=0;j<block.transactions.size();j++){
@@ -254,6 +254,7 @@ public class ProjectLogic {
 				}
 			}
 		}
+		
 		List<Map<String,Object>> giftList = new ArrayList<>();
 		giftList = projectDao.getGift(projectCode);
 		List<String> giftCode = new ArrayList<>();
@@ -263,11 +264,8 @@ public class ProjectLogic {
 		}
 		List<Map<String,Object>> giftOptionList = new ArrayList<>();
 		giftOptionList = projectDao.getGiftOption(giftCode);
-		pMap.put("giftList",giftList);
-		pMap.put("giftOptionList",giftOptionList);
-		pMap.put("Support_num",sup_num);
 		//projectDetail.setSupport_num(sup_num);
-		
+		*/
 		
 		return projectDetail;
 	}
@@ -312,7 +310,7 @@ public class ProjectLogic {
 		 */
 		for(int i=0; i<plist.size();i++) {
 			ProjectVO pVO = plist.get(i);
-			double percentage = pVO.getFundedMoney()/pVO.getTargetMoney();
+			double percentage = pVO.getFundedMoney()/pVO.getFd_targetMoney();
 			if(percentage >= 0.9) { //90퍼센트 이상일 경우
 				rlist.add(pVO);
 			}

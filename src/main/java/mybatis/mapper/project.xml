@@ -29,49 +29,51 @@
       )}
    </select>
    <select id="allProjects" resultType="vo.ProjectVO">
-	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
-		  from project,pjoutline
+	   	select project.project_code,subcat_code,mem.mem_email,pjo_img,pjo_longtitle,mem_nickname
+		  from project,pjoutline,mem
 		 where project.project_code = pjoutline.project_code
+		 and project.mem_email = mem.mem_email
 		 and pj_stat = 1
    </select>
    <select id="keywordProjects" parameterType="String" resultType="vo.ProjectVO">
-	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
-		  from project,pjoutline
+	   	select project.project_code,subcat_code,mem.mem_email,pjo_img,pjo_longtitle,mem_nickname
+		  from project,pjoutline,mem
 		 where project.project_code = pjoutline.project_code
+		   and project.mem_email = mem.mem_email
 		   and pjo_longtitle in #{value}
 		   and pj_stat = 1
    </select>
    <select id="categoryProjects" parameterType="String" resultType="vo.ProjectVO">
-	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
-		  from project,pjoutline
+	   	select project.project_code,mem.subcat_code,mem.mem_email,pjo_img,pjo_longtitle,mem_nickname
+		  from project,pjoutline,mem,subcat
 		 where project.project_code = pjoutline.project_code
-		   and subcat_code = #{value}
+		   and project.mem_email = mem.mem_email
+		   and maincat_name = #{value}
 		   and pj_stat = 1
    </select>
    <select id="fundedProject" parameterType="List" resultType="vo.ProjectVO">
-	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
-		  from project,pjoutline
+	   	select project.project_code,subcat_code,mem.mem_email,pjo_img,pjo_longtitle,mem_nickname
+		  from project,pjoutline,mem
 		 where project.project_code in
 		 	<foreach collection="list" item="item" index="index"
 		 		open="()" separator="," close=")">
 		 		#{item}
 		 	</foreach>
+		 and project.mem_email = mem.mem_email
 		 	and pj_stat = 1
    </select>
-    <select id="myProjects" parameterType="List" resultType="vo.ProjectVO">
-	   	select project.project_code,subcat_code,mem_email,pjo_img,pjo_longtitle
-		  from project,pjoutline
-		 where project.project_code in
-		 	<foreach collection="list" item="item" index="index"
-		 		open="()" separator="," close=")">
-		 		#{item}
-		 	</foreach>
-		 	and pj_stat = 1
+    <select id="myProjects" parameterType="String" resultType="vo.ProjectVO">
+	   	select project.project_code,subcat_code,mem.mem_email,pjo_img,pjo_longtitle,mem_nickname
+		  from project,pjoutline,mem
+		 where project.mem_email = mem.mem_email
+		   and project.project_code = pjoutline.project_code
+		   and project.mem_email = #{value}
+		   and pj_stat = 1
    </select>
-   <select id="projectDetail" parameterType="String" resultType="map">
+   <select id="projectDetail" parameterType="String" resultType="vo.ProjectVO">
 		select 
-		  PROJECT_CODE,PJ_PUBLICKEY,PJO_SUMMARY,PJO_PAGEADDR,PJO_INTRODUCE,PJO_SHORTTITLE,PJO_LONGTITLE,PJO_IMG,ST_STORY,subcat_code,FD_TARGETMONEY,FD_DEADLINE
-		from project p NATURAL JOIN pjoutline o NATURAL JOIN funding f NATURAL JOIN storytelling s 
+		  PROJECT_CODE,PJ_PUBLICKEY,PJO_SUMMARY,PJO_PAGEADDR,PJO_INTRODUCE,PJO_SHORTTITLE,PJO_LONGTITLE,PJO_IMG,ST_STORY,subcat_code,FD_TARGETMONEY,FD_DEADLINE,subcat_name
+		from project p NATURAL JOIN pjoutline o NATURAL JOIN funding f NATURAL JOIN storytelling s NATURAL JOIN subcat
 		where pj_stat = 1  
 		 and project_code = #{value}  
    </select>

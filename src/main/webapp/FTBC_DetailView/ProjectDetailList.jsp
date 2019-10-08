@@ -2,89 +2,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-/* 	ProjectVO pVO = null; 
-	if(request.getAttribute("projectDetail")!=null){
-		pVO=(ProjectVO)request.getAttribute("projectDetail");
-		
-	} */
-	String pjo_code = request.getParameter("pjo_code").toString();
-%>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>프로젝트 상세 페이지</title>
-<!--=============================================================================================
-	상세보기 페이지
-	날짜:2019-09-12
-================================================================================================  -->
-<%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
-<link rel="stylesheet" type="text/css" href="ProjectDetail.css?9">
-	<script type="text/javascript">
-	$(document).ready(function() {
-		pjo_ajax();
-	});
-	function pjo_ajax(){
- 		$.ajax({
-			method:'get',
-			url:'/Project/projectDetail?projectCode=<%=pjo_code%>',
-			success:function(data){
-				$("#detail_pjo").html(data);
-			} 
-				
-		}); 
-	}
-		function clickRewardCards() {
-			alert("결제 페이지 이동2");
-		}
-		function clickStoryReple() {
-			alert("clickStroyReple 클릭");
-		}
-		function clickBackCommunity() {
-			alert("커뮤니티로 돌아가기");
-		}
-		function clickFundProject() {
-			alert("결제 페이지 이동1")
-		}
-		function clickLoadMoreComment() {
-			alert("이전 댓글 더보기");
-		}
-		function clickInputComment() {
-			alert("댓글 작성 클릭");
-		}
-		function clickCommunitySave() {
-			alert("커뮤니티 후원자 글 작성");
-		}
-		// 이전에 써져있던 정보들을 초기화 하기 위한 함수
-		function clickInquiry() {
-			var value = $('#modal-types option:selected').val();
-			if(!(value == '문의유형')) {
-				$("#modal-types").val('문의유형').prop("selected", true);
-				$("#modal-contents").attr('disabled', 'disabled');
-				$("#modal-contents").val('');
-				$('#footer-submit').attr('disabled', 'disabled');
-			}
-		}
-	</script>
-</head>
-<body>
-	<div id="top_MenuBar">
-		<%@ include file="../FTBC_Common/TopMenuBar.jsp"%>
-	</div>
-		<div class="container-fluid">
-		<div id="detail_pjo">
-			<!-- 서브 카테고리 -->
+ProjectVO pVO = null; 
+if(request.getAttribute("projectDetail")!=null){
+	pVO=(ProjectVO)request.getAttribute("projectDetail");
+	
+} 
+
+%>
+    
+    
+    
+<!-- 서브 카테고리 -->
 			<div class="row">
 				<div class="col-sm-12" id="subCat">
 					<button type="button" class="btn btn-sm" id="btn_subCat">
-						<span style="color:rgb(117,117,117);"><%-- <%=pVO.getSubcat_code()%> --%></span>
+						<span style="color:rgb(117,117,117);"><%=pVO.getSubcat_name()%></span>
 					</button>
 				</div>
 			</div>
 			<!-- 프로젝트 제목 -->
 			<div class="row">
 				<div class="col-sm-12" id="pj_title">
-					<h1 align="center"><b><%-- <%=pVO.getPjo_longtitle()%> --%></b></h1>
+					<h1 align="center"><b><%=pVO.getPjo_longtitle()%></b></h1>
 				</div>
 			</div>
 			<!-- 창작자 그림 및 이름 -->
@@ -96,7 +35,7 @@
 				<div class="col-sm-6" id="writer_name" align="left">
 					<div style="margin-top: 5px;"></div>
 					<!-- #a태그_작성자 페이지 이동 -->
-					<a href="<%-- <%=pVO.getPjo_pageaddr()%> --%>"><b>미담</b></a>
+					<a href="<%=pVO.getPjo_pageaddr()%>"><b>미담</b></a>
 				</div>
 			</div>
 			<!-- 프로젝트 대표사진과 모인 금액 등 -->
@@ -106,7 +45,7 @@
 				<div class="col-lg-5" id="top_profile">
 					<div id="top_profile_row1" class="row" align="center">
 						<!-- #DB-->
-						<img id="top_profile_img" src="<%-- <%=pVO.getPjo_img()%> --%>" 
+						<img id="top_profile_img" src="<%=pVO.getPjo_img()%>" style="max-width: 100%;height: auto;max-height: 480px;"
 						alt="프로젝트 커버 이미지">
 					</div>
 				</div>
@@ -184,7 +123,7 @@
 				<!-- 써머노트 내용물 -->
 				<div id="bottom_storyCard" class="tab-pane fade in active bottom_storyCard" style="padding-top: 50px;padding-left:50px;padding-right:50px;">
 					<!-- #DB_써머노트에서 긁어서 박아줘야함. -->
-					<%-- <%=pVO.getSt_story()%> --%>
+					<%=pVO.getSt_story()%>
 				</div>
 				<!-- 커뮤니티 내용물 -->
 				<div id="bottom_mainCommunity" class="tab-pane fade">
@@ -414,10 +353,3 @@
 			</div>
 			<div class="col-lg-2"></div>
 		</div>
-		</div>
-		<!-- =========== end of bottom ============= -->
-		<!-- ======== 창작자에게 문의하기 모달 창 ============ -->
-		<%@include file="./Project_InquiryModal.jsp" %>
-		<!-- =========== end of container-fluid ============= -->
-	</body>
-</html>

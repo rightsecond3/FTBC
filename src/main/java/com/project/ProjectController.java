@@ -63,7 +63,7 @@ public class ProjectController  {
 		logger.info("projectDetail 호출");
 		ProjectVO projectDetail = projectLogic.getProjectDetail(projectCode);
 		mod.addAttribute("projectDetail", projectDetail);
-		return "forward:FTBC_DetailList.jsp";
+		return "forward:/FTBC_DetailView/ProjectDetailList.jsp";
 		
 	}
 	
