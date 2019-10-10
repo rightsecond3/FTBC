@@ -82,15 +82,23 @@ public class ProjectController  {
 		//검색한 키워드로 
 		List<ProjectVO> projectList = projectLogic.getKeywordProjects(Keyword);
 		mod.addAttribute("projectList", projectList);
-		return "forward:Keyword_ProjectList.jsp";
+		mod.addAttribute("keyword",Keyword);
+		return "forward:/FTBC_LookView/Keyword_ProjectList.jsp";
 	}
 	
 	@GetMapping(value="getCategoryProjects")
-	public String getCategoryProjects(@RequestParam String Category, Model mod) {
+	public String getCategoryProjects(@RequestParam Map<String,Object> pMap, Model mod) {
 		logger.info("getCategoryProjects 호출");
 		//카테고리 별로 
-		List<ProjectVO> projectList = projectLogic.getCategoryProjects(Category);
+		List<ProjectVO> projectList = projectLogic.getCategoryProjects(pMap);
+		String cat = null;
+		if(pMap.get("subcat_name").equals("undefined")) {
+			cat = pMap.get("maincat_name").toString();
+		}else {
+			cat = pMap.get("subcat_name").toString();
+		}
+		mod.addAttribute("cat",cat);
 		mod.addAttribute("projectList", projectList);
-		return "forward:Keyword_ProjectList.jsp";
+		return "forward:/FTBC_LookView/Category_ProjectList.jsp";
 	}
 }

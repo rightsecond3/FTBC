@@ -46,16 +46,18 @@ public class ProjectDao {
 		return keywordProjects;
 	}
 	//카테고리별 프로젝트  - v
-	public List<ProjectVO> getCategoryProjects(String category) {
+	public List<ProjectVO> getCategoryProjects(Map<String, Object> pMap) {
 		List<ProjectVO> categoryProjects = new ArrayList<>();
-		categoryProjects = sqlSessionTemplate.selectList("categoryProjects",category);
+		categoryProjects = sqlSessionTemplate.selectList("categoryProjects",pMap);
 		return categoryProjects;
 	}
 
 	//내가 펀딩한 프로젝트 - p
 	public List<ProjectVO> getFundedProject(List<String> projectCodes) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("projectCodes",projectCodes);
 		List<ProjectVO> fundedProject = new ArrayList<>();
-		fundedProject = sqlSessionTemplate.selectList("fundedProject",projectCodes);
+		fundedProject = sqlSessionTemplate.selectList("fundedProject",map);
 		return fundedProject;
 	}
 	//내가 만든 프로젝트 - p
@@ -105,7 +107,7 @@ public class ProjectDao {
 	//프로젝트 코드 생성하기 
 	public Map<String,Object> projectCode(Map<String, Object> pMap) {
 		sqlSessionTemplate.selectOne("proc_procode",pMap);
-		return pMap;
+		return pMap;	
 	}
 
 	public List<Map<String, Object>> getGift(String projectCode) {
@@ -115,8 +117,10 @@ public class ProjectDao {
 	}
 
 	public List<Map<String, Object>> getGiftOption(List<String> giftCode) {
-		List<Map<String, Object>> giftOptionList = new ArrayList<>();
-		giftOptionList = sqlSessionTemplate.selectList("getGiftOption",giftCode);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("giftCode",giftCode);
+ 		List<Map<String, Object>> giftOptionList = new ArrayList<>();
+		giftOptionList = sqlSessionTemplate.selectList("getGiftOption",map);
 		return giftOptionList;
 	}
 

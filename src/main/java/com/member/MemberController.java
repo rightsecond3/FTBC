@@ -81,6 +81,7 @@ public class MemberController {
 	}
 	@PostMapping("login")
 	public String login(@RequestParam Map<String,Object> pMap, HttpSession session) {
+		String path= null;
 		logger.info("MemberController login 호출 성공");
 		logger.info("이메일============:"+pMap.get("log_id").toString());
 		logger.info("비밀번호============:"+pMap.get("log_pw").toString());
@@ -90,17 +91,23 @@ public class MemberController {
 		logger.info("Mem_email"+mVO.getMem_email());
 		logger.info("Mem_pw"+mVO.getMem_pw());
 		memberLogic.login(mVO);
-		//logger.info("mem_pimage===========:"+mVO.getMem_pfimg());
+		logger.info("mem_pimage===========:"+mVO.getMem_pfimg());
 		logger.info("mem_name============:"+mVO.getMem_name());
-		logger.info("mem_authority============:"+mVO.getMem_authority());
-		logger.info("msg============:"+mVO.getMsg());
-		session.setAttribute("mem_email",mVO.getMem_email());
-		//session.setAttribute("mem_pfimg",mVO.getMem_pfimg());
-		session.setAttribute("mem_name",mVO.getMem_name());
-		session.setAttribute("mem_authority",mVO.getMem_authority());
-		
-		return "redirect:/FTBC_MainView/FTBC_Main.jsp";
+		logger.info("mem_authority============:"+mVO.getMem_isauthority());
+		logger.info("msg:==============="+mVO.getMsg());
+		if(mVO.getMsg().equals("로그인에 성공하였습니다")) {
+			session.setAttribute("mem_email",mVO.getMem_email());
+			session.setAttribute("mem_pfimg",mVO.getMem_pfimg());
+			session.setAttribute("mem_name",mVO.getMem_name());
+			session.setAttribute("mem_isauthority",mVO.getMem_isauthority());
+			path="redirect:/FTBC_MainView/FTBC_Main.jsp";
+		}else if(mVO.getMsg().equals("아이디가 존재하지 않습니다")) {
+			path="redirect:/FTBC_MainView/FTBC_Login.jsp?1";
+		}
+		else if(mVO.getMsg().equals("비밀번호를 확인하세요")){
+			path="redirect:/FTBC_MainView/FTBC_Login.jsp?2";
+		}
+		logger.info(path);
+		return path;
 	}
-	
-
 }

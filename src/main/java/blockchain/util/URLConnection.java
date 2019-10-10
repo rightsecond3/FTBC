@@ -7,8 +7,7 @@ import java.net.URL;
 
 public class URLConnection {
 	// 싱글톤
-	private URLConnection() {
-	}
+	private URLConnection() {}
 
 	private static class LazyHolder {
 		public static final URLConnection INSTANCE = new URLConnection();
@@ -18,13 +17,12 @@ public class URLConnection {
 		return LazyHolder.INSTANCE;
 	}
 
-	private static BufferedReader in = null;
+	private BufferedReader in = null;
 
-	public void connectAddBlock() {
+	public void URLCall(String uri) {
 		try {
-
 			// 호출할 url
-			URL url = new URL("http://192.168.0.211:8000/chain/addBlock.ftbc");
+			URL url = new URL("http://192.168.0.211:8000/"+uri);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));

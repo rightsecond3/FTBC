@@ -81,7 +81,7 @@ public class MajorityElement {
 			for (int i = 0; i < syncClientList.size(); i++) {
 				Base64Conversion.saveChain(sharedBase64, Path.CLIENT_CHAIN_PATH, syncClientList.get(i));
 			}
-			return sharedChain.name;
+			return "돌았음";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -14,8 +14,6 @@ public class BlockChain implements Serializable {
 	public Transaction genesisTransaction;
 	private int difficulty = 3;
 	public float minimumTransaction = 0.1f;
-	// 테스트 용
-	public String name = "";
 	
 	// 블록의 무결성을 점검하는 코드
 	public boolean isChainValid() {
@@ -71,7 +69,7 @@ public class BlockChain implements Serializable {
 				for(Output output: currentTransaction.outputs) {
 					tempUTXOs.put(output.id, output);
 				}
-				if( currentTransaction.outputs.get(0).recipient != currentTransaction.reciepient) {
+				if( currentTransaction.outputs.get(0).recipient != currentTransaction.recipient) {
 					System.out.println("#Transaction(" + t + ") output reciepient is not who it should be");
 					return false;
 				}

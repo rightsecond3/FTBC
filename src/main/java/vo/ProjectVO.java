@@ -23,12 +23,14 @@ public class ProjectVO {
 	
 	//프로젝트테이블이 아닌 테이블에서 가져와야 하는것
 	private String st_story = null;
+	private String maincat_name = null;
 	private String subcat_name = null;
 	private int fd_targetMoney = 0;
 	private String fd_deadLine = null;
 	private String mem_nickname = null;
 	private OutlineVO oVO = null; 
 	private List<GiftVO> gList = null;
+	
 	 
 	//체인에서 가져와야하는것
 	private long fundedMoney = 0; //펀딩된 금액
@@ -137,10 +139,10 @@ public class ProjectVO {
 	public void setgList(List<GiftVO> gList) {
 		this.gList = gList;
 	}
-	/*
-	 * @Override public String toString() { return "UserInfo [num=" + support_num +
-	 * ", money=" + fundedMoney + ", code=" + project_code + "]"; }
-	 */
+	
+	@Override public String toString() { return "UserInfo [num=" + support_num +
+	", money=" + fundedMoney + ", code=" + project_code + "]"; }
+	
 
 
 	public String getMem_nickname() {
@@ -221,6 +223,14 @@ public class ProjectVO {
 
 	public void setSubcat_name(String subcat_name) {
 		this.subcat_name = subcat_name;
+	}
+
+	public String getMaincat_name() {
+		return maincat_name;
+	}
+
+	public void setMaincat_name(String maincat_name) {
+		this.maincat_name = maincat_name;
 	}
 
 

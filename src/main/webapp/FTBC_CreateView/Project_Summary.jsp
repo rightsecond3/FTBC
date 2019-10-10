@@ -120,8 +120,8 @@
 			}
 			else if(summary_all_form.pjo_summary_edit_text.value.length<=50){
 				$("#summary_label").html(summary);
-				pjo_summary_edit_cancle();
 				change();
+				pjo_summary_edit_cancle();
 			}
 		}
 		/* =========================== 카테고리 에딧창================================== */
@@ -146,6 +146,8 @@
 			if($("#pjo_category_select").val()!=null){
 				var result = $("#pjo_category_select").val();
 				$("#pjo_category_select_result").val(result);
+				$("#category_label").html($("#pjo_category_select option:selected").text());
+				change();
 				pjo_category_edit_cancle();
 			}else{
 				alert("카테코리를 선택해 주세요");
@@ -181,8 +183,8 @@
 			}
 			else if(summary_all_form.pjo_page_text.value!=null||summary_all_form.pjo_page_text.value.length<=125){
 				$("#page_label").html(page);
-				pjo_page_edit_cancle();
 				change();
+				pjo_page_edit_cancle();
 			}
 		}
 		/* ================================= 태그 에딧창 ===========================*/
@@ -215,8 +217,8 @@
 			}
 			else if(summary_all_form.pjo_tag_text.value!=null||summary_all_form.pjo_tag_text.value.length<=125){
 				$("#tag_label").html(tag);
-				pjo_tag_edit_cancle();
 				change();
+				pjo_tag_edit_cancle();
 			}
 		}
 		/* ================================= 프로필 이미지 에딧창 ===========================*/
@@ -267,8 +269,8 @@
 			}
 			else if(summary_all_form.pjo_name_text.value!=null||summary_all_form.pjo_name_text.value.length<=20){
 				$("#name_label").html(name);
-				pjo_name_edit_cancle();
 				change();
+				pjo_name_edit_cancle();
 			}
 		}
 		/* ================================= 창작자 소개 에딧창 ===========================*/
@@ -301,8 +303,8 @@
 			}
 			else if(summary_all_form.pjo_introduction_edit_textarea.value!=null||summary_all_form.pjo_introduction_edit_textarea.value.length<=300){
 				$("#introduction_label").html(introduction);
-				pjo_introduction_edit_cancle();
 				change();
+				pjo_introduction_edit_cancle();
 			}
 		}
 		/* ================================= 창작자 활동지역 에딧창 ===========================*/
@@ -335,8 +337,8 @@
 			}
 			else if(summary_all_form.pjo_active_area_text.value!=null||summary_all_form.pjo_active_area_text.value.length<=20){
 				$("#active_label").html(active);
-				pjo_active_area_edit_cancle();
 				change();
+				pjo_active_area_edit_cancle();
 			}
 		}
 		/* ================================= 이미지 저장 및 변경 ===========================*/
@@ -512,9 +514,12 @@
 			||summary_all_form.pjo_summary_edit_text.value==""||summary_all_form.pjo_page_text.value==""
 			||summary_all_form.pjo_tag_text.value==""||summary_all_form.pjo_name_text.value==""
 			||summary_all_form.pjo_introduction_edit_textarea.value==""||summary_all_form.pjo_active_area_text.value==""
-			){
+			)
+			{
+				alert("?0");
 				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check1.png">');
 			} else{
+				alert("?1");
 				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check.png">');
 				
 			}

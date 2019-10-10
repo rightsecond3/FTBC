@@ -31,11 +31,18 @@
 		alert("호출성공?");
 		var log_id = $("#log_id").val();
 		var log_pw = $("#log_pw").val();
-		alert(log_id+","+log_pw);
-		$.post("/member/login",$("#login_all_form").serialize(),function(data){
-			location.href="/FTBC_MainView/FTBC_Main.jsp"
-		});
-	}
+		$("#login_all_form").attr("method","post");
+		$("#login_all_form").attr("action","/member/login");
+		$("#login_all_form").submit();
+		//$.post("/member/login",$("#login_all_form").serialize());
+				//location="/FTBC_MainView/FTBC_Main.jsp"
+			//}/* else if(data=="redirect:/FTBC_MainView/FTBC_Login.jsp?1"){
+			//	alert("아이디가 존재하지 않습니다.");
+			//}else if(data="redirect:/FTBC_MainView/FTBC_Login.jsp?2"){
+				//alert("비밀번호를 확인하세요.");
+			//} */
+		//});
+	}//,function(data){location.href="/FTBC_MainView/FTBC_Main.jsp"}
 </script>
 <div id="login_box">
 	<div>
@@ -45,7 +52,7 @@
 	<div id="hr_one">
 		<div class="line">또 는</div>
 	</div>
-	<form id="login_all_form" name="login_all_form" onsubmit="return false;" >
+	<form id="login_all_form" name="login_all_form">
 		<input id="log_id" name="log_id" type="text" placeholder="이메일 주소 입력"><br>
 		<input id="log_pw" name="log_pw" type="password"   placeholder="비밀번호" >
 	</form>

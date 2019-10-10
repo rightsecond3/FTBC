@@ -30,9 +30,9 @@
 				<div id="popularProjects">
 				<div class="row">
 <%
-				for(int i=0;i<4;i++){
+				for(int i=0;i<((popularProjects.size()<4)?popularProjects.size():4);i++){
 					ProjectVO pVO = popularProjects.get(i);
-				
+					
 %>
 					<div class="card col-xs-3" onclick="projectDetail('<%=pVO.getProject_code()%>')">
 						<div class="card-header">
@@ -62,7 +62,7 @@
 					ProjectVO pVO = recommnadProjects.get(i);
 				
 %>
-					<div class="card col-xs-3" onclick="projectDetail()">
+					<div class="card col-xs-3" onclick="projectDetail('<%=pVO.getProject_code()%>')">
 						<div class="card-header">
 							<img src="<%=pVO.getPjo_img()%>"class="card_img"> 
 						</div>
@@ -88,7 +88,7 @@
 					ProjectVO pVO = recommnadProjects.get(i);
 				
 %>
-					<div class="card col-xs-3" onclick="projectDetail()">
+					<div class="card col-xs-3" onclick="projectDetail('<%=pVO.getProject_code()%>')">
 						<div class="card-header">
 							<img src="<%=pVO.getPjo_img()%>"class="card_img"> 
 						</div>

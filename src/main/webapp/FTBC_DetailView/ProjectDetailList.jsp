@@ -69,7 +69,7 @@ if(request.getAttribute("projectDetail")!=null){
 						</div>
 						<div>
 							<!-- #DB -->
-							<span id="topInfo_label2">[28]</span>
+							<span id="topInfo_label2"></span>
 							<span id="topInfo_label3">명</span>
 						</div>
 						<!-- 후원자 -->
@@ -79,7 +79,7 @@ if(request.getAttribute("projectDetail")!=null){
 						</div>
 						<div>
 							<!-- #DB -->
-							<span id="topInfo_label2">[386]</span>
+							<span id="topInfo_label2">[<%=pVO.getSupport_num()%>]</span>
 							<span id="topInfo_label3">명</span>
 						</div>
 					</div>

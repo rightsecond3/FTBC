@@ -15,7 +15,7 @@ public class SortProject {
 		List<ProjectVO> rList = new ArrayList<>();
 		System.out.println("0번째"+pList.get(0));
 		Collections.sort(pList,new CompareNumDesc());
-	        for (int i=0; i<7; i++) {
+	        for (int i=0; i<4; i++) {
 	        	ProjectVO pVO = pList.get(i);
 	            System.out.println(pVO.toString());          
 	            rList.add(pVO);

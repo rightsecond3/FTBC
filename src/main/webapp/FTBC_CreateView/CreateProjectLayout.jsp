@@ -115,7 +115,7 @@
  	    $.post("/Project/createProject.ftbc", $(".create_form").serialize(), function(data){
  	    	alert("data:"+data);
  	    	var result = data;
- 	    	location.href='/FTBC/FTBC_View/FTBC_MainView/FTBC_Main.jsp'; 
+ 	    	location.href='/FTBC_MainView/FTBC_Main.jsp'; 
 /*   	    	if(result=="no"){
  	    		alert("등록에 실패하였습니다");
  	    	}else{

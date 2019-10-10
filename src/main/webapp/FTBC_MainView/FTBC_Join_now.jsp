@@ -24,10 +24,9 @@ $(document).ready(function(){
 		var check_pw = document.getElementById('pw_check').innerHTML;
 		if(check_pw=="<h6>비밀번호가 일치합니다</h6>"){
 			alert("회원가입 성공!");
-			$.post("/member/join", $("#join_form").serialize(),function(data){
-				location.href="/FTBC_MainView/FTBC_LoginLayout.jsp"
-			});
-		}
+			$.post("/member/join", $("#join_form").serialize());
+		}//,function(data){location.href="/FTBC_MainView/FTBC_Login.jsp"}
+		
 		else{
 			alert("비밀번호를 확인해 주세요.");
 		}
@@ -164,6 +163,8 @@ $(document).ready(function(){
 		<input type="hidden" id="mem_email" name="mem_email">
 		<input type="hidden" id="mem_pw" name="mem_pw">
 		<input type="hidden" id="mem_name" name="mem_name">
+		<!-- 일반 회원(권한이 없기 때문에0 -->
+		<input type="hidden" id="mem_isAuthority" name="mem_isAuthority" value=0>
 	</form>
 </div>
 </body>
