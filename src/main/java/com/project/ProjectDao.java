@@ -2,6 +2,7 @@ package com.project;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,6 +73,7 @@ public class ProjectDao {
 	//프로젝트 생성하기
 	public int projectcreate(Map<String, Object> pMap) {
 		int result = 0;
+		pMap.put("pjo_category_select_result", "A01");
 		sqlSessionTemplate.update("projectcreate",pMap);
 		return result;
 	}
@@ -99,7 +101,29 @@ public class ProjectDao {
 	//선물부분 INSERT
 	public int giftinsert(Map<String, Object> pMap) {
 		int result = 0;
-		sqlSessionTemplate.update("giftinsert",pMap);
+		Map<String,Object> paramMap = new HashMap<>();
+		List<Map<String,Object>> lMap = new ArrayList<>();
+		Map<String,Object> rMap = new HashMap<>();
+		for(int i=0;i<10;i++) {
+			if(pMap.get("minDonationMoneyOutput"+i)!=null) {
+		rMap.put("PROJECT_CODE", pMap.get("PROJECT_CODE").toString());
+		sqlSessionTemplate.selectOne("proc_giftcode",pMap);
+		rMap.put("gift_code",pMap.get("gift_code").toString());
+		rMap.put("minDonationMoneyOutput", pMap.get("minDonationMoneyOutput"+i).toString());
+		rMap.put("giftTextAreaOutput", pMap.get("giftTextAreaOutput"+i).toString());
+		rMap.put("deliveryDayOutput", pMap.get("deliveryDayOutput"+i).toString());
+		rMap.put("limitedQuantityInput", pMap.get("limitedQuantityInput"+i).toString());
+		rMap.put("gift_isinclude", pMap.get("gift_isinclude").toString());
+		lMap.add(rMap);
+			}
+			else {
+				break;
+			}
+		}
+		paramMap.put("paramMap", lMap);
+		sqlSessionTemplate.update("giftinsert",paramMap);
+		
+		//listMap = pMap
 		return result;
 	}
 	//상품옵션부분 INSERT
@@ -123,13 +147,14 @@ public class ProjectDao {
 
 	public String projectCode(Map<String, Object> pMap) {
 		String procCode =null;
-		sqlSessionTemplate.selectOne("proc_procode",pMap);
+		pMap.put("pjo_category_select_result", "A01");
+		pMap = sqlSessionTemplate.selectOne("proc_procode",pMap);
 		return procCode;
 	}
 
 	public String giftCode(Map<String, Object> pMap) {
 		String gift_code = null;
-		gift_code = sqlSessionTemplate.selectOne("proc_giftcode",pMap);
+		sqlSessionTemplate.selectOne("proc_giftcode",pMap);
 		return gift_code;
 	}
 

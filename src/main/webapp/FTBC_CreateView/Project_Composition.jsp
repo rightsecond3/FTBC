@@ -2819,7 +2819,7 @@ function refundAndExchangeOutputEdit(){
 						<div><i class="glyphicon glyphicon-asterisk"></i>&nbsp;선택한 사람이 없음</div>
 					</div>
 					<div id="remainQuantity" class="col-xs-8">
-						<div><input class="chundanwigubun" type="text" id="limitedQuantityInput">개&nbsp;남음</div>
+						<div><input class="chundanwigubun" type="text" id="limitedQuantityInput" name="limitedQuantityInput">개&nbsp;남음</div>
 					</div>
 				</div>
 			</div>

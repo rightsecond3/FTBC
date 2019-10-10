@@ -303,21 +303,20 @@ public class ProjectLogic {
 		
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor= {DataAccessException.class})
+	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor={Exception.class})
 	@Pointcut(value="execution(* com.project.*Logic.*(..)")
 	public int CreateProject(Map<String, Object> pMap) {
 		int result = 0;
 		try {
 			logger.info(pMap.get("pjo_category_select_result").toString());
-			pMap.put("pro_code",0);
-			String proc = projectDao.projectCode(pMap);
-			logger.info(proc);
+			projectDao.projectCode(pMap);
+			logger.info(pMap.get("PROJECT_CODE").toString());
 			result = projectDao.projectcreate(pMap);
 			result = projectDao.storytellinginsert(pMap);
 			result = projectDao.pjoutlineinsert(pMap);
 			result = projectDao.fundinginsert(pMap);
-			String gift_code = projectDao.giftCode(pMap);
-			logger.info(gift_code);
+			//String gift_code = projectDao.giftCode(pMap);
+			//logger.info(gift_code);
 			result = projectDao.giftinsert(pMap);
 			String gop_code = projectDao.giftOptionCode(pMap);
 			logger.info(gop_code);
@@ -327,7 +326,5 @@ public class ProjectLogic {
 		}
 		return result;
 	}
-	
-
 	
 }

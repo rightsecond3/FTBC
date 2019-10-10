@@ -14,7 +14,7 @@ $(document).ready(function(){
 		$("#emailFalse").hide();
 })
 	function delogin(){//이미 회원일경우 로그인페이지로 돌아가기
-		var url = "../FTBC_MainView/FTBC_Login.jsp";
+		var url = "./FTBC_MainView/FTBC_Login.jsp";
 		$("#Login_page").load(url);
 	}
 	function join() {//가입처리하기
@@ -24,10 +24,9 @@ $(document).ready(function(){
 		var check_pw = document.getElementById('pw_check').innerHTML;
 		if(check_pw=="<h6>비밀번호가 일치합니다</h6>"){
 			alert("회원가입 성공!");
-			$.post("/member/join", $("#join_form").serialize(),function(data){
-				location.href="/FTBC_MainView/FTBC_Login.jsp"
-			});
-		}
+			$.post("/member/join", $("#join_form").serialize());
+		}//,function(data){location.href="/FTBC_MainView/FTBC_Login.jsp"}
+		
 		else{
 			alert("비밀번호를 확인해 주세요.");
 		}

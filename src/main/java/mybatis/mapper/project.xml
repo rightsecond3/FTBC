@@ -7,8 +7,8 @@
       <result property="editordata " column="editordata" jdbcType="CLOB" javaType="java.lang.String" />
    </resultMap>
    <insert id="projectcreate" parameterType="map">
-         INSERT INTO project (PROJECT_CODE,SUBCAT_CODE,MEM_EMAIL,PJ_ISEDIT,PJ_PUBLICKEY,PJ_PRIVATEKEY,PJ_ACCOUNT,PJ_STAT,PJ_ISSUCCESS)
-         values (#{PROJECT_CODE},#{pjo_category_select_result},'jwh8712@naver.com',1,'12312321321','12312312321312',1,1,1)
+         INSERT INTO project (PROJECT_CODE,SUBCAT_CODE,MEM_EMAIL,PJ_ISEDIT,PJ_PUBLICKEY,PJ_ACCOUNT,PJ_STAT,PJ_ISSUCCESS)
+         values (#{PROJECT_CODE},#{pjo_category_select_result},'jwh8712@naver.com',1,'12312321321',1,1,1)
    </insert>
    <insert id="storytellinginsert" parameterType="map">
          INSERT INTO storytelling (project_code,st_story)
@@ -21,26 +21,34 @@
    </insert>
    <insert id="fundinginsert" parameterType="map">
          INSERT INTO funding(project_code,fd_targetmoney,fd_deadline)
-               values(#{pro_code},#{fd_targetmoney},#{fd_deadline})<!-- 펀딩 인서트 -->
+               values(#{PROJECT_CODE},#{goalMoneyOutput},#{projectEndDateOutput})<!-- 펀딩 인서트 -->
    </insert>
    <select id="proc_giftcode" parameterType="map" statementType="CALLABLE">
-      {call proc_giftcode(#{project_code, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
-                       ,#{gift_code, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String})
+      {call proc_giftcode(
+      				    	#{PROJECT_CODE, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+                          ,#{gift_code, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+                          )
+      }
    </select>
    <insert id="giftinsert" parameterType="map">
          INSERT INTO gift(project_code,gift_code,gift_unitmoney,gift_isinclude
                      ,gift_explanation,gift_deliverydate,gift_limited)
-               values(#{project_code},#{gift_code},#{gift_unitmoney},#{gift_isinclude}
-                     ,#{gift_explanation},#{gift_deliverydate},#{gift_limited})
+               values
+               <foreach collection="paramMap" item="item" separator=",">
+               	("#{item.PROJECT_CODE}","#{item.gift_code}","#{item.minDonationMoneyOutput}","#{item.gift_isinclude}"
+                ,"#{item.giftTextAreaOutput}","#{item.deliveryDayOutput}","#{item.limitedQuantityInput}")
+               </foreach>
    </insert>
    <select id="proc_giftoption" parameterType="map">
          {call proc_giftoption(#{gift_code mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
-                         ,#{gop_code mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String})
+                         ,#{gop_code mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+                         )
+         }
    </select>
    <insert id="giftoptioninsert" parameterType="map">
          INSERT INTO giftoption(gift_code,gop_code,gop_option,gop_ammount,gop_description)
-               values(#{gift_code},#{gop_code},#{gop_option}
-                    ,#{gop_ammount},#{gop_description})      
+               values(#{gift_code},#{gop_code},#{GiftUlListName}
+                    ,#{GiftUlListQuantity},#{itemListOptionOutput})      
    </insert>
    <select id="proc_procode" parameterType="map" statementType="CALLABLE">
       {call pro_project_code(#{pjo_category_select_result, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}

@@ -53,6 +53,7 @@ public class MemberDao {
 		//Map<String,Object> rMap = new HashMap<>();
 		logger.info("Dao  join 호출 ");
 		result = sqlSessionTemplate.selectOne("login", mVO);
+		logger.info("=============="+result);
 		//sqlSessionTemplate.selectOne("test",mVO);
 		logger.info("====================:"+mVO);
 		logger.info("=========="+mVO.getMem_pfimg());
