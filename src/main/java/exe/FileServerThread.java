@@ -73,7 +73,7 @@ public class FileServerThread extends Thread {
 						long fileSize = dis.readLong();
 						byte[] buffer = new byte[bufferSize];
 						int len = 0;
-						File file = new File(Path.CLIENT_CHAIN_PATH + loginID + "Chain.ftbc");
+						File file = new File(Path.CLIENT_CHAIN_PATH + loginID + "_Chain.ftbc");
 						FileOutputStream fos = new FileOutputStream(file);
 
 						while (fileSize > 0
@@ -137,7 +137,7 @@ public class FileServerThread extends Thread {
 						long fileSize = dis.readLong();
 						byte[] buffer = new byte[bufferSize];
 						int len = 0;
-						File file = new File(Path.CLIENT_CHAIN_PATH + loginID + "Chain.ftbc");
+						File file = new File(Path.CLIENT_CHAIN_PATH + loginID + "_Chain.ftbc");
 						FileOutputStream fos = new FileOutputStream(file);
 
 						while (fileSize > 0
@@ -166,7 +166,7 @@ public class FileServerThread extends Thread {
 						long fileSize = dis.readLong();
 						byte[] buffer = new byte[bufferSize];
 						int len = 0;
-						File file = new File(Path.CLIENT_CHAIN_PATH + loginID + "Chain.ftbc");
+						File file = new File(Path.CLIENT_CHAIN_PATH + loginID + "_Chain.ftbc");
 						FileOutputStream fos = new FileOutputStream(file);
 
 						while (fileSize > 0
@@ -192,7 +192,7 @@ public class FileServerThread extends Thread {
 							fserver.serverMapping.msgServer.syncClientList = null;
 							// 공유 체인이 채택되었으니 블록을 추가해주라고 서블릿에게 보내기
 							URLConnection urlConnection = URLConnection.getInstance();
-							urlConnection.connectAddBlock();
+							urlConnection.URLCall("restchain/addBlock.ftbc");
 						}
 					} catch (Exception e) {
 						e.printStackTrace();

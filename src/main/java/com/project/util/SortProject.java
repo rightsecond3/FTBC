@@ -13,7 +13,6 @@ public class SortProject {
 	//인원수 많은 순으로 정렬후 10개만 담음.
 	public List<ProjectVO> SortbySupNum(List<ProjectVO> pList){
 		List<ProjectVO> rList = new ArrayList<>();
-		
 		Collections.sort(pList,new CompareNumDesc());
 	        for (int i=0; i<10; i++) {
 	        	ProjectVO pVO = pList.get(i);

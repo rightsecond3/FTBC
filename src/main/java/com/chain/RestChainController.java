@@ -7,9 +7,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import blockchain.util.Base64Conversion;
 import blockchain.util.StringUtil;
+import exe.util.Protocol;
 import vo.MemberVO;
 
 
@@ -27,9 +25,10 @@ public class RestChainController {
 	@Autowired
 	ChainLogic chainLogic = null;
 	StringUtil stringUtil = null;
+	private static int cnt;
 
 	@RequestMapping(value="verifyKeys",method=RequestMethod.POST,produces ="application/text; charset=utf8")
-	public String verifyKeys(@RequestParam Map<String,Object> pMap,  Model mod) throws Exception {
+	public String verifyKeys(@RequestParam Map<String,Object> pMap) throws Exception {
 		logger.info("verifyKeys");
 		String mem_email = pMap.get("mem_email").toString();
 		String encoded_puk = pMap.get("encoded_puk").toString();
@@ -57,5 +56,25 @@ public class RestChainController {
 		}
 		return msg;
 	}
-	
+	//# 블록이 추가되기전 과반수 프로그램을 돌려서 공유 체인을 채택함
+	@RequestMapping(value="majorityStart", produces ="application/text; charset=utf8")
+	public String majorityStart() {
+		logger.info("##majorityStart 호출");
+		chainLogic.getConnection();
+		chainLogic.msgServerConnection(Protocol.ALERT_ADD_BLOCK);
+		return "";
+	}
+	//# 공유 체인이 채택 되었으니 블록 추가 시키기
+	@RequestMapping(value="addBlock", produces ="application/text; charset=utf8")
+	public String addBlock() {
+		logger.info("##addBlock 호출");
+		chainLogic.addBlock(cnt);
+		// 추가된 최신 체인 다운로드 시키기
+		chainLogic.getConnection();
+		chainLogic.msgServerConnection(Protocol.AUTOSYNC_CHAIN_DOWNLOAD_ALERT);
+		if(cnt<1) {
+			cnt++;
+		}
+		return "";
+	}
 }

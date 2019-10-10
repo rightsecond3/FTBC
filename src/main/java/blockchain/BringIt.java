@@ -52,7 +52,6 @@ public class BringIt {
 	public static void main(String[] args) {
 		BringIt bringIt = new BringIt();
 		BlockChain blockChain = bringIt.getChain();
-		//bringIt.getUTXOs(blockChain);
 		bringIt.getTxs(blockChain);
 		
 	}

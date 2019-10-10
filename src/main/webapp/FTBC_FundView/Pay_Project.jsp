@@ -62,6 +62,7 @@
 	    }, function(rsp) {
 	       // 결제가 성공되었을 시
 	        if ( rsp.success ) {
+	        	// 쿼리스트링으로 전송 시 '+' 기호를 예약어로써 지워버리는 문제를 해결하기 위한 코드
 	        	pubtxt = pubtxt.replace(/\+/g,"%2B");
 	        	pritxt = pritxt.replace(/\+/g,"%2B");
 	            location.href = "/chain/addTransaction.ftbc?imp_uid="+rsp.imp_uid+"&paid_amount="+rsp.paid_amount

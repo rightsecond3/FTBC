@@ -13,7 +13,7 @@ public class Transaction implements Serializable {
 	private static final long serialVersionUID = -7729233203265660208L;
 	public String txId;
 	public PublicKey sender;
-	public PublicKey reciepient;
+	public PublicKey recipient;
 	public long value;
 	// 무슨 선물을 선택했는지 알기 위한 코드ㅛ
 	public String giftCode;
@@ -24,7 +24,7 @@ public class Transaction implements Serializable {
 
 	public Transaction(PublicKey from, PublicKey to, String giftCode, long value, List<Input> inputs) {
 		this.sender = from;
-		this.reciepient = to;
+		this.recipient = to;
 		this.giftCode = giftCode;
 		this.value = value;
 		this.inputs = inputs;
@@ -33,7 +33,7 @@ public class Transaction implements Serializable {
 		sequence++;
 		return StringUtil.applySha256(
 				StringUtil.getStringFromKey(sender)
-				+ StringUtil.getStringFromKey(reciepient)
+				+ StringUtil.getStringFromKey(recipient)
 				+ Long.toString(value)
 				+ giftCode
 				+ sequence
@@ -42,7 +42,7 @@ public class Transaction implements Serializable {
 	// 변조하고 싶지 않은 모든 데이터에 서명함.
 	public void generateSignature(PrivateKey privateKey) {
 		String data = StringUtil.getStringFromKey(sender) 
-					+ StringUtil.getStringFromKey(reciepient)
+					+ StringUtil.getStringFromKey(recipient)
 					+ Long.toString(value)
 					+ giftCode;
 		signature = StringUtil.applyECDSASig(privateKey, data);
@@ -50,7 +50,7 @@ public class Transaction implements Serializable {
 	// 서명 한 데이터가 변조되지 않았는지 확인
 	public boolean verifiySignature() {
 		String data = StringUtil.getStringFromKey(sender) 
-				+ StringUtil.getStringFromKey(reciepient)
+				+ StringUtil.getStringFromKey(recipient)
 				+ Long.toString(value)
 				+ giftCode;
 		return StringUtil.verifyECDSASig(sender, data, signature);
@@ -74,7 +74,7 @@ public class Transaction implements Serializable {
 		long leftOver = getInputsValue() - value; // 인풋한 값을 얻어오고 잔액을 남긴다.
 		txId = calculateHash();
 		// 수신자에게 값을 보냄
-		outputs.add(new Output(this.reciepient, value, txId, giftCode));
+		outputs.add(new Output(this.recipient, value, txId, giftCode));
 		// 남은 잔액을 발신자에게 다시 보낸다.
 		outputs.add(new Output(this.sender, leftOver, txId, giftCode));
 		// 미사용 목록에 출력 추가
@@ -89,8 +89,8 @@ public class Transaction implements Serializable {
 		return true;
 	}
 	// 입력 합계(UTXO) 값을 반환한다.
-	public int getInputsValue() {
-		int total = 0;
+	public long getInputsValue() {
+		long total = 0L;
 		for(Input i : inputs) {
 			if(i.UTXO == null) continue; // 거래를 찾을 수 없으면 건너 뛰어라.
 			total += i.UTXO.value;
@@ -98,8 +98,8 @@ public class Transaction implements Serializable {
 		return total;
 	}	
 	// 출력 합계를 반환합니다.
-	public float getOutputsValue() {
-		float total = 0;
+	public long getOutputsValue() {
+		long total = 0L;
 		for(Output o : outputs) {
 			total += o.value;
 		}

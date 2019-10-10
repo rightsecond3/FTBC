@@ -1,12 +1,16 @@
 package com.member;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+
 
 import vo.MemberVO;
 
@@ -44,13 +48,13 @@ public class MemberDao {
 		return result;
 	}
 
-	public int login(MemberVO mVO) {
-		int result = 0;
-		logger.info("Dao  join 호출 ");
-		//sqlSessionTemplate.selectMap("", mapKey)
-		return result;
+	public MemberVO login(MemberVO mVO) {
+		Map<String,Object> rMap = new HashMap<>();
+		logger.info("Dao join 호출 ");
+		sqlSessionTemplate.selectOne("login", mVO);
+		rMap = sqlSessionTemplate.selectOne("test",mVO);
+		logger.info("=========="+rMap.get("mem_pfimg").toString());
+		return mVO;
 	}
-
-
 
 }

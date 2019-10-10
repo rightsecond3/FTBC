@@ -7,8 +7,9 @@ public class Path {
 	
 	public static final String SERVER_CHAIN_PATH = "C:\\FTBC_server\\chain\\";
 	public static final String CLIENT_CHAIN_PATH = "C:\\FTBC_server\\chain\\client\\";
-	public static final String SERVER_ABSOLUTE_PATH = "C:\\FTBC_server\\chain\\FTBCChain.ftbc";
+	public static final String SERVER_ABSOLUTE_PATH = "C:\\FTBC_server\\chain\\FTBC_Chain.ftbc";
 	public static final String MANAGER_WALLET_PATH = "C:\\FTBC_server\\keys\\manager\\";
+	public static final String PROEJCT_WALLET_PATH = "C:\\FTBC_server\\keys\\project\\";
 //	public static final String SERVER_CHAIN_PATH = "C:\\FTBC_server\\";
 }
 

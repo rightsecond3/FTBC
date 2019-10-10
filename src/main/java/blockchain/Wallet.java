@@ -55,7 +55,7 @@ public class Wallet implements Serializable {
 		}
 	}
 	public long getBalance(BlockChain blockChain) {
-		long total = 0;
+		long total = 0L;
 		Object keys[] = blockChain.UTXOs.keySet().toArray();
 		for(int i=0;i<blockChain.UTXOs.size();i++) {
 			Output UTXO = blockChain.UTXOs.get(keys[i]);
@@ -75,7 +75,7 @@ public class Wallet implements Serializable {
 		}
 		// 입력 배열 목록을 만든다.
 		List<Input> inputs = new ArrayList<>();
-		int total = 0;
+		long total = 0L;
 		for(Map.Entry<String, Output> item : UTXOs.entrySet()) {
 			Output UTXO = item.getValue();
 			// MoneyChain의 OutputID

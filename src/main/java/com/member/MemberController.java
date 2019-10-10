@@ -28,7 +28,7 @@ public class MemberController {
 	public MemberLogic memberLogic = null;
 	@Autowired
 	public MemberVO mVO = null;
-
+	
 	@GetMapping("emailCheck")
 	public @ResponseBody String emailCheck(@RequestParam Map<String,Object> pMap) {
 		logger.info("emailCheck Controller 호출");
@@ -61,43 +61,45 @@ public class MemberController {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} 
 		return keyCode;
 	}
 	@PostMapping("join")
 	public String join(@RequestParam Map<String, Object> pMap) {
-		int result = 0;
+		//int result = 0;
 		logger.info("MemberController join 호출 성공");
-		logger.info("이메일============:"+pMap.get("join_now_email").toString());
-		logger.info("이름============:"+pMap.get("join_now_name").toString());
-		logger.info("비밀번호============:"+pMap.get("join_now_pw_check").toString());
-		mVO.setMem_email(pMap.get("join_now_email").toString());
-		mVO.setMem_name(pMap.get("join_now_name").toString());
-		String password = pMap.get("join_now_pw_check").toString();
+		logger.info("이메일============:"+pMap.get("mem_email").toString());
+		logger.info("이름============:"+pMap.get("mem_name").toString());
+		logger.info("비밀번호============:"+pMap.get("mem_pw").toString());
+		mVO.setMem_email(pMap.get("mem_email").toString());
+		mVO.setMem_name(pMap.get("mem_name").toString());
+		String password = pMap.get("mem_pw").toString();
 		logger.info("비밀번호sha256통과============:"+StringUtil.applySha256(password));
 		mVO.setMem_pw(StringUtil.applySha256(password));
-		result = memberLogic.join(mVO);
-		/*
-		 * if(result==1) {
-		 * 
-		 * }else{
-		 * 
-		 * }
-		 */
-		return "/FTBC_MainView/FTBC_Login.jsp";
+		memberLogic.join(mVO);
+		return "redirect:/FTBC_MainView/FTBC_Login.jsp";
 	}
 	@PostMapping("login")
-	public String login(@RequestParam Map<String,Object> pMap) {
-		int result = 0;
+	public String login(@RequestParam Map<String,Object> pMap, HttpSession session) {
 		logger.info("MemberController login 호출 성공");
 		logger.info("이메일============:"+pMap.get("log_id").toString());
 		logger.info("비밀번호============:"+pMap.get("log_pw").toString());
 		String password = pMap.get("log_pw").toString();
 		mVO.setMem_email(pMap.get("log_id").toString());
-		mVO.setMem_email(StringUtil.applySha256(password));
-		result = memberLogic.login(mVO);
+		mVO.setMem_pw(StringUtil.applySha256(password));
+		logger.info("Mem_email"+mVO.getMem_email());
+		logger.info("Mem_pw"+mVO.getMem_pw());
+		memberLogic.login(mVO);
+		//logger.info("mem_pimage===========:"+mVO.getMem_pfimg());
+		logger.info("mem_name============:"+mVO.getMem_name());
+		logger.info("mem_authority============:"+mVO.getMem_isauthority());
+		logger.info("msg============:"+mVO.getMsg());
+		session.setAttribute("mem_email",mVO.getMem_email());
+		//session.setAttribute("mem_pfimg",mVO.getMem_pfimg());
+		session.setAttribute("mem_name",mVO.getMem_name());
+		session.setAttribute("mem_isauthority",mVO.getMem_isauthority());
 		
-		return "";
+		return "redirect:/FTBC_MainView/FTBC_Main.jsp";
 	}
 	
 

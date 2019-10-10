@@ -34,14 +34,13 @@ public class Block implements Serializable {
 	// * 데이터 추출 - 마이닝
 	public void mineBlock(int difficulty) {
 		//Create a string with difficulty * "0" 
-		System.out.println("\n[Block] mineBlock: void 호출");
+		System.out.println("[Block] mineBlock: void 호출");
 		merkleRoot = StringUtil.getMerkleRoot(transactions);
 		String target = new String(new char[difficulty]).replace('\0', '0');
 		while(!hash.substring(0, difficulty).equals(target)) {
 			nonce++;
 			hash = calculateHash();
 		}
-		System.out.println("Block Mined!!! : "+hash);
 	}
 	
 	// 이 블록에 거래 추가
