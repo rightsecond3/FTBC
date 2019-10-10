@@ -1,6 +1,7 @@
 package vo;
 
 import java.sql.Blob;
+import java.sql.Clob;
 import java.util.List;
 
 public class ProjectVO {
@@ -14,13 +15,22 @@ public class ProjectVO {
 	private String pj_account = null;
 	private String pj_stat = null;
 	private String pj_issuccess = null;
+	private String pjo_img = null;
+	private String pjo_longtitle = null;
+	private String pjo_introduce = null;
+	private String pjo_pageaddr = null;
+	private String pjo_summary = null;
 	
 	//프로젝트테이블이 아닌 테이블에서 가져와야 하는것
-	private Blob st_story = null;
-	private int targetMoney = 0;
-	private String deadLine = null;
+	private String st_story = null;
+	private String maincat_name = null;
+	private String subcat_name = null;
+	private int fd_targetMoney = 0;
+	private String fd_deadLine = null;
+	private String mem_nickname = null;
 	private OutlineVO oVO = null; 
 	private List<GiftVO> gList = null;
+	
 	 
 	//체인에서 가져와야하는것
 	private long fundedMoney = 0; //펀딩된 금액
@@ -114,30 +124,6 @@ public class ProjectVO {
 		this.support_num = support_num;
 	}
 
-	public int getTargetMoney() {
-		return targetMoney;
-	}
-
-	public void setTargetMoney(int targetMoney) {
-		this.targetMoney = targetMoney;
-	}
-
-	public Blob getSt_story() {
-		return st_story;
-	}
-
-	public void setSt_story(Blob st_story) {
-		this.st_story = st_story;
-	}
-
-	public String getDeadLine() {
-		return deadLine;
-	}
-
-	public void setDeadLine(String deadLine) {
-		this.deadLine = deadLine;
-	}
-
 	public OutlineVO getoVO() {
 		return oVO;
 	}
@@ -153,11 +139,100 @@ public class ProjectVO {
 	public void setgList(List<GiftVO> gList) {
 		this.gList = gList;
 	}
+	
+	@Override public String toString() { return "UserInfo [num=" + support_num +
+	", money=" + fundedMoney + ", code=" + project_code + "]"; }
+	
+
+
+	public String getMem_nickname() {
+		return mem_nickname;
+	}
+
+	public void setMem_nickname(String mem_nickname) {
+		this.mem_nickname = mem_nickname;
+	}
+
+	public String getPjo_img() {
+		return pjo_img;
+	}
+
+	public void setPjo_img(String pjo_img) {
+		this.pjo_img = pjo_img;
+	}
+
+	public String getPjo_longtitle() {
+		return pjo_longtitle;
+	}
+
+	public void setPjo_longtitle(String pjo_longtitle) {
+		this.pjo_longtitle = pjo_longtitle;
+	}
+
+	public String getPjo_introduce() {
+		return pjo_introduce;
+	}
+
+	public void setPjo_introduce(String pjo_introduce) {
+		this.pjo_introduce = pjo_introduce;
+	}
+
+	public String getPjo_pageaddr() {
+		return pjo_pageaddr;
+	}
+
+	public void setPjo_pageaddr(String pjo_pageaddr) {
+		this.pjo_pageaddr = pjo_pageaddr;
+	}
+
+	public String getPjo_summary() {
+		return pjo_summary;
+	}
+
+	public void setPjo_summary(String pjo_summary) {
+		this.pjo_summary = pjo_summary;
+	}
+
+	public int getFd_targetMoney() {
+		return fd_targetMoney;
+	}
+
+	public void setFd_targetMoney(int fd_targetMoney) {
+		this.fd_targetMoney = fd_targetMoney;
+	}
+
+	public String getFd_deadLine() {
+		return fd_deadLine;
+	}
+
+	public void setFd_deadLine(String fd_deadLine) {
+		this.fd_deadLine = fd_deadLine;
+	}
+
+	public String getSt_story() {
+		return st_story;
+	}
+
+	public void setSt_story(String st_story) {
+		this.st_story = st_story;
+	}
+
+	public String getSubcat_name() {
+		return subcat_name;
+	}
+
+	public void setSubcat_name(String subcat_name) {
+		this.subcat_name = subcat_name;
+	}
+
+	public String getMaincat_name() {
+		return maincat_name;
+	}
+
+	public void setMaincat_name(String maincat_name) {
+		this.maincat_name = maincat_name;
+	}
 
 
 	
-	 @Override
-	    public String toString() {
-	        return "UserInfo [num=" + support_num + ", money=" + fundedMoney + ", code=" + project_code + "]";
-	    }
 }

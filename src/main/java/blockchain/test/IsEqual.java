@@ -1,0 +1,19 @@
+package blockchain.test;
+
+public class IsEqual {
+	public void isEqual(String str1, String str2) {
+		if(str1.equals(str2)) {
+			System.out.println("일치");
+		} else {
+			System.out.println("불일치");
+		}
+		
+	}
+	public static void main(String[] args) {
+		IsEqual ie = new IsEqual();
+		ie.isEqual("rO0ABXNyADxvcmcuYm91bmN5Y2FzdGxlLmpjYWpjZS5wcm92aWRlci5hc3ltbWV0cmljLmVjLkJDRUNQdWJsaWNLZXkhn3qKo+pIJAMAAloAD3dpdGhDb21wcmVzc2lvbkwACWFsZ29yaXRobXQAEkxqYXZhL2xhbmcvU3RyaW5nO3hwAHQABUVDRFNBdXIAAltCrPMX+AYIVOACAAB4cAAAAEswSTATBgcqhkjOPQIBBggqhkjOPQMBAQMyAASREzdGQ0z/P8fsw04UQLDDc2Z0qPsJsoIxEM0PQnR3lnKphcdJKoHuPUxHOM4IHrd4"
+				,  "rO0ABXNyADxvcmcuYm91bmN5Y2FzdGxlLmpjYWpjZS5wcm92aWRlci5hc3ltbWV0cmljLmVjLkJDRUNQdWJsaWNLZXkhn3qKo+pIJAMAAloAD3dpdGhDb21wcmVzc2lvbkwACWFsZ29yaXRobXQAEkxqYXZhL2xhbmcvU3RyaW5nO3hwAHQABUVDRFNBdXIAAltCrPMX+AYIVOACAAB4cAAAAEswSTATBgcqhkjOPQIBBggqhkjOPQMBAQMyAASREzdGQ0z/P8fsw04UQLDDc2Z0qPsJsoIxEM0PQnR3lnKphcdJKoHuPUxHOM4IHrd4");
+		ie.isEqual("rO0ABXNyAD1vcmcuYm91bmN5Y2FzdGxlLmpjYWpjZS5wcm92aWRlci5hc3ltbWV0cmljLmVjLkJDRUNQcml2YXRlS2V5Dc1c3SkJztQDAAJaAA93aXRoQ29tcHJlc3Npb25MAAlhbGdvcml0aG10ABJMamF2YS9sYW5nL1N0cmluZzt4cAB0AAVFQ0RTQXVyAAJbQqzzF/gGCFTgAgAAeHAAAAB9MHsCAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQEEYTBfAgEBBBid0RtOpCah6y5adiaI6n0BA/6vUCqD4xigCgYIKoZIzj0DAQGhNAMyAASREzdGQ0z/P8fsw04UQLDDc2Z0qPsJsoIxEM0PQnR3lnKphcdJKoHuPUxHOM4IHrd4"
+				,  "rO0ABXNyAD1vcmcuYm91bmN5Y2FzdGxlLmpjYWpjZS5wcm92aWRlci5hc3ltbWV0cmljLmVjLkJDRUNQcml2YXRlS2V5Dc1c3SkJztQDAAJaAA93aXRoQ29tcHJlc3Npb25MAAlhbGdvcml0aG10ABJMamF2YS9sYW5nL1N0cmluZzt4cAB0AAVFQ0RTQXVyAAJbQqzzF/gGCFTgAgAAeHAAAAB9MHsCAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQEEYTBfAgEBBBid0RtOpCah6y5adiaI6n0BA/6vUCqD4xigCgYIKoZIzj0DAQGhNAMyAASREzdGQ0z/P8fsw04UQLDDc2Z0qPsJsoIxEM0PQnR3lnKphcdJKoHuPUxHOM4IHrd4");
+	}
+}

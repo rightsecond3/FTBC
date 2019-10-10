@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String name= "guest";
+	String mem_email = null;
+	if(session.getAttribute("mem_name")!=null){
+		name = session.getAttribute("mem_name").toString();
+	}
+	
+	if(session.getAttribute("mem_email")!=null){
+		mem_email = session.getAttribute("mem_email").toString();
+	}
+	if(request.getAttribute("mainProjects")!=null){
+		out.print("main"+request.getAttribute("mainProjects"));
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +33,19 @@
 			interval : 3000
 		});
 
-		function projectDetail() {
-			location.href = "../FTBC_DetailView/ProjectDetail.jsp"
+		function projectDetail(pjo_code) {
+			location.href = "../FTBC_DetailView/ProjectDetail.jsp?pjo_code="+pjo_code;
 		}
 		
 		function main_ajax(){
-			
+			$.ajax({
+				method:'get',
+				url:'/Project/getMainProjects',
+				success:function(data){
+						$("#allproject").html(data);
+				} 
+					
+			});
 		}
 		$(document).ready(function() {
 			main_ajax();
@@ -81,10 +102,11 @@
 			<div id="main_Center" class="col-xs-8">
 			
 			<!--=================================[인기 프로젝트 ]================================== -->
-				<div class="row main_row">
+				<div class="row" id="allproject">
+				<!-- <div class="row main_row">
 				<span class="main_span" id="popular_pjs"> 인기 프로젝트 <i class="fa fa-caret-right"></i> </span>
 				</div>
-				<div class="row">
+				<div id="popularProjects">
 					<div class="card col-xs-3" onclick="projectDetail()">
 						<div class="card-header">
 							<img src="../FTBC_Images/card1.jpg"class="card_img"> 
@@ -137,7 +159,8 @@
 						</div>
 					</div>
 				</div>
-				<!--=================================[추천 프로젝트]================================== -->
+
+				=================================[추천 프로젝트]==================================
 				<div class="row main_row">
 				<span class="main_span"> 추천 프로젝트 <i class="fa fa-caret-right"></i> </span>
 				</div>
@@ -195,11 +218,10 @@
 						</div>
 					</div>
 				</div>
-				<!--=================================[성공 임박 프로젝트]================================== -->
+				=================================[성공 임박 프로젝트]==================================
 				<div class="row main_row">
 				<span class="main_span"> 성공 임박 프로젝트 <i class="fa fa-caret-right"></i> </span>
 				</div>
-				
 				<div class="row">
 					<div class="card col-xs-3" onclick="projectDetail()">
 						<div class="card-header">
@@ -240,6 +262,7 @@
 						</div>
 					
 					</div>
+				</div> -->
 				</div>
 			</div><!--end of center  -->
 			<div class="col-xs-2"></div>

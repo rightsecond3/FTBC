@@ -1,5 +1,17 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String name= null;
+	String mem_email = null;
+	if(session.getAttribute("mem_name")!=null){
+		name = session.getAttribute("mem_name").toString();
+	}
+	
+	if(session.getAttribute("mem_email")!=null){
+		mem_email = session.getAttribute("mem_email").toString();
+	}
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,6 +65,7 @@
 			}
 			else{
 				change();
+				$("#title_label").html(title);
 				pjo_title_edit_cancle();
 			}
 		}
@@ -97,6 +110,7 @@
 			$("#pjo_summary").show();
 		}
 		function pjo_summary_edit_save(){
+			var summary = $("#pjo_summary_edit_text").val();
 			var summary_all_form = document.summary_all_form;
 			if(summary_all_form.pjo_summary_edit_text.value==""){
 				alert("내용을 입력해 주세요");
@@ -104,9 +118,10 @@
 			else if(summary_all_form.pjo_summary_edit_text.value.length<10){
 				alert("10자 이상 작성해 주세요");
 			}
-			else if(summary_all_form.pjo_summary_edit_text.value!=""||summary_all_form.pjo_summary_edit_text.value.length>=10){
-				pjo_summary_edit_cancle();
+			else if(summary_all_form.pjo_summary_edit_text.value.length<=50){
+				$("#summary_label").html(summary);
 				change();
+				pjo_summary_edit_cancle();
 			}
 		}
 		/* =========================== 카테고리 에딧창================================== */
@@ -126,6 +141,17 @@
 		function pjo_category_edit_cancle(){
 			$("#pjo_category_edit").hide();
 			$("#pjo_category").show();
+		}		
+		function pjo_category_edit_save(){
+			if($("#pjo_category_select").val()!=null){
+				var result = $("#pjo_category_select").val();
+				$("#pjo_category_select_result").val(result);
+				$("#category_label").html($("#pjo_category_select option:selected").text());
+				change();
+				pjo_category_edit_cancle();
+			}else{
+				alert("카테코리를 선택해 주세요");
+			}
 		}
 		/* ============================ 페이지 에딧창 ================================*/
 		function pjo_page_edit_open(){
@@ -146,6 +172,7 @@
 			$("#pjo_page").show();
 		}
 		function pjo_page_edit_save(){
+			var page = $("#pjo_page_text").val();
 			var summary_all_form = document.summary_all_form;
 			if(summary_all_form.pjo_page_text.value==""){
 				alert("내용을 입력해 주세요");
@@ -154,9 +181,10 @@
 			else if(summary_all_form.pjo_page_text.value.length<5){
 				alert("5자 이상 작성해 주세요");
 			}
-			else{
-				pjo_page_edit_cancle();
+			else if(summary_all_form.pjo_page_text.value!=null||summary_all_form.pjo_page_text.value.length<=125){
+				$("#page_label").html(page);
 				change();
+				pjo_page_edit_cancle();
 			}
 		}
 		/* ================================= 태그 에딧창 ===========================*/
@@ -178,6 +206,7 @@
 			$("#pjo_tag").show();
 		}	
 		function pjo_tag_edit_save(){
+			var tag = $("#pjo_tag_text").val();
 			var summary_all_form = document.summary_all_form;
 			if(summary_all_form.pjo_tag_text.value==""){
 				alert("내용을 입력해 주세요");
@@ -186,9 +215,10 @@
 			else if(summary_all_form.pjo_tag_text.value.length<2){
 				alert("2자 이상 작성해 주세요");
 			}
-			else{
-				pjo_tag_edit_cancle();
+			else if(summary_all_form.pjo_tag_text.value!=null||summary_all_form.pjo_tag_text.value.length<=125){
+				$("#tag_label").html(tag);
 				change();
+				pjo_tag_edit_cancle();
 			}
 		}
 		/* ================================= 프로필 이미지 에딧창 ===========================*/
@@ -228,6 +258,7 @@
 			$("#pjo_name").show();
 		}
 		function pjo_name_edit_save(){
+			var name = $("#pjo_name_text").val();
 			var summary_all_form = document.summary_all_form;
 			if(summary_all_form.pjo_name_text.value==""){
 				alert("내용을 입력해 주세요");
@@ -236,9 +267,10 @@
 			else if(summary_all_form.pjo_name_text.value.length<2){
 				alert("2자 이상 작성해 주세요");
 			}
-			else{
-				pjo_name_edit_cancle();
+			else if(summary_all_form.pjo_name_text.value!=null||summary_all_form.pjo_name_text.value.length<=20){
+				$("#name_label").html(name);
 				change();
+				pjo_name_edit_cancle();
 			}
 		}
 		/* ================================= 창작자 소개 에딧창 ===========================*/
@@ -260,6 +292,7 @@
 			$("#pjo_introduction").show();
 		}
 		function pjo_introduction_edit_save(){
+			var introduction = $("#pjo_introduction_edit_textarea").val();
 			var summary_all_form = document.summary_all_form;
 			if(summary_all_form.pjo_introduction_edit_textarea.value==""){
 				alert("내용을 입력해 주세요");
@@ -268,9 +301,10 @@
 			else if(summary_all_form.pjo_introduction_edit_textarea.value.length<10){
 				alert("10자 이상 작성해 주세요");
 			}
-			else{
-				pjo_introduction_edit_cancle();
+			else if(summary_all_form.pjo_introduction_edit_textarea.value!=null||summary_all_form.pjo_introduction_edit_textarea.value.length<=300){
+				$("#introduction_label").html(introduction);
 				change();
+				pjo_introduction_edit_cancle();
 			}
 		}
 		/* ================================= 창작자 활동지역 에딧창 ===========================*/
@@ -292,6 +326,7 @@
 			$("#pjo_active_area").show();
 		}
 		function pjo_active_area_edit_save(){
+			var active = $("#pjo_active_area_text").val();
 			var summary_all_form = document.summary_all_form;
 			if(summary_all_form.pjo_active_area_text.value==""){
 				alert("내용을 입력해 주세요");
@@ -300,12 +335,14 @@
 			else if(summary_all_form.pjo_active_area_text.value.length<2){
 				alert("2자 이상 작성해 주세요");
 			}
-			else{
-				pjo_active_area_edit_cancle();
+			else if(summary_all_form.pjo_active_area_text.value!=null||summary_all_form.pjo_active_area_text.value.length<=20){
+				$("#active_label").html(active);
 				change();
+				pjo_active_area_edit_cancle();
 			}
 		}
 		/* ================================= 이미지 저장 및 변경 ===========================*/
+		var pjo_img_result;
 		function getThumbnailPrivew(html) {
 		    if (html.files && html.files[0]) {
 		        var reader = new FileReader();
@@ -323,7 +360,9 @@
 		            $("#pjo_img").css({
 		            	height : "auto"
 		            });
-		            $("#pjo_img_edit_button_1").html('<button class="button" id="pjo_img_edit_button_2" onClick="pjo_img_edit_remove()">'+'<div class="glyphicon glyphicon-repeat"/>'+"다른 이미지 파일로 교체하기"+'</button>')
+		            pjo_img_result = e.target.result;
+		            $("#pjo_img_result").val(pjo_img_result);
+		            $("#pjo_img_edit_button_1").html('<button class="button" id="pjo_img_edit_button_2" onClick="pjo_img_edit_remove()">'+'<div class="glyphicon glyphicon-repeat"/>'+"다른 이미지 파일로 교체하기"+'</button>');
 		        }
 		        reader.readAsDataURL(html.files[0]);
 		    }
@@ -349,6 +388,7 @@
             });	
 		
 		} 
+		var pjo_profile_img_result;
 		function pjo_profile_img(html) {
 		    if (html.files && html.files[0]) {
 		        var reader = new FileReader();
@@ -367,6 +407,8 @@
 		            $("#pjo_profile_img").css({
 		            	height : "auto"
 		            });
+		            pjo_profile_img_result=e.target.result;
+		            $("#pjo_profile_img_result").val(pjo_profile_img_result);
 		            $("#pjo_profile_img_edit_img_button_1").html('<button class="button button_cancle" id="pjo_profile_img_edit_img_button_2" onClick="pjo_profile_img_cancle()">'+'<div class="glyphicon glyphicon-repeat"/>'+"다른 이미지 파일로 교체하기"+'</button>')
 		        }
 		        reader.readAsDataURL(html.files[0]);
@@ -459,7 +501,7 @@
 		      
 		});
 		function next_page(){
-			
+		
 			check_count();
 			$("#tab1").removeClass("active");
 			$("#tab2").attr('class','active');
@@ -472,16 +514,19 @@
 			||summary_all_form.pjo_summary_edit_text.value==""||summary_all_form.pjo_page_text.value==""
 			||summary_all_form.pjo_tag_text.value==""||summary_all_form.pjo_name_text.value==""
 			||summary_all_form.pjo_introduction_edit_textarea.value==""||summary_all_form.pjo_active_area_text.value==""
-			){
-				$("#check_tab").html('<img id="check_tab1" src="../FTBC_Images/check1.png">');
+			)
+			{
+				alert("?0");
+				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check1.png">');
 			} else{
-				$("#check_tab").html('<img id="check_tab1" src="../FTBC_Images/check.png">');
+				alert("?1");
+				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check.png">');
 				
 			}
 		}
 		function check_count(){
 			var summary_all_form = document.summary_all_form;
-			check =null;
+			check ="check";
 			if(summary_all_form.short_title.value==""){
 				check = check+",짧은 제목";
 			}
@@ -506,17 +551,21 @@
 			if(summary_all_form.pjo_active_area_text.value==""){
 				check = check+",창작자 지역";
 			}
-			if(check!=null){
-				//alert(check+"를 작성해 주세요");
-				$("#check_tab").html('<img id="check_tab1" src="../FTBC_Images/check1.png">');
+			if(check!="check"){
+				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check1.png">');
 			}else{
-				$("#check_tab").html('<img id="check_tab1" src="../FTBC_Images/check.png">');
+				$("#check_tab1").html('<img id="check_tab1" src="../FTBC_Images/check.png">');
 			}
 		}
+
 	</script>
 <p>프로젝트 개요</p>
 <div id="pjo_outline">
-	<form id="summary_all_form" name="summary_all_form" onsubmit="return false;">
+	<form id="summary_all_form" name="summary_all_form" onSubmit="return false" class="create_form">
+	<input type="hidden" id="pjo_img_result" name="pjo_img_result">
+	<input type="hidden" id="pjo_profile_img_result" name="pjo_profile_img_result">
+	<input type="hidden" id="pjo_category_select_result" name="pjo_category_select_result">
+	<input type="hidden" id="mem_email" name="mem_email" value="<%=mem_email%>">
 	<table>
 	<!-- ================================ 프로젝트 제목 =============================================== -->
 	<tr><td>
@@ -530,7 +579,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-10">
-				<img src="../FTBC_Images/finger.png"></img><label>&nbsp; 프로젝트
+				<img src="../FTBC_Images/finger.png"></img><label id="title_label">&nbsp; 프로젝트
 					제목을 입력해 주세요</label>
 			</div>
 			<div class="col-sm-2">
@@ -588,15 +637,15 @@
 			<div id="pjo_title_edit4" class="col-lg-12">			
 				<div class="col-sm-8"></div>
 				<div class="col-sm-4">
-				<div class="col-sm-4"></div>
-				
-				<div class="col-sm-4">
-					<button class="button button_cancle" onClick="pjo_title_edit_cancle()">취소하기</button>&nbsp;&nbsp;
-				</div>
-				<div class="col-sm-4">
-					<button class="button button_save" onClick="pjo_title_edit_save()">저장하기</button>
-				</div>
-				<div class="col-sm-4"></div>
+					<div class="col-sm-2"></div>
+					
+					<div class="col-sm-5">
+						<button class="button button_save" onClick="pjo_title_edit_save()"><i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;저장하기</button>
+					</div>
+					<div class="col-sm-5">
+						<button class="button button_cancle" onClick="pjo_title_edit_cancle()"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;취소하기</button>&nbsp;&nbsp;
+					</div>
+					<div class="col-sm-1"></div>
 				</div>
 			</div>	
 		</div>	
@@ -708,7 +757,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-10">
-						<img src="../FTBC_Images/finger.png"></img><label>&nbsp; 프로젝트
+						<img src="../FTBC_Images/finger.png"></img><label id="summary_label">&nbsp; 프로젝트
 							요약을 입력해 주세요</label>
 					</div>
 					<div class="col-sm-2">
@@ -732,13 +781,13 @@
 					<div class="col-sm-8"></div>
 					<div class="col-sm-4">
 						<div class="col-sm-4"></div>
-						<div class="col-sm-4">
-							<button class="button button_cancle" onClick="pjo_summary_edit_cancle()">취소하기</button>&nbsp;&nbsp;
+						<div class="col-sm-5">
+							<button class="button button_save" onClick="pjo_summary_edit_save()"><i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;저장하기</button>
 						</div>
-						<div class="col-sm-4">
-							<button class="button button_save" onClick="pjo_summary_edit_save()">저장하기</button>
+						<div class="col-sm-5">
+							<button class="button button_cancle" onClick="pjo_summary_edit_cancle()"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;취소하기</button>&nbsp;&nbsp;
 						</div>
-						<div class="col-sm-4"></div>
+						<div class="col-sm-1"></div>
 					</div>
 				</div>
 		</div>
@@ -755,7 +804,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-10">
-						<img src="../FTBC_Images/finger.png"></img><label>&nbsp; 프로젝트
+						<img src="../FTBC_Images/finger.png"></img><label id="category_label">&nbsp; 프로젝트
 							카테고리를 입력해 주세요</label>
 					</div>
 					<div class="col-sm-2">
@@ -773,10 +822,70 @@
 			<div class="row">
 			<div class="col-sm-4">
 				<select id="pjo_category_select">
-				    <option selected>카테고리</option>
-				    <option>db에서</option>
-				    <option>가져와서</option>
-			    	<option>for문 돌려서 넣을거</option>
+				    <option selected  disabled	>선택</option>
+				   	<option disabled>게임</option>
+				   	<option value="A01">&nbsp;-TRPG</option>
+					<option value="A02">&nbsp;-모바일 게임</option>
+					<option value="A03">&nbsp;-보드게임</option>
+					<option value="A04">&nbsp;-비디오게임</option>
+					<option  disabled>공연</option>
+					<option value="B01">&nbsp;-무용</option>
+					<option value="B02">&nbsp;-뮤지컬</option>
+					<option value="B03">&nbsp;-연극</option>
+					<option value="B04">&nbsp;-페스티벌</option>
+					<option value="B05">&nbsp;-클래스</option>
+					<option  disabled>디자인</option>
+					<option value="C01">&nbsp;-공간디자인</option>
+					<option value="C02">&nbsp;-시각디자인</option>
+					<option value="C03">&nbsp;-제품디자인</option>
+					<option value="C04">&nbsp;-캐릭터 디자인</option>
+					<option  disabled>만화</option>
+					<option value="D01">&nbsp;-그래픽노블</option>
+					<option value="D02">&nbsp;-웹툰</option>
+					<option value="D03">&nbsp;-출판만화</option>
+					<option  disabled>미술</option>
+					<option value="E01">&nbsp;-공공예술</option>
+					<option value="E02">&nbsp;-디지털 아트</option>
+					<option value="E03">&nbsp;-미술 전시</option>
+					<option value="E04">&nbsp;-일러스트레션</option>
+					<option value="E05">&nbsp;-행위예술</option>
+					<option value="E06">&nbsp;-혼합매체</option>
+					<option value="E07">&nbsp;-회화</option>
+					<option value="F01">공예</option>
+					<option value="G01">사진</option>
+					<option  disabled>영화</option>
+					<option value="H01">&nbsp;-극영화</option>
+					<option value="H02">&nbsp;-다큐멘터리</option>
+					<option value="H03">&nbsp;-단편영화</option>
+					<option value="H04">&nbsp;-애니메이션</option>
+					<option value="H05">&nbsp;-웹시리즈 </option>
+					<option  disabled>푸드</option>
+					<option value="I01">&nbsp;-베이킹</option>
+					<option value="I02">&nbsp;-요리책</option>
+					<option value="J01">음악</option>
+					<option  disabled>출판</option>
+					<option value="K01">&nbsp;-논픽션</option>
+					<option value="K02">&nbsp;-매거진</option>
+					<option value="K03">&nbsp;-소설</option>
+					<option value="K04">&nbsp;-시집</option>
+					<option value="K05">&nbsp;-아트북</option>
+					<option value="K06">&nbsp;-어린이책</option>
+					<option value="K07">&nbsp;-저널리즘</option>
+					<option value="K08">&nbsp;-전자출판</option>
+					<option value="K09">&nbsp;-학술</option>
+					<option  disabled>테크놀로지</option>
+					<option value="L01">&nbsp;-공개 소프트</option>
+					<option value="L02">&nbsp;-어플리케이션</option>
+					<option value="L03">&nbsp;-하드웨어</option>
+					<option  disabled>패션</option>
+					<option value="M01">&nbsp;-의류</option>
+					<option value="M02">&nbsp;-액세서리</option>
+					<option value="M03">&nbsp;-패션잡화</option>
+					<option value="M04">&nbsp;-뷰티</option>
+					<option  disabled>캠페인</option>
+					<option value="N01">&nbsp;-인권</option>
+					<option value="N02">&nbsp;-환경</option>
+					<option value="N03">&nbsp;-사회</option>
 				</select>
 			</div>	
 			</div>
@@ -785,13 +894,13 @@
 				<div class="col-sm-4">
 				<div class="col-sm-4"></div>
 				
-				<div class="col-sm-4">
-					<button class="button button_cancle" onClick="pjo_category_edit_cancle()">취소하기</button>&nbsp;&nbsp;
+				<div class="col-sm-5">
+					<button class="button button_save" onClick="pjo_category_edit_save()">저장하기</button>
 				</div>
-				<div class="col-sm-4">
-					<button class="button button_save">저장하기</button>
+				<div class="col-sm-5">
+					<button class="button button_cancle" onClick="pjo_category_edit_cancle()"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;취소하기</button>&nbsp;&nbsp;
 				</div>
-				<div class="col-sm-4"></div>
+				<div class="col-sm-1"></div>
 				</div>
 			</div>	
 		</div>	
@@ -808,7 +917,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-10">
-						<img src="../FTBC_Images/finger.png"></img><label>&nbsp; 프로젝트
+						<img src="../FTBC_Images/finger.png"></img><label id="page_label">&nbsp; 프로젝트
 							페이지 주소를 입력해 주세요</label>
 					</div>
 					<div class="col-sm-2">
@@ -840,13 +949,13 @@
 				<div class="col-sm-4">
 				<div class="col-sm-4"></div>
 				
-				<div class="col-sm-4">
-					<button class="button button_cancle" onClick="pjo_page_edit_cancle()">취소하기</button>&nbsp;&nbsp;
+				<div class="col-sm-5">
+					<button class="button button_save" onClick="pjo_page_edit_save()"><i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;저장하기</button>
 				</div>
-				<div class="col-sm-4">
-					<button class="button button_save" onClick="pjo_page_edit_save()">저장하기</button>
+				<div class="col-sm-5">
+					<button class="button button_cancle" onClick="pjo_page_edit_cancle()"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;취소하기</button>&nbsp;&nbsp;
 				</div>
-				<div class="col-sm-4"></div>
+				<div class="col-sm-1"></div>
 				</div>
 			</div>	
 		</div>
@@ -863,7 +972,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-10">
-						<img src="../FTBC_Images/finger.png"></img><label>&nbsp; 예시: 뱃지,
+						<img src="../FTBC_Images/finger.png"></img><label id="tag_label">&nbsp; 예시: 뱃지,
 						 웹툰, 에코백, 고양이, 유기견</label>
 					</div>
 					<div class="col-sm-2">
@@ -900,22 +1009,22 @@
 				<div class="col-sm-4">
 				<div class="col-sm-4"></div>
 				
-				<div class="col-sm-4">
-					<button class="button button_cancle" onClick="pjo_tag_edit_cancle()">취소하기</button>&nbsp;&nbsp;
+				<div class="col-sm-5">
+					<button class="button button_save" onClick="pjo_tag_edit_save()"><i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;저장하기</button>
 				</div>
-				<div class="col-sm-4">
-					<button class="button button_save" onClick="pjo_tag_edit_save()">저장하기</button>
+				<div class="col-sm-5">
+					<button class="button button_cancle" onClick="pjo_tag_edit_cancle()"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;취소하기</button>&nbsp;&nbsp;
 				</div>
-				<div class="col-sm-4"></div>
+				<div class="col-sm-1"></div>
 				</div>
 			</div>	
 		</div>
 	</td></tr>
 	</table>
-</div>
+<!-- </div> -->
 <br>
 <p>창작자 정보</p>
-<div id="pjo_creator">
+<!-- <div id="pjo_creator"> -->
 	<table>
 	<!-- ================================= 프로필 이미지 =========================================== -->
 	<tr><td>
@@ -982,7 +1091,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-10">
-					<img src="../FTBC_Images/finger.png"></img><label>&nbsp; 창작자 이름</label>
+					<img src="../FTBC_Images/finger.png"></img><label id="name_label">&nbsp; 창작자 이름</label>
 				</div>
 				<div class="col-sm-2">
 					<img src="../FTBC_Images/edit.png"></img><label>&nbsp; 수정하기</label>
@@ -1006,13 +1115,13 @@
 				<div class="col-sm-4">
 				<div class="col-sm-4"></div>
 				
-				<div class="col-sm-4">
-					<button class="button button_cancle" onClick="pjo_name_edit_cancle()">취소하기</button>&nbsp;&nbsp;
+				<div class="col-sm-5">
+					<button class="button button_save" onClick="pjo_name_edit_save()"><i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;저장하기</button>
 				</div>
-				<div class="col-sm-4">
-					<button class="button button_save" onClick="pjo_name_edit_save()">저장하기</button>
+				<div class="col-sm-5">
+					<button class="button button_cancle" onClick="pjo_name_edit_cancle()"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;취소하기</button>&nbsp;&nbsp;
 				</div>
-				<div class="col-sm-4"></div>
+				<div class="col-sm-1"></div>
 				</div>
 			</div>	
 		</div>
@@ -1029,7 +1138,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-10">
-					<img src="../FTBC_Images/finger.png"></img><label>&nbsp; 창작자 소개를 입력해
+					<img src="../FTBC_Images/finger.png"></img><label id="introduction_label">&nbsp; 창작자 소개를 입력해
 					주세요</label>
 				</div>
 				<div class="col-sm-2">
@@ -1064,13 +1173,13 @@
 				<div class="col-sm-4">
 				<div class="col-sm-4"></div>
 				
-				<div class="col-sm-4">
-					<button class="button button_cancle" onClick="pjo_introduction_edit_cancle()">취소하기</button>&nbsp;&nbsp;
+				<div class="col-sm-5">
+					<button class="button button_save" onClick="pjo_introduction_edit_save()"><i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;저장하기</button>
 				</div>
-				<div class="col-sm-4">
-					<button class="button button_save" onClick="pjo_introduction_edit_save()">저장하기</button>
+				<div class="col-sm-5">
+					<button class="button button_cancle" onClick="pjo_introduction_edit_cancle()"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;취소하기</button>&nbsp;&nbsp;
 				</div>
-				<div class="col-sm-4"></div>
+				<div class="col-sm-1"></div>
 				</div>
 			</div>	
 		</div>
@@ -1087,7 +1196,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-10">
-					<img src="../FTBC_Images/finger.png"></img><label>&nbsp; 창작자 활동 지역을
+					<img src="../FTBC_Images/finger.png"></img><label id="active_label">&nbsp; 창작자 활동 지역을
 					입력해 주세요</label>
 				</div>
 				<div class="col-sm-2">
@@ -1112,13 +1221,13 @@
 				<div class="col-sm-4">
 				<div class="col-sm-4"></div>
 				
-				<div class="col-sm-4">
-					<button class="button button_cancle" onClick="pjo_active_area_edit_cancle()">취소하기</button>&nbsp;&nbsp;
+				<div class="col-sm-5">
+					<button class="button button_save" onClick="pjo_active_area_edit_save()"><i class="glyphicon glyphicon-remove"></i>&nbsp;&nbsp;저장하기</button>
 				</div>
-				<div class="col-sm-4">
-					<button class="button button_save" onClick="pjo_active_area_edit_save()">저장하기</button>
+				<div class="col-sm-5">
+					<button class="button button_cancle" onClick="pjo_active_area_edit_cancle()"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;취소하기</button>&nbsp;&nbsp;
 				</div>
-				<div class="col-sm-4"></div>
+				<div class="col-sm-1"></div>
 				</div>
 			</div>	
 		</div>

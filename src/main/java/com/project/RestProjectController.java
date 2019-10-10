@@ -18,17 +18,15 @@ public class RestProjectController {
 	@Autowired
 	ProjectLogic projectLogic = null;
 	@PostMapping("createProject.ftbc")
-	public String CreateProject(@RequestParam Map<String,Object> pMap) {
+	public String CreateProject(@RequestParam Map<String,Object> pMap) throws Exception {
 		int result = 0;
 		logger.info("rest컨트롤러 도착");
-		logger.info(pMap.toString());
-		logger.info(pMap.get("editordata").toString());
-		logger.info(pMap.get("long_title").toString());
 		result = projectLogic.CreateProject(pMap);
-		if(result==0) {
-		return "forward:FTBC_Main.jsp";
+		logger.info("123 : "+result);
+		if(result==1) {
+			return "redirect:FTBC_myProjectList.jsp";
 		}else{
-			return "forward:CreateProjectLayout.jsp";
+			return "redirect:no";
 		}
 	}
 }

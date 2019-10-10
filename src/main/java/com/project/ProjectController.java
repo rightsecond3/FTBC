@@ -54,7 +54,7 @@ public class ProjectController  {
 		logger.info("내가 펀딩한 프로젝트 getMainProject 호출");
 		Map<String, Object> mainProjects = projectLogic.getMainProjects();
 		mod.addAttribute("mainProjects",mainProjects);
-		return  "forward:FTBC_MainList.jsp";
+		return  "forward:/FTBC_MainView/FTBC_MainList.jsp";
 	}
 	
 	@GetMapping(value="projectDetail")
@@ -63,7 +63,7 @@ public class ProjectController  {
 		logger.info("projectDetail 호출");
 		ProjectVO projectDetail = projectLogic.getProjectDetail(projectCode);
 		mod.addAttribute("projectDetail", projectDetail);
-		return "forward:FTBC_DetailList.jsp";
+		return "forward:/FTBC_DetailView/ProjectDetailList.jsp";
 		
 	}
 	
@@ -82,15 +82,23 @@ public class ProjectController  {
 		//검색한 키워드로 
 		List<ProjectVO> projectList = projectLogic.getKeywordProjects(Keyword);
 		mod.addAttribute("projectList", projectList);
-		return "forward:Keyword_ProjectList.jsp";
+		mod.addAttribute("keyword",Keyword);
+		return "forward:/FTBC_LookView/Keyword_ProjectList.jsp";
 	}
 	
 	@GetMapping(value="getCategoryProjects")
-	public String getCategoryProjects(@RequestParam String Category, Model mod) {
+	public String getCategoryProjects(@RequestParam Map<String,Object> pMap, Model mod) {
 		logger.info("getCategoryProjects 호출");
 		//카테고리 별로 
-		List<ProjectVO> projectList = projectLogic.getCategoryProjects(Category);
+		List<ProjectVO> projectList = projectLogic.getCategoryProjects(pMap);
+		String cat = null;
+		if(pMap.get("subcat_name").equals("undefined")) {
+			cat = pMap.get("maincat_name").toString();
+		}else {
+			cat = pMap.get("subcat_name").toString();
+		}
+		mod.addAttribute("cat",cat);
 		mod.addAttribute("projectList", projectList);
-		return "forward:Keyword_ProjectList.jsp";
+		return "forward:/FTBC_LookView/Category_ProjectList.jsp";
 	}
 }

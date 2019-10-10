@@ -9,7 +9,6 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 
 import blockchain.AuthChain;
-import blockchain.Register;
 import blockchain.Wallet;
 import blockchain.util.Base64Conversion;
 import blockchain.util.StringUtil;

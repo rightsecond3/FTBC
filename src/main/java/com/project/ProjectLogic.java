@@ -1,10 +1,14 @@
 package com.project;
 
+import java.io.IOException;
+import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.management.RuntimeErrorException;
 
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
@@ -41,7 +45,7 @@ public class ProjectLogic {
 	public BlockChain getBlockChain() {
 		BlockChain blockChain = null;
 		try {
-			String blockchain64 = Base64Conversion.importChain("FTBCChain","C:\\Users\\kosmo_03\\Desktop\\FTBC\\test (1)\\");
+			String blockchain64 = Base64Conversion.importChain("FTBC","C:\\FTBC\\");
 			blockChain = (BlockChain) Base64Conversion.decodeBase64(blockchain64);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,7 +79,7 @@ public class ProjectLogic {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-						if(transaction.reciepient.equals(publicKey)) {
+						if(transaction.recipient.equals(publicKey)) {
 							sup_num ++;
 						}
 					}
@@ -138,13 +142,13 @@ public class ProjectLogic {
 		// DB에서 가져와야할 것 프로젝트명, 프로젝트 올린사람 닉네임, 목표금액, 마감일
 		List<ProjectVO> popularProjects = getPopularProjects(projectDao.allProjects());//인기 프로젝트
 		List<ProjectVO> recommnadProjects = projectDao.recommnadProjects(); //추천 프로젝트 
-		List<ProjectVO> vergeofProjects = getVergeofProejcts(projectDao.allProjects()); //성공임박 프로젝트
+		//List<ProjectVO> vergeofProjects = getVergeofProejcts(projectDao.allProjects()); //성공임박 프로젝트
 		
 		List<ProjectVO> bannerProjects = new ArrayList<>();
 		bannerProjects.add(popularProjects.get(0));
 		bannerProjects.add(recommnadProjects.get(0));
 		bannerProjects.add(recommnadProjects.get(1));
-		bannerProjects.add(vergeofProjects.get(0));
+		//bannerProjects.add(vergeofProjects.get(0));
 		
 		/*
 		 * DB에서 가져온 정보로 BlockChain에 있는 데이터 가져와야함.
@@ -152,13 +156,34 @@ public class ProjectLogic {
 		 */
 		
 		//프로젝트 리스트들로 putFundedMoney돌려서 블록체인에있는 펀딩금액 데이터 넣어서 Map에 담아줌.
+		
 		mainProjects.put("popularProject", putFundedMoney(popularProjects));
 		mainProjects.put("recommnadProject", putFundedMoney(recommnadProjects));
-		mainProjects.put("vergeofProject", putFundedMoney(vergeofProjects));
+		//mainProjects.put("vergeofProject", putFundedMoney(vergeofProjects));
 		
+		mainProjects.put("popularProject", popularProjects);
+		mainProjects.put("recommnadProject", recommnadProjects);
+		//mainProjects.put("vergeofProject", vergeofProjects);
+		logger.info("인기 프로젝트 사이즈 : "+popularProjects.size());
 		return mainProjects;
 	}
-			
+	public List<String> get() {
+		List<String> projectCodes = new ArrayList<>();
+		CommonSet commonset = CommonSet.getInstance();
+		BlockChain blockChain = getBlockChain();
+		for(int i=0;i<blockChain.blockChain.size();i++) {
+			Block block = blockChain.blockChain.get(i);//블럭 하나 가져오기
+			for(int j=0;j<block.transactions.size();j++){
+				Transaction transaction = block.transactions.get(j);//트랜잭션 담기
+				Object keys[] = commonset.projectWallets.keySet().toArray();
+					for(int k=0;k<keys.length;k++) {
+						String projectCode = commonset.projectWallets.get(keys[k]).toString();
+						projectCodes.add(projectCode);
+					}
+				}
+			}
+		return projectCodes;
+	}
 	//내가 펀딩한 프로젝트들 가져오기 
 	public List<ProjectVO> getFundedProjects(String mem_email) {
 		//내가 펀딩한 프로젝트 담을 리스트
@@ -182,17 +207,18 @@ public class ProjectLogic {
 		 * 	  프로젝트 코드를 가져온다음 proejectCodes 리스트에 담음.
 		 * 5. proejectCodes를 파라미터로 보내서 DB에서 해당 프로젝트의 정보들을 가져옴.
 		 */
+		
 		for(int i=0;i<blockChain.blockChain.size();i++) {
 			Block block = blockChain.blockChain.get(i);
 			for(int j=0;j<block.transactions.size();j++){
 				Transaction transaction = block.transactions.get(j);
 				PublicKey funded_publicKey = null;
 				if(my_publicKey.equals(transaction.sender)){
-					funded_publicKey = transaction.reciepient;
-					Object keys[] = commonset.projects.keySet().toArray();
+					funded_publicKey = transaction.recipient;
+					Object keys[] = commonset.projectWallets.keySet().toArray();
 					for(int k=0;k<keys.length;k++) {
-						if(funded_publicKey.equals(commonset.projects.get(keys[k]).projectPublicKey)) {
-							String projectCode = commonset.projects.get(keys[k]).projectCode;
+						if(funded_publicKey.equals(commonset.projectWallets.get(keys[k]))) {
+							String projectCode = commonset.projectWallets.get(keys[k]).toString();
 							projectCodes.add(projectCode);
 						}
 					}
@@ -212,17 +238,21 @@ public class ProjectLogic {
 		return myProjects;
 	}
 	
-	//프로젝트 상세보기 
 	public ProjectVO getProjectDetail(String projectCode) {
-		ProjectVO projectDetail = projectDao.getProjectDetail(projectCode);
+		ProjectVO projectDetail =null;
+		projectDetail = projectDao.getProjectDetail(projectCode);
 		//상세보기할 프로젝트의 공개키
-		PublicKey project_key = null;
-		try {
-			project_key = (PublicKey)Base64Conversion.decodeBase64(projectDetail.getPj_publickey());
-		} catch (Exception e) {
-			e.printStackTrace();
+		
+		PublicKey project_key = null; 
+		try { 
+			project_key =
+		(PublicKey)Base64Conversion.decodeBase64(projectDetail.getPj_publickey());
+		}catch (Exception e) { 
+			e.printStackTrace(); 
 		}
+		logger.info("프로젝트 키  :  "+project_key);
 		// 상세보기할 프로젝트의 후원자 수 담을 변수
+		
 		int sup_num = 0;
 		BlockChain blockChain = getBlockChain();
 		/*
@@ -233,17 +263,35 @@ public class ProjectLogic {
 		 *    후원자 명 수 ++
 		 * 4. projectDetail 맵에 후원자 수 도 put
 		 */
+		
+		logger.info("block : "+blockChain.blockChain.get(0).transactions.get(0).recipient);
 		for(int i=0;i<blockChain.blockChain.size();i++) {
 			Block block = blockChain.blockChain.get(i);
 			for(int j=0;j<block.transactions.size();j++){
 				Transaction transaction = block.transactions.get(j);
-				if(project_key.equals(transaction.reciepient)) {
+				//logger.info("transaction reciepient : "+block.transactions.get(j).reciepient);
+				//logger.info("transaction value : "+transaction.value);
+				//logger.info("transaction sender : "+transaction.sender);
+				if(project_key.equals(transaction.recipient)) {
 					sup_num ++;
 				}
 			}
 		}
+		logger.info("펀딩한 인원: "+sup_num);
+		List<Map<String,Object>> giftList = new ArrayList<>();
+		giftList = projectDao.getGift(projectCode);
+		List<String> giftCode = new ArrayList<>();
+		for(int i = 0 ; i < giftList.size();i++) {
+			Map<String,Object> gift = new HashMap<String, Object>();
+			gift = giftList.get(i);
+			giftCode.add(gift.get("GIFT_CODE").toString());
+		}
+		if(giftCode.size()>0) {
+			logger.info("gift : "+giftCode);
+			List<Map<String,Object>> giftOptionList = new ArrayList<>();
+			giftOptionList = projectDao.getGiftOption(giftCode);
+		}
 		projectDetail.setSupport_num(sup_num);
-		
 		
 		return projectDetail;
 	}
@@ -275,9 +323,9 @@ public class ProjectLogic {
 	}
 	
 	//카테고리 별로
-	public List<ProjectVO> getCategoryProjects(String category) {
+	public List<ProjectVO> getCategoryProjects(Map<String, Object> pMap) {
 		List<ProjectVO> projectList = null;
-		projectList = putFundedMoney(projectDao.getCategoryProjects(category));
+		projectList = putFundedMoney(projectDao.getCategoryProjects(pMap));
 		return projectList;
 	}
 	
@@ -288,7 +336,7 @@ public class ProjectLogic {
 		 */
 		for(int i=0; i<plist.size();i++) {
 			ProjectVO pVO = plist.get(i);
-			double percentage = pVO.getFundedMoney()/pVO.getTargetMoney();
+			double percentage = pVO.getFundedMoney()/pVO.getFd_targetMoney();
 			if(percentage >= 0.9) { //90퍼센트 이상일 경우
 				rlist.add(pVO);
 			}
@@ -302,26 +350,27 @@ public class ProjectLogic {
 		return plist;
 		
 	}
-	
 	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor= {DataAccessException.class})
 	@Pointcut(value="execution(* com.project.*Logic.*(..)")
-	public int CreateProject(Map<String, Object> pMap) {
+	public int CreateProject(Map<String, Object> pMap) throws Exception{
 		int result = 0;
+		logger.info("email :"+pMap.get("mem_email").toString());
 		try {
-			logger.info(pMap.get("pjo_category_select_result").toString());
-			pMap.put("pro_code",0);
-			String proc = projectDao.projectCode(pMap);
-			logger.info(proc);
-			result = projectDao.projectcreate(pMap);
-			result = projectDao.storytellinginsert(pMap);
-			result = projectDao.pjoutlineinsert(pMap);
-			result = projectDao.fundinginsert(pMap);
+			pMap = projectDao.projectCode(pMap);
+			logger.info(pMap.get("PROJECT_CODE").toString());
+			String publickey =null;
+			CommonSet commonset = CommonSet.getInstance();
+			publickey = commonset.createProject(pMap.get("PROJECT_CODE").toString());
+			pMap.put("PJ_PUBLICKEY",publickey); 
+			projectDao.projectcreate(pMap); 
+			projectDao.storytellinginsert(pMap);
+			projectDao.pjoutlineinsert(pMap); 
+			projectDao.fundinginsert(pMap); 
+			result=1;	
 		} catch (Exception e) {
 			throw e;
 		}
 		return result;
 	}
-	
-
 	
 }

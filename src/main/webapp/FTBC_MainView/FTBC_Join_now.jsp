@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
-<link rel="stylesheet" type="text/css" href="FTBC_Join_now.css?17">
+<link rel="stylesheet" type="text/css" href="FTBC_Join_now.css?18">
 <script type="text/javascript">
 $(document).ready(function(){
 		$("#email_confirm").hide();
@@ -19,12 +18,15 @@ $(document).ready(function(){
 		$("#Login_page").load(url);
 	}
 	function join() {//가입처리하기
+		var mem_email = $("#mem_email").val($("#join_now_email").val());
+		var mem_pw = $("#mem_pw").val($("#join_now_pw_check").val());
+		var mem_name = $("#mem_name").val($("#join_now_name").val());
 		var check_pw = document.getElementById('pw_check').innerHTML;
 		if(check_pw=="<h6>비밀번호가 일치합니다</h6>"){
-			$.post("/member/join", $("#join_all_form").serialize(),function(data){
-				location.href=data;
-			});
-			}
+			alert("회원가입 성공!");
+			$.post("/member/join", $("#join_form").serialize());
+		}//,function(data){location.href="/FTBC_MainView/FTBC_Login.jsp"}
+		
 		else{
 			alert("비밀번호를 확인해 주세요.");
 		}
@@ -106,7 +108,6 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<form id="join_all_form" name="join_all_form" onsubmit="return false;" >
 <div id="join_now_bow">
 	<div>
 		<button id="join_now_face">F 페이스북으로 가입하기</button>
@@ -158,7 +159,13 @@ $(document).ready(function(){
 	<div id="join_login">
 		<a href="javascript:delogin()">기존계정으로 로그인하기</a>
 	</div>
+	<form id="join_form" name="join_form">
+		<input type="hidden" id="mem_email" name="mem_email">
+		<input type="hidden" id="mem_pw" name="mem_pw">
+		<input type="hidden" id="mem_name" name="mem_name">
+		<!-- 일반 회원(권한이 없기 때문에0 -->
+		<input type="hidden" id="mem_isAuthority" name="mem_isAuthority" value=0>
+	</form>
 </div>
-</form>      
 </body>
 </html>

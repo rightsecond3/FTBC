@@ -68,9 +68,10 @@
 	#LA_category_row{
 		margin-top: 20px;
 	}
-	
-	.category_row span {
+	.category_row{
 		padding: 15px 10px 15px 10px;
+	}
+	.category_row span {
 		font-size: 28px;
 		color: #000000;
 		font-weight: 700;
@@ -78,6 +79,9 @@
 		height: auto;
 		cursor: pointer;
 		
+	}
+	.mainCategory{
+		padding:10px;
 	}
 	.category_row a {
 		text-decoration: none solid rgb(117, 117, 117);
@@ -95,8 +99,13 @@
 		color:  #757575;
 		vertical-align: 40%;
 	}
-	
-	.dropdown-menu{
-		z-index: 10;
-    	display: inline-block !important;
+	.subcode{
+		margin: 10px 0 10px 0;
+	}
+	.subcode a{
+		padding: 3px;
+		color: #757575;
+		font-size: 20px;
+		display:block;
+		font-weight: bold;
 	}
