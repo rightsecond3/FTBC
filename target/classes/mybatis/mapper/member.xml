@@ -9,10 +9,12 @@
 		  			 FROM mem
 		 			WHERE mem_email = #{email}),'0','1') FROM dual
 	</select>
+	<!-- /////////////////////2019-10-14 정원형 중간합산 회원가입시 전화번호도 인서트 ////////////////////// -->
 	<insert id="join" parameterType="mVO">
-		INSERT INTO mem(mem_email,mem_name,mem_pw)
-			   VALUES(#{mem_email},#{mem_name},#{mem_pw})
+		INSERT INTO mem(mem_email,mem_name,mem_pw,mem_birth)
+			   VALUES(#{mem_email},#{mem_name},#{mem_pw},#{mem_birth})
 	</insert>
+	<!-- /////////////////////2019-10-14 정원형 중간합산 회원가입시 전화번호도 인서트 ////////////////////// -->	
 	<select id="login" parameterType="mVO" statementType="CALLABLE">
 		{call proc_login(
 		#{mem_email, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}

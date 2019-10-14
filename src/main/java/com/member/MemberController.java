@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -59,7 +58,7 @@ public class MemberController {
       } 
       return keyCode;
    }
-   ////2019-10-14 정원형 중간합산 이후 비밀번호 찾기 시작///////////////////////
+////[2019-10-14] 정원형 중간합산 이후 비밀번호 찾기 및 회원가입 생년월일 추가 시작 ///////////////////////
    @GetMapping("forgotEmail")
    
    public @ResponseBody int forgotEmail(@RequestParam Map<String, Object> pMap) {
@@ -88,23 +87,26 @@ public class MemberController {
 	   result=memberLogic.forgotEmail(pMap);
 	   return result;
    }
-////2019-10-14 정원형 중간합산 이후 비밀번호 찾기  끝///////////////////////
-   
+
+  
    @PostMapping("join")
-   public String join(@RequestParam Map<String, Object> pMap) {
-      //int result = 0;
-      logger.info("MemberController join 호출 성공");
-      logger.info("이메일============:"+pMap.get("mem_email").toString());
-      logger.info("이름============:"+pMap.get("mem_name").toString());
-      logger.info("비밀번호============:"+pMap.get("mem_pw").toString());
-      mVO.setMem_email(pMap.get("mem_email").toString());
-      mVO.setMem_name(pMap.get("mem_name").toString());
-      String password = pMap.get("mem_pw").toString();
-      logger.info("비밀번호sha256통과============:"+StringUtil.applySha256(password));
-      mVO.setMem_pw(StringUtil.applySha256(password));
-      memberLogic.join(mVO);
-      return "redirect:/FTBC_MainView/FTBC_Login.jsp";
-   }
+	public String join(@RequestParam Map<String, Object> pMap) {
+		//int result = 0;
+		logger.info("MemberController join 호출 성공");
+		logger.info("이메일============:"+pMap.get("mem_email").toString());
+		logger.info("이름============:"+pMap.get("mem_name").toString());
+		logger.info("비밀번호============:"+pMap.get("mem_pw").toString());
+		logger.info("생년월일============:"+pMap.get("mem_birth").toString());
+		mVO.setMem_email(pMap.get("mem_email").toString());
+		mVO.setMem_name(pMap.get("mem_name").toString());
+		mVO.setMem_birth(pMap.get("mem_birth").toString());
+		String password = pMap.get("mem_pw").toString();
+		logger.info("비밀번호sha256통과============:"+StringUtil.applySha256(password));
+		mVO.setMem_pw(StringUtil.applySha256(password));
+		memberLogic.join(mVO);
+		return "redirect:/FTBC_MainView/FTBC_Login.jsp";
+	}
+////[2019-10-14] 정원형 중간합산 이후 비밀번호 찾기 및 회원가입 생년월일 추가 끝 ///////////////////////   
 	@GetMapping(value="logout.ftbc")
 	public String logout(HttpSession httpSession) {
 		logger.info("logout: String 호출");

@@ -69,4 +69,18 @@
 		margin-left : 40px;
 		background-color: #FF4543;
 	}
+	#birth_config{
+	    outline: none !important;
+    	border-radius: 5px;
+    	border-color: gainsboro;
+    	border-style: solid;
+    	border-width: 1px;
+    	width: 80%;
+    	height: 45px;
+    	padding-left: 5px;
+    }
+    #for_birth{
+    	margin-top :5px;
+    	margin-left: 40px;
+    }
 	

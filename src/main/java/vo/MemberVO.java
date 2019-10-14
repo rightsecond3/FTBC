@@ -19,6 +19,7 @@ public class MemberVO implements Serializable {
 	private String mem_isauthority = null;
 	private String mem_zipcode = null;
 	private String mem_nickname = null;
+	private String mem_birth = null;
 	private String msg = null;
 	// 추가
 	private String result = null;
@@ -134,6 +135,14 @@ public class MemberVO implements Serializable {
 
 	public void setMem_pfimg(String mem_pfimg) {
 		this.mem_pfimg = mem_pfimg;
+	}
+
+	public String getMem_birth() {
+		return mem_birth;
+	}
+
+	public void setMem_birth(String mem_birth) {
+		this.mem_birth = mem_birth;
 	}
 
 }

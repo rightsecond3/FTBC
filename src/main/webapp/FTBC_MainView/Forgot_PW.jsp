@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>텀블벅 비밀번호 찾기</title>
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
-<link rel="stylesheet" type="text/css" href="Forgot_PW.css">
+<link rel="stylesheet" type="text/css" href="Forgot_PW.css?3">
 <script type="text/javascript">
 //////////////////////2019-10-14 정원형 중간합산 이후 비밀번호 찾기 수정 시작///////////////
 	function Find_pw(){
@@ -32,7 +32,7 @@
 		<hr/>
 	</div>
 	<div id="Consent">
-		<span>텀블벅 가입 시 사용하신 이메일을 입력하시면 입력하신 이메일로 임시 비밀번호를 보내드립니다.</span>
+		<span>텀블벅 가입 시 사용하신 이메일과 생년월일을 입력하시면 입력하신 이메일로 임시 비밀번호를 보내드립니다.</span>
 	</div>
 	<div id="Consent">
 		<span>페이스북/네이버로 가입하신 경우, 페이스북/네이버 계정에 쓰이는 이메일을 입력해주세요.</span>
@@ -44,7 +44,7 @@
 		<input id="Forgot_email" name="Forgot_email" type="text" placeholder="가입하신 이메일 주소" >
 	</div>
 	<div id="for_birth">
-		<input id="Forgot_email" name="Forgot_email" type="text" placeholder="클릭하신 후 생년월일을 선택하세요." >
+		<input id="birth_config" name="birth_config" type="text" placeholder="클릭하신 후 생년월일을 선택하세요." >
 	</div>
 	<div id="log_join">
 		<button id="Find_pw" onclick="Find_pw()">임시비밀번호 전송하기.</button>
