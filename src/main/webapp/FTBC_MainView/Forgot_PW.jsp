@@ -8,7 +8,21 @@
 <link rel="stylesheet" type="text/css" href="Forgot_PW.css">
 <script type="text/javascript">
 	function Find_pw(){
-		
+		var email = $("#Forgot_email").val();
+		$.ajax({
+			method:'get'
+			,url:'/member/findPw?email='+email
+			,success: function(data) {
+				if(data==1){
+						$("#emailTrue").show();
+						$("#join_email_send").removeAttr("disabled");
+						$("#emailFalse").hide();
+					}else if(data==0){
+						$("#emailFalse").show();
+						$("#emailTrue").hide();
+					}
+			}
+		});
 	}
 </script>
 </head>

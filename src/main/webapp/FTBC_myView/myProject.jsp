@@ -14,11 +14,11 @@
 </head>
 <body>
 <!-- 내가 만든 프로젝트 페이지는 상단바 바뀌어야함.  -->
-<%@ include file="../FTBC_Common/TopMenuBar.jsp"%>
+<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
 <div class="container-fluid">
 	<div class="row" id="myProject_top">
 		<div class="row" id="myProject_pfd">
-			<img src="../FTBC_Images/yh.png" id="myProject_pfimg" width=150px>
+			<img src="<%=session.getAttribute("mem_pfimg").toString() %>" id="myProject_pfimg" width=150px>
 		</div>
 	</div>
 	

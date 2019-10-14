@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
-<link rel="stylesheet" type="text/css" href="FTBC_Join_now.css?18">
+<link rel="stylesheet" type="text/css" href="FTBC_Join_now.css?19">
 <script type="text/javascript">
 $(document).ready(function(){
 		$("#email_confirm").hide();
@@ -21,6 +21,7 @@ $(document).ready(function(){
 		var mem_email = $("#mem_email").val($("#join_now_email").val());
 		var mem_pw = $("#mem_pw").val($("#join_now_pw_check").val());
 		var mem_name = $("#mem_name").val($("#join_now_name").val());
+		var mem_birth = $("#mem_birth").val($("#join_birthChoice").val());
 		var check_pw = document.getElementById('pw_check').innerHTML;
 		if(check_pw=="<h6>비밀번호가 일치합니다</h6>"){
 			alert("회원가입 성공!");
@@ -118,15 +119,14 @@ $(document).ready(function(){
 	</div>
 	<div class="join_div">
 		<div style="text-align:left;margin-left:40px;">이름</div>
-		<input id="join_now_name" name="join_now_name" type="text" placeholder="이름을 입력해 주세요"><br>
+		<input id="join_now_name" name="join_now_name" type="text" placeholder="이름을 입력하세요"><br>
 	</div>
 	<div class="join_div">
 		<div style="text-align:left;margin-left:40px;">이메일 주소</div>
 		<div id="email_send">
-				<input id="join_now_email" name="join_now_email" type="text" placeholder="이메일 주소를 입력해 주세요">
+				<input id="join_now_email" name="join_now_email" type="text" placeholder="이메일 주소를 입력하세요">
 				<button id="join_email_check" name="join_email_check" onclick="mailCheck()" style="width:20%;height:45px;font-size: 12px;">중복확인</button>
 				<button id="join_email_send" name="join_email_send" onclick="mailSend()" style="width:20%;height:45px;font-size: 12px;" disabled>인증하기</button>
-			
 		</div>
 	</div>
 		<div id="emailTrue" >
@@ -136,15 +136,26 @@ $(document).ready(function(){
 			<p>중복된 이메일입니다. 다시 입력해주시길 바랍니다.</p>
 		</div>
 	<div id="email_confirm">
-        <input id="keyCodeInput" name="keyCodeInput" type="text" placeholder="인증번호를 입력해주세요" >
+        <input id="keyCodeInput" name="keyCodeInput" type="text" placeholder="인증번호를 입력하세요" >
         <Button id="keyCodeConfirm" name="keyCodeConfirm" style="width:30%;height:25px;" onClick="mailConfirm()">확인</Button>
     </div>	
 	<div class="join_div">
 		<div style="text-align:left;margin-left:40px;">비밀번호</div>
-			<input id="join_now_pw" name="join_now_pw" type="password" placeholder="비밀번호를 입력해 주세요">
+			<input id="join_now_pw" name="join_now_pw" type="password" placeholder="비밀번호를 입력하세요">
 			<input id="join_now_pw_check" name="join_now_pw_check" type="password" placeholder="비밀번호를 확인합니다">
 		<div id="pw_check"><h6>비밀번호가 일치하지 않습니다</h6></div>
 	</div>	
+	<div class="join_div">
+		<div style="text-align:left;margin-left:40px;">생년월일</div>
+			<input id="join_birthChoice" name="join_birthChoice" type="date">
+<!-- 								  <script>
+					  	$("#join_birthChoice").value=$("#join_birthChoice").datepicker(
+					  			{dateFormat: 'yy-mm-dd'
+					  			,changeYear:true
+					  			,changeMonth:true}
+					  			);
+					  </script> -->
+	</div>
 	<div id="log_join">
 		<button id="join_next" onclick="join()" disabled>다음</button>
 	</div>
@@ -163,6 +174,7 @@ $(document).ready(function(){
 		<input type="hidden" id="mem_email" name="mem_email">
 		<input type="hidden" id="mem_pw" name="mem_pw">
 		<input type="hidden" id="mem_name" name="mem_name">
+		<input type="hidden" id="mem_birth" name="mem_birth">
 		<!-- 일반 회원(권한이 없기 때문에0 -->
 		<input type="hidden" id="mem_isAuthority" name="mem_isAuthority" value=0>
 	</form>

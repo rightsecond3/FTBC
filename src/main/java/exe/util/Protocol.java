@@ -12,7 +12,6 @@ public class Protocol {
 	public static final int CREATE_NEW_WALLET = 100; // 지갑생성
 	public static final int SEND_NEW_KEYS = 110; // base64된 키페어 클라이언트로 전송
 	
-	public static final int DISCONNECT_FILE_SOCKET = 1000;
 	public static final int UPLOAD_END = 300;
 	public static final int DOWNLOAD_END = 310;
 	

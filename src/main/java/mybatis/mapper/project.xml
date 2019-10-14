@@ -8,7 +8,7 @@
    </resultMap>
    <insert id="projectcreate" parameterType="map">
          INSERT INTO project (PROJECT_CODE,SUBCAT_CODE,MEM_EMAIL,PJ_ISEDIT,PJ_PUBLICKEY,PJ_ACCOUNT,PJ_STAT,PJ_ISSUCCESS)
-         values (#{PROJECT_CODE},#{pjo_category_select_result},'jwh8712@naver.com',1,'12312321321',1,1,1)
+         values (#{PROJECT_CODE},#{pjo_category_select_result},'zzlld20@naver.com',1,#{PJ_PUBLICKEY},1,1,1)
    </insert>
    <insert id="storytellinginsert" parameterType="map">
          INSERT INTO storytelling (project_code,st_story)
@@ -23,43 +23,21 @@
          INSERT INTO funding(project_code,fd_targetmoney,fd_deadline)
                values(#{PROJECT_CODE},#{goalMoneyOutput},#{projectEndDateOutput})<!-- 펀딩 인서트 -->
    </insert>
-   <select id="proc_giftcode" parameterType="map" statementType="CALLABLE">
-      {call proc_giftcode(
-      				    	#{PROJECT_CODE, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
-                          ,#{gift_code, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
-                          )
-      }
-   </select>
-   <insert id="giftinsert" parameterType="map">
-         INSERT INTO gift(project_code,gift_code,gift_unitmoney,gift_isinclude
-                     ,gift_explanation,gift_deliverydate,gift_limited)
-               values
-               <foreach collection="paramMap" item="item" separator=",">
-               	("#{item.PROJECT_CODE}","#{item.gift_code}","#{item.minDonationMoneyOutput}","#{item.gift_isinclude}"
-                ,"#{item.giftTextAreaOutput}","#{item.deliveryDayOutput}","#{item.limitedQuantityInput}")
-               </foreach>
-   </insert>
-   <select id="proc_giftoption" parameterType="map">
-         {call proc_giftoption(#{gift_code mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
-                         ,#{gop_code mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
-                         )
-         }
-   </select>
-   <insert id="giftoptioninsert" parameterType="map">
-         INSERT INTO giftoption(gift_code,gop_code,gop_option,gop_ammount,gop_description)
-               values(#{gift_code},#{gop_code},#{GiftUlListName}
-                    ,#{GiftUlListQuantity},#{itemListOptionOutput})      
-   </insert>
    <select id="proc_procode" parameterType="map" statementType="CALLABLE">
       {call pro_project_code(#{pjo_category_select_result, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
       ,#{PROJECT_CODE, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
       )}
    </select>
-   <select id="allProjects" resultType="vo.ProjectVO">
+   <select id="allProjects" resultType="vo.ProjectVO" parameterType="map">
          select project.project_code,subcat_code,mem.mem_email,pjo_img,pjo_longtitle,mem_nickname
         from project,pjoutline,mem
-       where project.project_code = pjoutline.project_code
-       and project.mem_email = mem.mem_email
+       where project.mem_email = mem.mem_email
+       and project.project_code = pjoutline.project_code
+       and project.project_code in 
+           <foreach collection="projectCodes" item="item" index="index"
+             open="(" separator="," close=")">
+             #{item}
+          </foreach>
        and pj_stat = 1
    </select>
    <select id="keywordProjects" parameterType="String" resultType="vo.ProjectVO">
@@ -67,26 +45,33 @@
         from project,pjoutline,mem
        where project.project_code = pjoutline.project_code
          and project.mem_email = mem.mem_email
-         and pjo_longtitle in #{value}
+         and pjo_longtitle like '%'||#{value}||'%'
          and pj_stat = 1
    </select>
-   <select id="categoryProjects" parameterType="String" resultType="vo.ProjectVO">
-         select project.project_code,mem.subcat_code,mem.mem_email,pjo_img,pjo_longtitle,mem_nickname
+   <select id="categoryProjects" parameterType="map" resultType="vo.ProjectVO">
+         select project.project_code,project.subcat_code,mem.mem_email,pjo_img,pjo_longtitle,mem_nickname,maincat_name
         from project,pjoutline,mem,subcat
        where project.project_code = pjoutline.project_code
          and project.mem_email = mem.mem_email
-         and maincat_name = #{value}
-         and pj_stat = 1
+         and subcat.subcat_code = project.subcat_code
+         <if test="subcat_name=='undefined'">
+         and maincat_name = #{maincat_name}      
+         </if>
+         <if test="subcat_name!='undefined'">
+         and maincat_name = #{maincat_name}      
+         and subcat_name = #{subcat_name}
+         </if>
+        
    </select>
-   <select id="fundedProject" parameterType="List" resultType="vo.ProjectVO">
+   <select id="fundedProject" parameterType="map" resultType="vo.ProjectVO">
          select project.project_code,subcat_code,mem.mem_email,pjo_img,pjo_longtitle,mem_nickname
         from project,pjoutline,mem
-       where project.project_code in
-          <foreach collection="list" item="item" index="index"
+       where project.mem_email = mem.mem_email
+         and project.project_code in
+          <foreach collection="projectCodes" item="item" index="index"
              open="()" separator="," close=")">
              #{item}
           </foreach>
-       and project.mem_email = mem.mem_email
           and pj_stat = 1
    </select>
     <select id="myProjects" parameterType="String" resultType="vo.ProjectVO">
@@ -99,28 +84,77 @@
    </select>
    <select id="projectDetail" parameterType="String" resultType="vo.ProjectVO">
       select 
-        PROJECT_CODE,PJ_PUBLICKEY,PJO_SUMMARY,PJO_PAGEADDR,PJO_INTRODUCE,PJO_SHORTTITLE,PJO_LONGTITLE,PJO_IMG,ST_STORY,subcat_code,FD_TARGETMONEY,FD_DEADLINE,subcat_name
-      from project p NATURAL JOIN pjoutline o NATURAL JOIN funding f NATURAL JOIN storytelling s NATURAL JOIN subcat
+        PROJECT_CODE,PJ_PUBLICKEY,PJO_SUMMARY,PJO_PAGEADDR,PJO_INTRODUCE,PJO_SHORTTITLE,PJO_LONGTITLE,PJO_IMG,ST_STORY,subcat_code,subcat_name
+      from project p NATURAL JOIN pjoutline o NATURAL JOIN storytelling s NATURAL JOIN subcat
       where pj_stat = 1  
        and project_code = #{value}  
    </select>
    <select id="getGift" parameterType="String" resultType="map">
          select 
-             GIFT_UNITMONEY,GIFT_NAME,GIFT_INCLUDE,GIFT_EXPLANATION,GIFT_DELIVERYDATE,GIFT_LIMITED       
+             GIFT_UNITMONEY,GIFT_ISINCLUDE,GIFT_EXPLANATION,GIFT_DELIVERYDATE,GIFT_LIMITED       
               ,PROJECT_CODE,GIFT_CODE    
         from gift
         where project_code = #{value}    
    </select>
-   <select id="getGiftOption" parameterType="String" resultType="map">
+   <select id="getGiftOption" parameterType="map" resultType="map">
          select
             GOP_OPTION,GOP_AMMOUNT,GOP_CODE,GIFT_CODE,GOP_DESCRIPTION
            from giftoption
-           where gift_code in
-           <foreach collection="list" item="item" index="index"
-             open="()" separator="," close=")">
-             #{item}
-       </foreach>
-         and 1=1
+           where 1=1
+              and gift_code in
+              <foreach collection="giftCode" item="item" index="index"
+                open="(" separator="," close=")">
+                #{item}
+          </foreach>
+   </select>
+   <select id="proc_giftcode" parameterType="map" statementType="CALLABLE">
+      {call proc_giftcode(
+      				       #{PROJECT_CODE, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+                          ,#{gift_code, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+                          )
+      }
+   </select>
+   <insert id="giftCodeInsert" parameterType="map">
+   	     INSERT INTO gift(project_code,gift_code)
+   	     			values(#{PROJECT_CODE},#{gift_code})
+   </insert>
+   <update id="giftinsert" parameterType="list">	
+    	<foreach collection="list" index="index" item="item" separator=";"
+    	open="DECLARE BEGIN" close="; END;">
+    		UPDATE gift SET
+                gift_unitmoney=#{item.minDonationMoneyOutput}
+               ,gift_isinclude=#{item.gift_isinclude}
+               ,gift_explanation=#{item.giftTextAreaOutput}
+               ,gift_deliverydate=#{item.deliveryDayOutput}
+               ,gift_limited=#{item.limitedQuantityInput}
+                WHERE gift_code=#{item.gift_code}
+        </foreach>
+   </update>
+   <select id="proc_giftoption" parameterType="map" statementType="CALLABLE">
+         {call proc_giftoption(
+         					   #{gift_code, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+                         	  ,#{gop_code, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+                         	  )
+         }
+   </select>
+   <insert id="gopCodeInsert" parameterType="map">
+      	     INSERT INTO giftoption(gift_code,gop_code)
+   	     			values(#{gift_code},#{gop_code})
+   </insert>
+   <update id="gopInsert" parameterType="list">
+   		<foreach collection="list" index="index" item="item" separator=";"
+    	open="DECLARE BEGIN" close="; END;">
+         UPDATE giftoption SET 
+         		 gop_option = #{item.GiftUlListName}
+         		,gop_ammount=#{item.GiftUlListQuantity}
+         	    ,gop_description = #{item.itemListOptionOutput}
+         	    WHERE gop_code=#{item.gop_code}
+         </foreach>  
+   </update>
+   <select id="getProjectCodes" resultType="map">
+         select project.project_code,fd_deadline,fd_targetmoney,pj_publickey
+         from project,funding
+         where project.project_code = funding.project_code
    </select>
 </mapper>
 

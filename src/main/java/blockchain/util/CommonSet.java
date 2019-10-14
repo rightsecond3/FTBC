@@ -5,9 +5,9 @@ import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.Map;
 
-import blockchain.Project;
 import blockchain.Wallet;
 import exe.util.Path;
+import vo.ProjectVO;
 
 
 public class CommonSet {
@@ -17,10 +17,7 @@ public class CommonSet {
 	 */
 	// public Map<String, Wallet> moneyWallets = new HashMap<>();
 	public Map<String, Wallet> projectWallets = new HashMap<>();
-	public Map<String, Project> projects = new HashMap<>();
 	private Wallet managerWallet  = null;
-	public byte b = 126;
-	public long l = 1000000000000000000L;
 	// 싱글톤
 	private CommonSet() {}
 	private static class LazyHolder {
@@ -28,16 +25,6 @@ public class CommonSet {
 	}
 	public static CommonSet getInstance() {
 	   return LazyHolder.INSTANCE;
-	}
-	public Project getMyProject(String projectCode) throws Exception {
-		Project myProject = null;
-		for(int i=0;i<projects.size();i++) {
-			Object keys[] = projects.keySet().toArray();
-			if(projectCode.equals(keys[i])) {
-				myProject = projects.get(keys[i]);
-			}
-		}
-		return myProject;
 	}
 	public Wallet getProjectWallet(String walletID) throws Exception {
 		Wallet projectWallet = null;
@@ -55,8 +42,8 @@ public class CommonSet {
 		this.managerWallet = null;
 		this.managerWallet = new Wallet();
 		try {
-			String pubStr = Base64Conversion.importPublicKey(Path.MANAGER_WALLET_PATH, "manager");
-			String priStr = Base64Conversion.importPrivateKey(Path.MANAGER_WALLET_PATH, "manager");
+			String pubStr = Base64Conversion.importPublicKey(Path.MANAGER_WALLET_PATH, "manager.com");
+			String priStr = Base64Conversion.importPrivateKey(Path.MANAGER_WALLET_PATH, "manager.com");
 			PublicKey publicKey = (PublicKey) Base64Conversion.decodeBase64(pubStr);
 			PrivateKey privateKey = (PrivateKey) Base64Conversion.decodeBase64(priStr);
 			this.managerWallet.setPublicKey(publicKey);
@@ -67,5 +54,37 @@ public class CommonSet {
 		return managerWallet;
 	}
 
-	//매니저 지갑 키페어 생성
+	/****************************
+	 * 
+	 * @param project_code
+	 * @return encodePuk : DB에 저장해야 할 Base64 encoding된 공개키ㄴ
+	 */
+	public String createProject(String project_code) {
+		Wallet projectWallet = new Wallet();
+		projectWallet.generateKeyPair();
+		String encodePuk = null;
+		// 개인키 서버 로컬에 저장
+		try {
+			String base64 = Base64Conversion.encodePrivateKey(projectWallet.getPrivateKey());
+			String pjKeyPath = pjKeyPath(project_code);
+			Base64Conversion.savePjPrivateKey(base64, pjKeyPath, project_code);
+			encodePuk = Base64Conversion.encodePublicKey(projectWallet.getPublicKey());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.projectWallets.put(project_code, projectWallet);
+		
+		return encodePuk;
+	}
+	
+	// 프로젝트코드로 개인키가 들어가는 폴더 경로 만들어주는 메소드
+	public String pjKeyPath(String project_code) {
+		StringBuffer sb = new StringBuffer();
+		String upperFolder = project_code.substring(0, project_code.lastIndexOf("_"));
+		sb.append(Path.PROEJCT_WALLET_PATH);
+		sb.append(upperFolder+"\\");
+		sb.append(project_code);
+		return sb.toString();
+	}
+	
 }

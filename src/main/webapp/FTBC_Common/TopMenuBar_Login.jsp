@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String mem_email = session.getAttribute("mem_email").toString();
+	String mem_pfimg = session.getAttribute("mem_pfimg").toString();
+	String mem_name = session.getAttribute("mem_name").toString();
+	String mem_isauthority = session.getAttribute("mem_isAuthority").toString();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +23,7 @@
 	 	height: 40px;
 	    line-height:40px;
 	}
-	#topMenu_bar{
+	#topMenuBar_bar{
 		height:65px;
 	}
 	#top_menus a, #top_login a{
@@ -28,7 +34,7 @@
 		text-decoration:none !important;	
 		vertical-align: -webkit-baseline-middle;	
 	}
-	#topMenu_bar a:hover{
+	#topMenuBar_bar a:hover{
 		 color: #8b8b8b;
 		 height:55px;
 		 text-decoration:none !important;
@@ -38,10 +44,8 @@
 	#top_menus{
 		margin-top:10px;
 	}
-	#mem_pfimg{
+	#TopMenuBar_Login_mem_pfimg{
 		margin-left:10px;
-	}
-	#mem_pfimg{
 		width:40px;
 	}
 	.dropdown-menu > li > a{
@@ -52,7 +56,7 @@
 		margin-top:-5px;
 	}
 </style>
-<div id="topMenu_bar">
+<div id="topMenuBar_bar">
 	<div class="col-xs-2 "></div>
 	<!--===============[ 메뉴 ] =============-->
 	<div class="col-xs-2 FTBC_loginbar">
@@ -69,8 +73,8 @@
 	<div class="col-xs-1 "></div>
 	<!--===============[ 타이틀 ]==============-->
 	<div class="col-xs-2 FTBC_loginbar">
-		<div id="top_title" class="collapse navbar-collapse"">
-			<ul id="top_title" class="nav nav-justified">
+		<div id="topMenuBar_title" class="collapse navbar-collapse"">
+			<ul id="topMenuBar_title" class="nav nav-justified">
 				  <li><a href="../FTBC_MainView/FTBC_Main.jsp"><img id="logo" src="../FTBC_Images/logo.png"></a></li>
 			</ul>
 		</div>
@@ -84,8 +88,8 @@
 					<li>
 					<a href="../FTBC_myView/myPage.jsp" id="mem_name">
 					<i class="fa fa-search"></i>
-					이름
-					<img src="../FTBC_Images/yh.png" id="mem_pfimg"></a>
+						<%=mem_name %>
+					<img src="<%=mem_pfimg %>" id="TopMenuBar_Login_mem_pfimg"></a>
 					</li>
 				</ul>
 			</div>
