@@ -55,10 +55,10 @@
 		 		<div class="col-xs-2">&nbsp;</div>
 		 		<div class="col-xs-8">
 			 		<div id="LA_discover_row"  class="row La_row">
-			 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 모든 프로젝트</span>	</a>
-			 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 인기 프로젝트</span></a>	
-			 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 성공 임박 프로젝트</span></a>	
-			 			<a href="Discover_Project.jsp"><span class="col-xs-3"> 새로운 프로젝트  </span></a>
+			 			<a href="Discover_Project.jsp?sort=all"><span class="col-xs-3"> 모든 프로젝트</span>	</a>
+			 			<a href="Discover_Project.jsp?sort=popular"><span class="col-xs-3"> 인기 프로젝트</span></a>	
+			 			<a href="Discover_Project.jsp?sort=recommnad"><span class="col-xs-3"> 마감 임박 프로젝트</span></a>	
+			 			<a href="Discover_Project.jsp?sort=vergeof"><span class="col-xs-3"> 완료 임박 프로젝트  </span></a>
 			 		</div>
 			 		<div id="LA_category_row" class="row La_row">
 				 		<div class="row La_row">

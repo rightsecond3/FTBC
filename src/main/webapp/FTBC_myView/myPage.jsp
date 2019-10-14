@@ -36,19 +36,21 @@
 	}
 </style>
 <script type="text/javascript">
-		
-	</script>
+	function myPage_logout() {
+		location.href="/member/logout.ftbc";
+	}
+</script>
 	<div id="top_MenuBar">
 		<!-- 내 페이지는 상단바 바뀌어야함.  -->
-		<%@ include file="../FTBC_Common/TopMenuBar.jsp"%>
-		 <hr class="FTBC_hr"width=110%>
+		<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
+		<hr class="FTBC_hr"width=110%>
 	</div>
 	<div class="container-fluid">
 		<div class="col-xs-2">&nbsp;</div>
 		<div class="col-xs-8">
 			<div class="FTBC_myPage">
-				<img src="../FTBC_Images/arin.png" id="myPage_pfimg">
-				<span id="my_name">이름</span>
+				<img src="<%=session.getAttribute("mem_pfimg").toString() %>" id="myPage_pfimg">
+				<span id="my_name"><%=session.getAttribute("mem_name").toString() %></span>
 				<hr width=100%>
 			</div>
 			
@@ -62,7 +64,7 @@
 			<div class="FTBC_myPage" id="myPage_1p">
 				<span><a href="Edit_Profile.jsp">프로필 설정</a></span><br>
 				<span><a href="../FTBC_WalletView/WalletView.png">내 지갑</a></span><br>
-				<span><a href="#">로그아웃</a></span><br>
+				<span><a href="javascript: myPage_logout()">로그아웃</a></span><br>
 			</div>
 		</div>
 		<div class="col-xs-2">&nbsp;</div>

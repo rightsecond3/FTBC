@@ -14,8 +14,8 @@
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
 </head>
 <body>
-	<div id="top_MenuBar2">
-	<%@ include file="../FTBC_Common/TopMenuBar2.jsp"%>
+	<div>
+		<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
 	</div>
 	<div class="container-fluid">
 		<div class="row" id="top">
@@ -112,14 +112,14 @@
     		}
     	}
  	function save(){
-		alert("?");
  	    $.post("/Project/createProject.ftbc", $(".create_form").serialize(), function(data){
- 	    	alert("??");
-  	    	if(data=="ok"){
- 	    		location.href='/FTBC/FTBC_View/FTBC_MainView/FTBC_Main.jsp'; 
- 	    	}else{
+ 	    	alert("data:"+data);
+ 	    	var result = data;
+ 	    	location.href='/FTBC_MainView/FTBC_Main.jsp'; 
+/*   	    	if(result=="no"){
  	    		alert("등록에 실패하였습니다");
- 	    	} 
+ 	    	}else{
+ 	    	}  */
  	    });
 			
 	} 
@@ -132,6 +132,7 @@
         </div>
         <div class="modal-body" >
 	        <div id="modal_img" style="text-align:center;">
+
 	        </div>
 	        <div style="text-align:center;" id="modal_msg">
 	        	<h5>아직 프로젝트가 완성되지 않았습니다</h5>

@@ -40,22 +40,22 @@ public class Init {
 		commonSet.projectWallets.clear();
 		for (int i = 0; i < pjCodeList.size(); i++) {
 			Map<String, Object> map = pjCodeList.get(i);
-			if(map.get("PJ_PUBLICKEY")!=null) {
-			String projectCode = map.get("PROJECT_CODE").toString();
-			String pjBasePuk = map.get("PJ_PUBLICKEY").toString();
-			Wallet wallet = new Wallet();
-			logger.info("PROJECT_CODE : " + projectCode);
-			logger.info("PJ_PUBLICKEY : " + map.get("PJ_PUBLICKEY").toString());
-			try {
-				PublicKey publicKey = (PublicKey) Base64Conversion.decodeBase64(pjBasePuk);
-				String pjBasePrk = Base64Conversion.importPjPrivateKey(commonSet.pjKeyPath(projectCode), projectCode);
-				PrivateKey privateKey = (PrivateKey) Base64Conversion.decodeBase64(pjBasePrk);
-				wallet.setPublicKey(publicKey);
-				wallet.setPrivateKey(privateKey);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			commonSet.projectWallets.put(projectCode, wallet);
+			if(map.get("PJ_PUBLICKEY") != null) {
+				String projectCode = map.get("PROJECT_CODE").toString();
+				String pjBasePuk = map.get("PJ_PUBLICKEY").toString();
+				Wallet wallet = new Wallet();
+				logger.info("PROJECT_CODE : " + projectCode);
+				logger.info("PJ_PUBLICKEY : " + map.get("PJ_PUBLICKEY").toString());
+				try {
+					PublicKey publicKey = (PublicKey) Base64Conversion.decodeBase64(pjBasePuk);
+					String pjBasePrk = Base64Conversion.importPjPrivateKey(commonSet.pjKeyPath(projectCode), projectCode);
+					PrivateKey privateKey = (PrivateKey) Base64Conversion.decodeBase64(pjBasePrk);
+					wallet.setPublicKey(publicKey);
+					wallet.setPrivateKey(privateKey);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				commonSet.projectWallets.put(projectCode, wallet);
 			}
 		}
 		logger.info("프로젝트 월렛 사이즈 : " + commonSet.projectWallets.size());

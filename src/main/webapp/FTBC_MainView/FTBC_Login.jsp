@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String preURL = request.getParameter("preURL");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +12,6 @@
 	프로젝트 올리기 - 프로젝트 개요 탭
 	날짜:2019-09-12
 ================================================================================================  -->
-<%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
 <link rel="stylesheet" type="text/css" href="FTBC_Login.css?lovelyz">
 </head>
 <body>
@@ -31,18 +33,21 @@
 		alert("호출성공?");
 		var log_id = $("#log_id").val();
 		var log_pw = $("#log_pw").val();
-		$("#login_all_form").attr("method","post");
-		$("#login_all_form").attr("action","/member/login");
-		$("#login_all_form").submit();
-		//$.post("/member/login",$("#login_all_form").serialize());
-				//location="/FTBC_MainView/FTBC_Main.jsp"
-			//}/* else if(data=="redirect:/FTBC_MainView/FTBC_Login.jsp?1"){
-			//	alert("아이디가 존재하지 않습니다.");
-			//}else if(data="redirect:/FTBC_MainView/FTBC_Login.jsp?2"){
-				//alert("비밀번호를 확인하세요.");
-			//} */
-		//});
-	}//,function(data){location.href="/FTBC_MainView/FTBC_Main.jsp"}
+		$.ajax({
+			type:'GET'
+			,url:'/restMember/login.ftbc?log_id='+log_id+"&log_pw="+log_pw
+			,success: function(data) {
+				console.log("data : "+data);
+				if(data == '로그인에 성공하였습니다') {
+					location.href="<%=preURL %>";
+				} else {
+					alert(data);
+				} 
+						
+			}			
+		});
+
+	}
 </script>
 <div id="login_box">
 	<div>
@@ -52,12 +57,10 @@
 	<div id="hr_one">
 		<div class="line">또 는</div>
 	</div>
-	<form id="login_all_form" name="login_all_form">
-		<input id="log_id" name="log_id" type="text" placeholder="이메일 주소 입력"><br>
-		<input id="log_pw" name="log_pw" type="password"   placeholder="비밀번호" >
-	</form>
+	<input id="log_id" name="log_id" type="text" placeholder="이메일 주소 입력"><br>
+	<input id="log_pw" name="log_pw" type="password"   placeholder="비밀번호" >
 	<div>
-		<button id="log_login" onclick="login()">로그인</button>
+		<button id="log_login" onclick="javascript: login()">로그인</button>
 	</div>	
 	<div id="log_join">
 		<span>아직 계정이 없으신가요?  </span><a href="javascript:join()">가입하기</a>

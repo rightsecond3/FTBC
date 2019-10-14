@@ -21,6 +21,9 @@
 	}
 	
 	/*********************[내용 부분]**************************/
+	.table th{
+		padding-left:20px;
+	}
 	#BlockMain_empty{
 		 margin-top:40px;
 	}
@@ -57,4 +60,10 @@
 		background-color: transparent;
 		border: none;
 		cursor: pointer;
+	}
+	
+	#paging{
+		margin-top:15px;
+		font-size:20px;
+		text-align:center;
 	}

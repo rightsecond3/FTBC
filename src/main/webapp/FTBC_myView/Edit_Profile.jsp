@@ -38,7 +38,7 @@
 			<!--============[  프로필   사진   ]===========-->
 			<div id="edit_img" class="row edit_d">
 				<div class="col-xs-2 labelbox" id="div_pfimg"><label>프로필 사진</label> </div>
-				<div class="col-xs-2"><img id="img_icon" src="../FTBC_Images/avatar.png"></div>
+				<div class="col-xs-2"><img id="img_icon" src="<%=session.getAttribute("mem_pfimg").toString()%>"></div>
 				<div class="col-xs-8">
 					<div class="row">
 						<input type="file" value="파일 선택" id="edit_filebox">

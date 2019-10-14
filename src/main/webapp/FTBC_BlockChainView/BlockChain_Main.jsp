@@ -13,37 +13,33 @@
 				   http://jsfiddle.net/oh16h7cj/
 ================================================================================================  -->
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
-<link rel="stylesheet" type="text/css" href="BlockChain_Main.css?yena">
+<link rel="stylesheet" type="text/css" href="BlockChain_Main.css?sonamoooooo">
 </head>
 <body>
 <script type="text/javascript">
-	// table row 이벤트
-	function addRowHandlers() {
-	    var table = document.getElementById("BlockChain_Table");
-	    var rows = table.getElementsByTagName("tr");
-	    for (i = 0; i < rows.length; i++) {
-	        var currentRow = table.rows[i];
-	        var createClickHandler = 
-	            function(row) 
-	            {
-		                return function() { 
-		                var cell = row.getElementsByTagName("td")[0];
-		                var id = cell.innerHTML;
-		                alert("id:" + id);
-		                location.href="Block_Detail.jsp";
-		                 
-		                };
-	            };
-	
-	        currentRow.onclick = createClickHandler(currentRow);
-	    }
+	function BlockDetail(num){
+		alert(num);
+		console.log(num);
+		location.href="/chain/BlockDetail?num="+num;
 	}
+	function bcAjax(){
+		 $.ajax({
+	            method:'get',
+	            url:'/chain/getBlockChainInfo',
+	            success:function(data){
+	            	console.log(data);
+					$("#blockChain_List").html(data);
+	            } 
+	         });
+	}
+	
 	$(document).ready(function(){
-		addRowHandlers();
+		//addRowHandlers();
+		bcAjax();		
 	 });
 	
 </script>
-	<%@ include file="../FTBC_Common/TopMenuBar.jsp"%>
+	<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
 	<div class="container-fluid">
 		<!--  상단 부분  -->
 		<div class="row" id="BlockChain_banner">
@@ -74,39 +70,10 @@
 						onblur="if(this.value=='')this.value='블록 검색'">
 						 <input	id="search_btn" type="button" onclick="">
 				</div>
-				<div class="row">
+				<div class="row" id="blockChain_List">
 					<h2>최신 블록</h2>
 					<!-----------테이블 BlockChain_List로 갈 부분  ----------- -->
-					<table class="table" id="BlockChain_Table">
-						<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">First</th>
-								<th scope="col">Last</th>
-								<th scope="col">Handle</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-							</tr>
-						</tbody>
-					</table>
+					
 				</div>
 				<!-----------테이블 ----------- -->
 			</div>

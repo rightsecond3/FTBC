@@ -8,12 +8,14 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+
 import blockchain.AuthChain;
-import blockchain.Register;
 import blockchain.Wallet;
 import blockchain.util.Base64Conversion;
 import blockchain.util.StringUtil;
+import exe.mvc.ExeController;
 import exe.util.Protocol;
+import vo.MemberVO;
 
 public class MsgServerThread extends Thread {
 	MsgServer msgServer = null;
@@ -22,7 +24,7 @@ public class MsgServerThread extends Thread {
 	String loginID = null;
 	// 자동 체크박스 동기화 유무 확인 - 초기값은 항상 체크되있다.
 	boolean isCheck = true;
-
+	
 	public MsgServerThread(MsgServer msgServer) {
 		this.msgServer = msgServer;
 		try {
@@ -63,16 +65,17 @@ public class MsgServerThread extends Thread {
 				case Protocol.LOGIN: {
 					this.loginID = stz.nextToken();
 					String password = stz.nextToken();
-					isCheck = true;
-					//////////////// ############ DB ################
-					// # DB 전송 후 로그인이 성공 됬다고 가정 - 성공 : 성공 실패 : 실패
-					String loginResult = loginID;
-					// # DB 전송 publicKey의 유무 -> 지갑의 유무 -> 존재 : publicKey를 가져옴 | 비존재 : 공개키없음
-					// String isWalletExist =
-					// "rO0ABXNyACxvcmcuYm91bmN5Y2FzdGxlLmpjZS5wcm92aWRlci5KQ0VFQ1B1YmxpY0tleY6Gt8LRnIUNAwAFWgAPd2l0aENvbXByZXNzaW9uTAAJYWxnb3JpdGhtdAASTGphdmEvbGFuZy9TdHJpbmc7TAAGZWNTcGVjdAAkTGphdmEvc2VjdXJpdHkvc3BlYy9FQ1BhcmFtZXRlclNwZWM7TAAKZ29zdFBhcmFtc3QAQExvcmcvYm91bmN5Y2FzdGxlL2FzbjEvY3J5cHRvcHJvL0dPU1QzNDEwUHVibGljS2V5QWxnUGFyYW1ldGVycztMAAFxdAAiTG9yZy9ib3VuY3ljYXN0bGUvbWF0aC9lYy9FQ1BvaW50O3hwdXIAAltCrPMX+AYIVOACAAB4cAAAAEswSTATBgcqhkjOPQIBBggqhkjOPQMBAQMyAATO6pC9pDgcpWJwDY54q6+qJApbFcFPUF9SeYIlS+rItB+E2caPcsSmJx59Jx7ANUZ0AAVFQ0RTQXcBAHg=";
-					String isWalletExist = "공개키없음";
-					// 로그인이 성공 되었을 때만 실행
+					password = StringUtil.applySha256(password);
+					ExeController exeController = new ExeController(ExeController.EXE_LOGIN);
+					MemberVO memberVO = new MemberVO();
+					memberVO.setMem_email(loginID);
+					memberVO.setMem_pw(password);
+					exeController.send(memberVO);
+					String loginResult = memberVO.getResult();
+					String isWalletExist = memberVO.getIsWalletExist();
 					if (loginID.equals(loginResult)) {
+						// 로그인 할 시 자동 체크박스 활성화
+						isCheck = true;
 						Object keys[] = msgServer.globalMaps.keySet().toArray();
 						for (int i = 0; i < msgServer.globalMaps.size(); i++) {
 							if (keys[i].equals(loginID)) {
@@ -84,6 +87,8 @@ public class MsgServerThread extends Thread {
 						System.out.println("글로벌 맵 사이즈 : " + msgServer.globalMaps.size());
 					}
 					this.send(Protocol.LOGIN + Protocol.seperator + loginResult + Protocol.seperator + isWalletExist);
+					memberVO = null;
+					exeController = null;
 				}
 					break;
 				case Protocol.EXIT: {
@@ -148,15 +153,22 @@ public class MsgServerThread extends Thread {
 				}
 					break;
 				case Protocol.CREATE_NEW_WALLET: {
-					Register register = new Register();
 					// 지갑 생성
-					Wallet wallet = register.createMoneyWallet();
+					Wallet wallet = new Wallet();
+					wallet.generateKeyPair();
 					// base64 코드 보내기
 					String publicBase64 = Base64Conversion.encodePublicKey(wallet.getPublicKey());
 					String privateBase64 = Base64Conversion.encodePrivateKey(wallet.getPrivateKey());
-					this.send(Protocol.SEND_NEW_KEYS + Protocol.seperator + publicBase64 + Protocol.seperator
-							+ privateBase64);
-					// # DB에 넣어줘야함
+					ExeController exeController = new ExeController(ExeController.UPDATE_PUBLIC_KEY);
+					MemberVO memberVO = new MemberVO();
+					memberVO.setMem_email(this.loginID);
+					memberVO.setMem_publickey(publicBase64);
+					exeController.send(memberVO);
+					int result = Integer.parseInt(memberVO.getResult());
+					this.send(Protocol.SEND_NEW_KEYS 
+							+ Protocol.seperator + publicBase64 
+							+ Protocol.seperator + privateBase64
+							+ Protocol.seperator + result);
 				}
 					break;
 				case Protocol.CHECKBOX_CHECK: {

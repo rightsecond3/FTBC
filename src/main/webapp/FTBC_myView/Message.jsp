@@ -45,7 +45,7 @@
 
 
 <!----------------상단바------------>
-<%@ include file="../FTBC_Common/TopMenuBar.jsp"%>
+<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
 <hr class="FTBC_hr" >
 <div class="container-fluid">
 	<!--상단 배너 부분 -->

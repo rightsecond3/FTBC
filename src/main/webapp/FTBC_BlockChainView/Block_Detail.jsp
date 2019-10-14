@@ -1,5 +1,9 @@
+<%@page import="blockchain.Block"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	Block block = request.getAttribute("block")==null ? null : (Block)request.getAttribute("block");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,15 +35,22 @@
 		margin-left:20px;
 		margin-bottom:10px;
 	}
+	.boldspan{
+		font-weight:bold;
+	}
+	span{
+		font-size:20px;
+	}
 	/********************[내용   부분]*******************/
 	#BlockDetail_empty {
 		margin-top: 60px;
 	}
+	
 </style>
 
 </head>
 <body>
-	<%@ include file="../FTBC_Common/TopMenuBar.jsp"%>
+	<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
 	<!--  상단 부분  -->
 	<div class="row" id="BlockDetail_banner">
 		<div class="col-xs-3">&nbsp;</div>
@@ -59,40 +70,40 @@
 	<!--  내용  부분  -->
 	<div  class="container-fluid">
 		<div id="Block_left" class="col-xs-2"></div>
-		<div id="Block_left" class="col-xs-8">
+		<div id="Block_Center" class="col-xs-8">
 			<div class="row" id="BlockDetail_empty"></div>
 			<!-------------- 해쉬 값 -------------->
 			<div class="row">
-				<span class="col-xs-4" >해쉬값</span>
-				<span class="col-xs-8">0000000000000000003210772329666336fc3b54269426462afac37733c297e4</span>
+				<span class="col-xs-4 boldspan" >해쉬값</span>
+				<span class="col-xs-8"><%=block.hash %></span>
 				<hr width=100%>
 			</div>
 			
-			<!-------------- 타임 스탬프 -------------->
+			<!-------------- 이전 해쉬 값 -------------->
 			<div class="row">
-				<span class="col-xs-4" >타임 스탬프</span>
-				<span class="col-xs-8">2019-09-15 5:34 PM</span>
+				<span class="col-xs-4 boldspan" >이전 해쉬값</span>
+				<span class="col-xs-8"><%=block.previousHash %></span>
 				<hr width=100%>
 			</div>
 			
 			<!-------------- 머클루트 -------------->
 			<div class="row">
-				<span class="col-xs-4" >머클루트</span>
-				<span class="col-xs-8">bfb7992b452ad0c387754b37b8e84d8408bd98963e4fcb68adbf8e5c11426938</span>
+				<span class="col-xs-4 boldspan" >머클루트</span>
+				<span class="col-xs-8"><%=block.merkleRoot %></span>
 				<hr width=100%>
 			</div>
 			
 			<!-------------- 난수 -------------->
 			<div class="row">
-				<span class="col-xs-4" >난수</span>
-				<span class="col-xs-8">1,595,305,907</span>
+				<span class="col-xs-4 boldspan" >난수</span>
+				<span class="col-xs-8"><%=block.nonce %></span>
 				<hr width=100%>
 			</div>
 			
 			<!-------------- 거래 량  -------------->
 			<div class="row">
-				<span class="col-xs-4" >거래량</span>
-				<span class="col-xs-8">653.97780792 BCH</span>
+				<span class="col-xs-4 boldspan" >거래량</span>
+				<span class="col-xs-8"><%=block.transactions.size()%></span>
 				<hr width=100%>
 			</div>
 		</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
 </style>
 <div class="container-fluid">
 	<div id="top_MenuBar">
-		<%@ include file="../FTBC_Common/TopMenuBar.jsp"%>
+		<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
 	</div>
 	<div class="row content">
 		<div class="col-sm-3 ">&nbsp;</div>

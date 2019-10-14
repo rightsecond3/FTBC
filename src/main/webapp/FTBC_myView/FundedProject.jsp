@@ -35,13 +35,13 @@
 		$("#Fpj_done_cnt").hide();
 	});
 </script>
-<%@ include file="../FTBC_Common/TopMenuBar.jsp"%>
+<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
  <hr width=110%>
 <div class="container-fluid">
 	<div class="row" id="FundedProject_top">
 		<div class="row" id="FundedProject_ele">
-			<img src="../FTBC_Images/yh.png" id="Fpj_pfimg">
-			<h3><span id="Funded_mem_name">[이름]</span>님의  후원 현황 </h3>
+			<img src="<%=session.getAttribute("mem_pfimg").toString() %>" id="Fpj_pfimg">
+			<h3><span id="Funded_mem_name"><%=session.getAttribute("mem_name").toString() %></span>님의  후원 현황 </h3>
 		</div>
 	</div>
 	<div class="row" id="FundedProject_content">

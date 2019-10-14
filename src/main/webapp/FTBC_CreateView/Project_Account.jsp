@@ -9,7 +9,7 @@
 	프로젝트 올리기 - 계좌 설정 탭
 	날짜:2019-09-12
 ================================================================================================  -->
-<link rel="stylesheet" type="text/css" href="Project_Account.css?loona1">
+<link rel="stylesheet" type="text/css" href="Project_Account.css">
 </head>
 <body>	
 <script type="text/javascript">
@@ -51,7 +51,7 @@
 	$(document).ready(function() {
 		$("#ac_email2").hide();
 		$("#ac_urself2").hide();
-		$("#ac_axccount2").hide();
+		$("#ac_account2").hide();
 	});
 	function account_change(){
 		var Account_form = document.Account_form;
@@ -92,8 +92,7 @@
 		<div id="ac_urself2">
 			<div>
 				<label class="account_label">&nbsp; 휴대폰 번호로 한국모바일인증(주)의 본인확인서비스를 통해 본인 인증을 진행합니다. </label>
-			</div>
-			
+			</div>			
 			<div id="urself2_btns">
 				<input id="selfverify_cancel" type="button" onClick="cancelSelf()"value="취소하기"> 
 				<input id="selfverify_verify" type="button" onClick="verifySelf()" value="인증받기">
@@ -103,15 +102,15 @@
 		<!--==================================[ 입금 계좌 ]============================  -->
 	<p>입금 계좌</p>
 	<div id="ac_account1" onclick="enterAccount()">
-			<div class="row" id="ac_account1_content">
-				<div class="col-sm-10">
-					<img src="../FTBC_Images/finger.png"></img><label class="account_label">&nbsp; 본인 인증을 진행해 주세요</label>
-				</div>
-				<div class="col-sm-2">
-					<img src="../FTBC_Images/edit.png"></img><label class="account_label">&nbsp; 수정하기</label>
-				</div>
+		<div class="row" id="ac_account1_content">
+			<div class="col-sm-10">
+				<img src="../FTBC_Images/finger.png"></img><label class="account_label">&nbsp; 본인 인증을 진행해 주세요</label>
+			</div>
+			<div class="col-sm-2">
+				<img src="../FTBC_Images/edit.png"></img><label class="account_label">&nbsp; 수정하기</label>
 			</div>
 		</div>
+	</div>
 		<!--end of ac_account1  -->	
 		
 		<div id="ac_account2">

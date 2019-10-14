@@ -10,7 +10,7 @@
 	날짜:2019-09-12
 ================================================================================================  -->
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
-<link rel="stylesheet" type="text/css" href="FTBC_Main.css?DreamCatcher">
+<link rel="stylesheet" type="text/css" href="/FTBC_MainView/FTBC_Main.css">
 </head>
 <body leftmargin="0" rightmargin="0">
 	<script type="text/javascript">
@@ -19,18 +19,25 @@
 			interval : 3000
 		});
 
-		function projectDetail() {
-			location.href = "../FTBC_DetailView/ProjectDetail.jsp"
+		function projectDetail(pjo_code) {
+			location.href = "../FTBC_DetailView/ProjectDetail.jsp?pjo_code="+pjo_code;
 		}
 		
 		function main_ajax(){
-			
+			$.ajax({
+				method:'get',
+				url:'/Project/getMainProjects',
+				success:function(data){
+					$("#allproject").html(data);
+				} 
+					
+			});
 		}
 		$(document).ready(function() {
 			main_ajax();
 		});
 	</script>
-	<%@ include file="../FTBC_Common/TopMenuBar_Login.jsp"%>
+	<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
 	<!--====================[배너 이미지 ]====================  -->
 	<div class="container-fluid">
 		<div id="mainbanner" class="carousel slide" data-ride="carousel">
@@ -81,165 +88,8 @@
 			<div id="main_Center" class="col-xs-8">
 			
 			<!--=================================[인기 프로젝트 ]================================== -->
-				<div class="row main_row">
-				<span class="main_span" id="popular_pjs"> 인기 프로젝트 <i class="fa fa-caret-right"></i> </span>
-				</div>
-				<div class="row">
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card1.jpg"class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=85% align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-					
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card2.jpg"class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=50% align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-					
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card3.jpg"class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=100% align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-					
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card4.jpg"class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=70% align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-				</div>
-				<!--=================================[추천 프로젝트]================================== -->
-				<div class="row main_row">
-				<span class="main_span"> 추천 프로젝트 <i class="fa fa-caret-right"></i> </span>
-				</div>
+				<div class="row" id="allproject">
 				
-				<div class="row">
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card5.jpg" class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=20%  align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-					
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card6.jpg" class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=90%  align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-					
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card7.jpg" class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=66%  align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-					
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card8.jpg" class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=30%  align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-				</div>
-				<!--=================================[성공 임박 프로젝트]================================== -->
-				<div class="row main_row">
-				<span class="main_span"> 성공 임박 프로젝트 <i class="fa fa-caret-right"></i> </span>
-				</div>
-				
-				<div class="row">
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card9.jpg" class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=10%  align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-					
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card10.jpg" class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=80%  align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					</div>
-					
-					<div class="card col-xs-3" onclick="projectDetail()">
-						<div class="card-header">
-							<img src="../FTBC_Images/card11.jpg" class="card_img"> 
-						</div>
-						<div class="card-body">
-							<span class="card-text project_title">프로젝트명</span> 
-							<span class="card-text project_nick">닉네임</span>
-							<hr width=98%  align="left" class="card_hr">
-							<span class="card-text project_date col-xs-5">1000일 남음</span> 
-							<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-						</div>
-					
-					</div>
 				</div>
 			</div><!--end of center  -->
 			<div class="col-xs-2"></div>

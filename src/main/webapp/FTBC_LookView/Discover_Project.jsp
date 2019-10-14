@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String kind = request.getParameter("sort");
+%>    
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +20,51 @@
 </head>
 <body>
 	<script type="text/javascript">
-		function projectDetail() {
-			location.href = "../FTBC_DetailView/ProjectDetail.jsp"
+		function projectDetail(pjo_code) {
+			alert(pjo_code);
+			location.href = "../FTBC_DetailView/ProjectDetail.jsp?pjo_code"+pjo_code;
 		}
 		$(document).ready(function() {
 			  $(".dropdown-toggle").dropdown();
+			  kindProject('<%=kind%>');
 		});
+		function kindProject(sort){
+			$.ajax({
+				method:'get',
+				url:'/Project/getDiscoverProjects?sort='+sort,
+				success:function(data){
+					$("#discover_content").html(data);
+				}
+				
+			});
+			if(sort=="all"){
+				$("#Look_title").html("모든 프로젝트");
+			}else if(sort=="popular"){
+				$("#Look_title").html("인기 프로젝트");
+				
+			}else if(sort=="recommnad"){
+				$("#Look_title").html("마감 임박 프로젝트");
+				
+			}else if(sort=="vergeof"){
+				$("#Look_title").html("완료 임박 프로젝트");
+				
+			}
+		}
+		function catProject(maincat_name,subcat_name){
+			catProjectView(maincat_name,'undefined');
+		}
+		function catProjectView(maincat_name,subcat_name){
+			$.ajax({
+				method:'get',
+				url:'/Project/getCategoryProjects?maincat_name='+maincat_name+'&subcat_name='+subcat_name,
+				success:function(data){
+					$("#category_pro").html(data);
+				}
+				
+			});
+		}
 	</script>
-<%@ include file="../FTBC_Common/TopMenuBar.jsp"%>
+<%@ include file="../FTBC_Common/FTBC_Top.jsp"%>
 <hr class="Look_hr"width=100%>
 <div class="container-fluid">
 	<!--상단 부분  -->
@@ -31,38 +72,38 @@
 	
 		<div>
 		 <a  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		<h1 class="Look_title" >모든 프로젝트
+		<h1 class="Look_title" id="Look_title">모든 프로젝트
 		 <i class="fa fa-sort-down"></i>
 		 </h1>
 		 </a>
-			 <div class="dropdown-menu">
+			  <div class="dropdown-menu">
 				<div id="drop-item1">
 					<a class="dropdown-item col-sm-6 ">모든 프로젝트</a>
-					<a class="dropdown-item col-sm-6 ">게임</a>
+					<a class="dropdown-item col-sm-6 " onclick="catProject('게임')">게임</a>
 				</div>
 				<hr width=90%>
 				
 				<div>
-					<a class="dropdown-item col-sm-6">공연</a>
-					<a class="dropdown-item col-sm-6">디자인</a>
+					<a class="dropdown-item col-sm-6" onclick="catProject('공연')">공연</a>
+					<a class="dropdown-item col-sm-6" onclick="catProject('디자인')">디자인</a>
 				</div>
 				<hr width=90%>
 				
 				<div>
-					<a class="dropdown-item col-sm-6">영화 ∙ 비디오</a>
-					<a class="dropdown-item col-sm-6">푸드</a>
+					<a class="dropdown-item col-sm-6" onclick="catProject('영화')">영화 ∙ 비디오</a>
+					<a class="dropdown-item col-sm-6" onclick="catProject('푸드')">푸드</a>
 				</div>
 				<hr width=90%>
 				
 				<div>
-					<a class="dropdown-item col-sm-6">음악</a>
-					<a class="dropdown-item col-sm-6">출판</a>
+					<a class="dropdown-item col-sm-6" onclick="catProject('음악')">음악</a>
+					<a class="dropdown-item col-sm-6" onclick="catProject('출판')">출판</a>
 				</div>
 				<hr width=90%>
 				
 				<div>
-					<a class="dropdown-item col-sm-6">패션</a>
-					<a class="dropdown-item col-sm-6">캠페인</a>
+					<a class="dropdown-item col-sm-6" onclick="catProject('패션')">패션</a>
+					<a class="dropdown-item col-sm-6" onclick="catProject('캠페인')">캠페인</a>
 				</div>
 				<hr width=90%>
 			 </div>
@@ -96,76 +137,8 @@
 	</div>
 	
 	<!-- 내용 -->
-	<div class="Look_Content">
-		<div class="col-xs-2"></div>
-		<div class="col-xs-8">
-			<div class="card col-xs-3" onclick="projectDetail()">
-				<div class="card-header">
-					<img src="../FTBC_Images/card13.jpg"class="card_img"> 
-				</div>
-				<div class="card-body">
-					<span class="card-text project_title">프로젝트명</span> 
-					<span class="card-text project_nick">닉네임</span>
-					<hr width=85% align="left" class="card_hr">
-					<span class="card-text project_date col-xs-5">1000일 남음</span> 
-					<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-				</div>
-			</div>
-			
-			<div class="card col-xs-3" onclick="projectDetail()">
-				<div class="card-header">
-					<img src="../FTBC_Images/card2.jpg"class="card_img"> 
-				</div>
-				<div class="card-body">
-					<span class="card-text project_title">프로젝트명</span> 
-					<span class="card-text project_nick">닉네임</span>
-					<hr width=50% align="left" class="card_hr">
-					<span class="card-text project_date col-xs-5">1000일 남음</span> 
-					<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-				</div>
-			</div>
-			
-			<div class="card col-xs-3" onclick="projectDetail()">
-				<div class="card-header">
-					<img src="../FTBC_Images/card3.jpg"class="card_img"> 
-				</div>
-				<div class="card-body">
-					<span class="card-text project_title">프로젝트명</span> 
-					<span class="card-text project_nick">닉네임</span>
-					<hr width=100% align="left" class="card_hr">
-					<span class="card-text project_date col-xs-5">1000일 남음</span> 
-					<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-				</div>
-			</div>
-			
-			<div class="card col-xs-3" onclick="projectDetail()">
-				<div class="card-header">
-					<img src="../FTBC_Images/card4.jpg"class="card_img"> 
-				</div>
-				<div class="card-body">
-					<span class="card-text project_title">프로젝트명</span> 
-					<span class="card-text project_nick">닉네임</span>
-					<hr width=70% align="left" class="card_hr">
-					<span class="card-text project_date col-xs-5">1000일 남음</span> 
-					<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-				</div>
-			</div>
-			
-			<div class="card col-xs-3" onclick="projectDetail()">
-				<div class="card-header">
-					<img src="../FTBC_Images/card11.jpg" class="card_img"> 
-				</div>
-				<div class="card-body">
-					<span class="card-text project_title">프로젝트명</span> 
-					<span class="card-text project_nick">닉네임</span>
-					<hr width=20%  align="left" class="card_hr">
-					<span class="card-text project_date col-xs-5">1000일 남음</span> 
-					<span class="card-text project_cost col-xs-7">100,000원 50%</span>
-				</div>
-			</div>
-			
-		</div>
-		<div class="col-xs-2"></div>
+	<div id="discover_content">
+	
 	</div>
 </div>	
 </body>

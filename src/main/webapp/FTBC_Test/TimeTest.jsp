@@ -64,7 +64,7 @@
 
 			//시간 보여주기
 			var display = document.querySelector('#time'), timer = new CountDownTimer(
-					30); //시간 설정, 초단위
+					10); //시간 설정, 초단위
 
 			timer.onTick(format).onTick(restart).start(); //restart호출
 
@@ -75,7 +75,7 @@
 					//# Servlet으로 블럭 보내라고 요청하기
 					$.ajax({
 						method : 'get'
-						,url : '/chain/majorityStart.ftbc'
+						,url : '/restchain/majorityStart.ftbc'
 						,success : function(data) {
 						}
 					});

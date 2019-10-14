@@ -1,6 +1,8 @@
 package com.member;
 
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +46,16 @@ public class MemberLogic {
 		return result;
 	}
 
-	public MemberVO login(MemberVO mVO) {
+	public void login(MemberVO mVO) {
 		logger.info("Logic login 호출 ");
-		mVO = memberDao.login(mVO);
-		return mVO;
+		memberDao.login(mVO);
 	}
-
+/////////////////////2019-10-14 정원형 중간합산 이후 비밀번호 찾기 //////////////////////
+	public int forgotEmail(Map<String,Object> pMap) {
+		logger.info("Logic forgotEmail 호출");
+		int result= 0;
+		result=memberDao.forgotEmail(pMap);
+		return result;
+	}
+/////////////////////2019-10-14 정원형 중간합산 이후 비밀번호 찾기 //////////////////////
 }
