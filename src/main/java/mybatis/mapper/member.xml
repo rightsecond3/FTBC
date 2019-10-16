@@ -7,12 +7,14 @@
 	<select id="emailCheck" parameterType="mVO" resultType="String">
 		select nvl2((SELECT mem_email
 		  			 FROM mem
-		 			WHERE mem_email = #{email}),'0','1') FROM dual
+		 			WHERE mem_email = #{mem_email}),'0','1') FROM dual
 	</select>
 	<!-- /////////////////////2019-10-14 정원형 중간합산 회원가입시 전화번호도 인서트 ////////////////////// -->
 	<insert id="join" parameterType="mVO">
-		INSERT INTO mem(mem_email,mem_name,mem_pw,mem_birth)
-			   VALUES(#{mem_email},#{mem_name},#{mem_pw},#{mem_birth})
+		INSERT INTO mem(mem_email,mem_name,mem_pw,mem_birth
+						,mem_isauthority,mem_isdisclose)
+			   VALUES(#{mem_email},#{mem_name},#{mem_pw},#{mem_birth}
+			   		 ,#{mem_isauthority},#{mem_isdisclose})
 	</insert>
 	<!-- /////////////////////2019-10-14 정원형 중간합산 회원가입시 전화번호도 인서트 ////////////////////// -->	
 	<select id="login" parameterType="mVO" statementType="CALLABLE">
@@ -29,11 +31,20 @@
 		SELECT MEM_NAME FROM MEM
 		WHERE MEM_PUBLICKEY = #{mem_Publickey}
 	</select>
-	<!-- /////////////////////2019-10-14 정원형 중간합산 이후 비밀번호 찾기 ////////////////////// -->
+	<!-- /////////////////////2019-10-15 정원형 중간합산 이후 비밀번호 찾기 ////////////////////// -->
 	<update id="forgotEmail" parameterType="map">
 		UPDATE mem
 				SET mem_pw=#{imsiPassword}
-				WHERE mem_email=#{email}
+				WHERE mem_email=#{email} and mem_birth=#{birth}
 	</update>
-	<!-- /////////////////////2019-10-14 정원형 중간합산 이후 비밀번호 찾기 ////////////////////// -->
+	<select id="prepasswordConfirm" parameterType="mVO" resultType="String">
+		SELECT nvl2((select mem_pw from mem where mem_pw=#{mem_pw} and mem_email=#{mem_email}
+					),'있음','없음') from dual
+	</select>
+	<update id="editAccount" parameterType="mVO">
+		UPDATE mem set
+					mem_pw=#{mem_pw}
+			   where mem_email=#{mem_email}
+	</update>
+	<!-- /////////////////////2019-10-15 정원형 중간합산 이후 비밀번호 찾기 ////////////////////// -->
 </mapper>

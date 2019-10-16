@@ -86,7 +86,7 @@
 		padding: 25px 0 25px 0;
 	}
 	#email_tbox{
-		width:120px;
+		width:auto;
 	}
 	#edit_email_btn{
 		font-size:14px;

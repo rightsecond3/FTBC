@@ -30,7 +30,6 @@
 		$("#Login_page").load(url);
 	}
 	function login(){
-		alert("호출성공?");
 		var log_id = $("#log_id").val();
 		var log_pw = $("#log_pw").val();
 		$.ajax({

@@ -58,36 +58,34 @@ public class MemberController {
       } 
       return keyCode;
    }
-////[2019-10-14] 정원형 중간합산 이후 비밀번호 찾기 및 회원가입 생년월일 추가 시작 ///////////////////////
+////[2019-10-15] 정원형 중간합산 이후 비밀번호 찾기 및 회원가입 생년월일 추가 시작 ///////////////////////
    @GetMapping("forgotEmail")
-   
    public @ResponseBody int forgotEmail(@RequestParam Map<String, Object> pMap) {
 	   logger.info("컨트롤러 비밀번호 찾기 호출 성공");
 	   int result = 0;
 	   //받아온 이메일
 	   String keyCode = null;
-	   try {
-	      keyCode = FindUtil.createKey();
-	      String imsiPassword = StringUtil.applySha256(keyCode);
-	      pMap.put("imsiPassword",imsiPassword);
-	      String mem_email = pMap.get("email").toString();
-	      System.out.println("mem_email: =============="+mem_email);
-	      String subject = "[FTBC] 비밀번호 찾기 안내";
-	      String msg = "";
-	      msg +="<div align='center' style='border:1px solid black; font-family:verdana'>";
-	      msg +="<h3 style='color: blue;'>인증 코드가 발급되었습니다.</h3>";
-	      msg +="<div style='font-size: 130%'>";
-	      msg +="발급된 임시비밀번호는 <strong>"+keyCode+"</string>이며,<br>";
-	      msg +="임시비밀번호로 로그인하신 후, 비밀번호를 변경 해 주시길 바랍니다.</div><br>";
-	      MailUtil.sendMail(mem_email, subject, msg);
-	         
-	   } catch (Exception e) {
-	      e.printStackTrace();
-	   } 
-	   result=memberLogic.forgotEmail(pMap);
-	   return result;
+		   try {
+			      keyCode = FindUtil.createKey();
+			      String imsiPassword = StringUtil.applySha256(keyCode);
+			      pMap.put("imsiPassword",imsiPassword);
+			      String mem_email = pMap.get("email").toString();
+			      String subject = "[FTBC] 비밀번호 찾기 안내";
+			      String msg = "";
+			      msg +="<div align='center' style='border:1px solid black; font-family:verdana'>";
+			      msg +="<h3 style='color: blue;'>인증 코드가 발급되었습니다.</h3>";
+			      msg +="<div style='font-size: 130%'>";
+			      msg +="발급된 임시비밀번호는 <strong>"+keyCode+"</string>이며,<br>";
+			      msg +="임시비밀번호로 로그인하신 후, 비밀번호를 변경 해 주시길 바랍니다.</div><br>";
+			      result=memberLogic.forgotEmail(pMap);
+			      if(result==1) {
+			      MailUtil.sendMail(mem_email, subject, msg);
+			      }
+			   } catch (Exception e) {
+			      e.printStackTrace();
+			   } 
+		   return result;
    }
-
   
    @PostMapping("join")
 	public String join(@RequestParam Map<String, Object> pMap) {
@@ -97,16 +95,42 @@ public class MemberController {
 		logger.info("이름============:"+pMap.get("mem_name").toString());
 		logger.info("비밀번호============:"+pMap.get("mem_pw").toString());
 		logger.info("생년월일============:"+pMap.get("mem_birth").toString());
+		logger.info("권한===============:"+pMap.get("mem_isAuthority").toString());
+		logger.info("체인공개여부=========:"+pMap.get("mem_isDisClose").toString());
 		mVO.setMem_email(pMap.get("mem_email").toString());
 		mVO.setMem_name(pMap.get("mem_name").toString());
 		mVO.setMem_birth(pMap.get("mem_birth").toString());
+		mVO.setMem_isauthority(pMap.get("mem_isAuthority").toString());
+		mVO.setMem_isdisclose(pMap.get("mem_isDisClose").toString());
 		String password = pMap.get("mem_pw").toString();
 		logger.info("비밀번호sha256통과============:"+StringUtil.applySha256(password));
 		mVO.setMem_pw(StringUtil.applySha256(password));
 		memberLogic.join(mVO);
 		return "redirect:/FTBC_MainView/FTBC_Login.jsp";
 	}
-////[2019-10-14] 정원형 중간합산 이후 비밀번호 찾기 및 회원가입 생년월일 추가 끝 ///////////////////////   
+   @PostMapping(value="editAccount")
+   public @ResponseBody int editAccount(@RequestParam Map<String, Object> pMap) {
+	   logger.info("Controller editAccount 호출성공");
+	   String ilchi = null;
+	   String pw_tboxpre = StringUtil.applySha256(pMap.get("pw_tboxpre").toString());
+	   String pw_tboxafter = StringUtil.applySha256(pMap.get("pw_tboxafter").toString());
+	   int result = 0;
+	   mVO.setMem_email(pMap.get("email_tbox").toString());
+	   mVO.setMem_pw(pw_tboxpre);
+	   ilchi = memberLogic.prepasswordconfirm(mVO);
+	   if(ilchi.equals("있음")) {//입력한 기존 비밀번호가 DB와일치
+		   if(pw_tboxpre.equals(pw_tboxafter)) {//변경전과 변경후가 똑같을 경우
+			   return 2;
+		   }else{//변경전과 변경후가 다를경우
+			   mVO.setMem_pw(pw_tboxafter);
+			   result = memberLogic.editAccount(mVO);
+		   }
+	   }else {//입력한 기존 비밀번호가 DB와 불일치
+		    return result;
+	   }
+	   return result;
+   }
+////[2019-10-15] 정원형 중간합산 이후 비밀번호 찾기 및 회원가입 생년월일 추가 끝 ///////////////////////   
 	@GetMapping(value="logout.ftbc")
 	public String logout(HttpSession httpSession) {
 		logger.info("logout: String 호출");
@@ -116,4 +140,5 @@ public class MemberController {
 		httpSession.removeAttribute("mem_isAuthority");
 		return "redirect:/FTBC_MainView/FTBC_Main.jsp";
 	}
+	
 }

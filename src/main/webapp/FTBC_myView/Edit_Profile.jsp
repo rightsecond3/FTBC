@@ -9,7 +9,7 @@
 	프로필 설정페이지
 	날짜:2019-09-19
 ================================================================================================  -->
-<link rel="stylesheet" type="text/css" href="Edit_Profile.css?zn">
+<link rel="stylesheet" type="text/css" href="Edit_Profile.css?2">
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
 </head>
 <body>

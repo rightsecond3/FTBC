@@ -3,17 +3,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+<% 
+String email = null;
+if(session.getAttribute("mem_email")!=null){
+email = session.getAttribute("mem_email").toString();
+ }
+ %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!--=============================================================================================
-	계정 설정페이지
-	날짜:2019-09-18
+	비밀번호 설정페이지
+	날짜:2019-10-15 정원형 수정
 ================================================================================================  -->
-<link rel="stylesheet" type="text/css" href="Edit_Account.css?yebin">
+<link rel="stylesheet" type="text/css" href="Edit_Account.css?1">
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#email_tbox").val("<%=email%>");
+})
+function editAccount(){
+	  $.post("/member/editAccount",$("#editAccount_form").serialize(),function(data){
+		 if(data==1){
+			 alert("계정 정보를 변경하였습니다.");
+			 location.href="/FTBC_myView/Edit_Account.jsp";
+		 }else if(data==2){
+			 alert("변경하실 비밀번호는 기존의 비밀번호로 사용하실 수 없습니다.");
+		 }else if(data==0){
+			 alert("기존 비밀번호가 일치하지 않습니다.");
+		 }
+		 });
+}
+</script>
 </head>
 <body>
 <%@ include file="../FTBC_Common/TopMenuBar_OnlyLogo.jsp"%>
+<form id="editAccount_form" name="editAccount_form">
 <div class="container-fluid">
 	<!--  상단 부분  -->
 	<div class="row" id="EditAccount_top">
@@ -40,53 +64,29 @@
 				<div class="col-xs-2 labelbox"><label>이메일</label> </div>
 				<div class="col-xs-10">
 					<div class="row">
-						<input type="text" class="edit_txtbox" id="email_tbox"> 
-						<input type="button" value="변경하기 " id="edit_email_btn"> 
-					</div>
-					<div class="row">
-						<p>
-						변경할 이메일을 입력하신 후 변경하기를 누르시면, 새 메일 주소로 인증 메일이 갑니다.<br>
-						전송된 인증 메일	 안의 링크를 누르시면 변경된 이메일을 사용하실 수 있습니다.
-						</p>
+						<input type="text" class="edit_txtbox" id="email_tbox" name="email_tbox" readOnly> 
 					</div>
 				</div>
 			</div>
 			
 			<!--  비밀번호 설정  -->
 			<div id="edit_pw" class="row edit_ac">
-				<div class="col-xs-2 labelbox"><label>이메일</label> </div>
+				<div class="col-xs-2 labelbox"><label>비밀번호</label> </div>
 				<div class="col-xs-10">
-					<input type="text" class="edit_txtbox" placeholder="현재 비밀번호" id="pw_tbox1">
-					<input type="text" class="edit_txtbox" placeholder="변경할 비밀번호" id="pw_tbox2">
-				</div>
-			</div>
-			
-			<!--  페이지 주소 -->
-			<div id="edit_page" class="row edit_ac">
-				<div class="col-xs-2 labelbox"><label>페이지 주소</label> </div>
-				<div class="col-xs-10">
-					<input type="text" class="edit_txtbox" placeholder="rocketpunch" id="page_tbox">
-					<span id="account_page">ftbc.com/u/rocketpuch</span>
-				</div>
-			</div>
-			
-			<!--  뉴스레터 구독  -->
-			<div id="edit_news" class="row edit_ac">
-				<div class="col-xs-2 labelbox"><label>뉴스레터</label> </div>
-				<div class="col-xs-10">
-					<input type="checkbox" class="edit_txtbox"  id="news_cbox">
-					<span>뉴스레터를 구독합니다</span>
+					<input type="password" class="edit_txtbox" placeholder="현재 비밀번호" id="pw_tboxpre" name="pw_tboxpre" style="margin-left:0px">
+					<input type="password" class="edit_txtbox" placeholder="변경할 비밀번호" id="pw_tboxafter" name="pw_tboxafter">
 				</div>
 			</div>
 			
 			<!--  수정하기 버튼  -->
 			<div id="edit_ac_btn" class="row edit_ac">
 				<div class="col-xs-2 labelbox" ><label>&nbsp;</label> </div>
-				<input type="button"  value="수정하기  "  id="edit_ac_button">
+				<input type="button"  value="수정하기 " onclick="editAccount()" id="edit_ac_button">
 			</div>
 		</div>
 		<div class="col-xs-4">&nbsp;</div>
 	</div>
 </div>
+</form>
 </body>
 </html>

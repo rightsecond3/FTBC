@@ -21,6 +21,7 @@ public class MemberVO implements Serializable {
 	private String mem_nickname = null;
 	private String mem_birth = null;
 	private String msg = null;
+	private String mem_isdisclose = null;
 	// 추가
 	private String result = null;
 	private String isWalletExist = null;
@@ -143,6 +144,14 @@ public class MemberVO implements Serializable {
 
 	public void setMem_birth(String mem_birth) {
 		this.mem_birth = mem_birth;
+	}
+
+	public String getMem_isdisclose() {
+		return mem_isdisclose;
+	}
+
+	public void setMem_isdisclose(String mem_isdisclose) {
+		this.mem_isdisclose = mem_isdisclose;
 	}
 
 }

@@ -93,10 +93,21 @@
    </select>
    <select id="projectDetail" parameterType="String" resultType="vo.ProjectVO">
 		select 
-		  PROJECT_CODE,PJ_PUBLICKEY,PJO_SUMMARY,PJO_PAGEADDR,PJO_INTRODUCE,PJO_SHORTTITLE,PJO_LONGTITLE,PJO_IMG,ST_STORY,subcat_code,subcat_name
+		  PROJECT_CODE,PJ_PUBLICKEY,PJO_SUMMARY,PJO_PAGEADDR,PJO_INTRODUCE,PJO_SHORTTITLE
+		  ,PJO_LONGTITLE,PJO_IMG,ST_STORY,subcat_code,subcat_name,
 		from project p NATURAL JOIN pjoutline o NATURAL JOIN storytelling s NATURAL JOIN subcat
+		NATURAL JOIN 
 		where pj_stat = 1  
-		 and project_code = #{value}  
+		 and project_code = #{value}
+   </select>
+   <select id="projectGiftDetail">
+   		select count(gift_code),gift_unitmoney,gift_explanation,gift_deliverydate
+   			  ,gift_limited,
+   			  <foreach collection="list" index="index" separator=";" item="item"  open="(" close=")">
+   			  	#{item.GOP_OPTION},#{item.GOP_AMMOUNT}
+   			  </foreach>
+   			  from gift NATURAL JOIN giftoption
+   			  where gift_code=#{gift_code}
    </select>
    <select id="getGift" parameterType="String" resultType="map">
    		select 

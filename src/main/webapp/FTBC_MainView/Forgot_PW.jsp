@@ -11,12 +11,16 @@
 //////////////////////2019-10-14 정원형 중간합산 이후 비밀번호 찾기 수정 시작///////////////
 	function Find_pw(){
 		var email = $("#Forgot_email").val();
+		var birth = $("#birth_config").val();
 		$.ajax({
 			method:'get'
-			,url:'/member/forgotEmail?email='+email
+			,url:'/member/forgotEmail?email='+email+'&birth='+birth
 			,success: function(data) {
 				if(data==1){
 				alert("임시비밀번호를 전송하였습니다.\n임시 비밀번호로 로그인 하신 후 비밀번호를 변경 해 주시길 바랍니다.");
+				}
+				else{
+					alert("이메일 및 생년월일을 확인해주세요");
 				}
 			}
 		});
@@ -44,7 +48,7 @@
 		<input id="Forgot_email" name="Forgot_email" type="text" placeholder="가입하신 이메일 주소" >
 	</div>
 	<div id="for_birth">
-		<input id="birth_config" name="birth_config" type="text" placeholder="클릭하신 후 생년월일을 선택하세요." >
+		<input id="birth_config" name="birth_config" type="date" placeholder="클릭하신 후 생년월일을 선택하세요." >
 	</div>
 	<div id="log_join">
 		<button id="Find_pw" onclick="Find_pw()">임시비밀번호 전송하기.</button>

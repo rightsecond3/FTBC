@@ -1,6 +1,7 @@
 package com.member;
 
 
+import java.sql.SQLException;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -35,7 +36,7 @@ public class MemberDao {
 
    public String emailCheck(MemberVO mVO) {
       String result = null;
-      logger.info("Dao  memberLogin 호출 ");
+      logger.info("Dao  memberemailCheck 호출 ");
       result = sqlSessionTemplate.selectOne("emailCheck",mVO);
       return result;
    }
@@ -59,7 +60,21 @@ public class MemberDao {
 	   return result;
    }
 /////////////////////2019-10-14 정원형 중간합산 이후 비밀번호 찾기 //////////////////////
+/////////////////////2019-10-15 정원형 비번변경/////////////////////////////
+public String prepasswordConfirm(MemberVO mVO) {
+	logger.info("Dao 이전패스워드확인 호출");
+	String result = null;
+	result = sqlSessionTemplate.selectOne("prepasswordConfirm",mVO);
+	return result;
+}
 
+public int editAccount(MemberVO mVO) {
+	int result = 0;
+	logger.info("Dao editAccount 호출성공");
+	result = sqlSessionTemplate.update("editAccount",mVO);
+	return result;
+}
+/////////////////////2019-10-15 정원형 비번변경/////////////////////////////
 
 
 }

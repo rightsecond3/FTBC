@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
-<link rel="stylesheet" type="text/css" href="FTBC_Join_now.css?18">
+<link rel="stylesheet" type="text/css" href="FTBC_Join_now.css?34">
 <script type="text/javascript">
 $(document).ready(function(){
 		$("#email_confirm").hide();
@@ -18,13 +18,23 @@ $(document).ready(function(){
 		$("#Login_page").load(url);
 	}
 	function join() {//가입처리하기
-		var mem_email = $("#mem_email").val($("#join_now_email").val());
-		var mem_pw = $("#mem_pw").val($("#join_now_pw_check").val());
-		var mem_name = $("#mem_name").val($("#join_now_name").val());
+		$("#mem_email").val($("#join_now_email").val());
+		$("#mem_pw").val($("#join_now_pw_check").val());
+		$("#mem_name").val($("#join_now_name").val());
+		$("#mem_birth").val($("#join_birthChoice").val());
+		alert("호출?");
+		if($("#join_disClose").is(":checked")==true){
+			$("#mem_isDisClose").val(1);
+		}else if($("#join_disClose").is(":checked")==false){
+			$("#mem_isDisClose").val(0);
+		}
 		var check_pw = document.getElementById('pw_check').innerHTML;
 		if(check_pw=="<h6>비밀번호가 일치합니다</h6>"){
 			alert("회원가입 성공!");
-			$.post("/member/join", $("#join_form").serialize());
+			$("#join_form").attr("method","post");
+			$("#join_form").attr("action","/member/join");
+			$("#join_form").submit();
+			//$.post("/member/join", $("#join_form").serialize());
 		}//,function(data){location.href="/FTBC_MainView/FTBC_Login.jsp"}
 		
 		else{
@@ -145,8 +155,22 @@ $(document).ready(function(){
 			<input id="join_now_pw_check" name="join_now_pw_check" type="password" placeholder="비밀번호를 확인합니다">
 		<div id="pw_check"><h6>비밀번호가 일치하지 않습니다</h6></div>
 	</div>	
+	<!-- 10 14 [정원형] 가입시 생년월일 입력 추가 -->
+	<div class="join_div">
+		<div style="text-align:left;margin-left:40px;">생년월일</div>
+		<input id="join_birthChoice" name="join_birthChoice" type="date">
+	</div>
+	<div class="join_div">
+		<div id="join_disCloseDiv1">
+			<input id="join_disClose" name="join_disClose" type="checkbox">&nbsp;<label>회원님의 프로젝트 체인 정보를 공개하시겠습니까?</label>
+		</div>
+		<div id="join_disCloseDiv2">
+			(공개여부는 개인정보 수정란에서 수정이 가능합니다.)
+		</div>
+	</div>
+	<!-- 10 14 [정원형] 가입시 생년월일 입력 추가 -->
 	<div id="log_join">
-		<button id="join_next" onclick="join()" disabled>다음</button>
+		<button id="join_next" onclick="join()" disabled>가입하기</button>
 	</div>
 	<div>
 		<hr/>
@@ -163,8 +187,11 @@ $(document).ready(function(){
 		<input type="hidden" id="mem_email" name="mem_email">
 		<input type="hidden" id="mem_pw" name="mem_pw">
 		<input type="hidden" id="mem_name" name="mem_name">
-		<!-- 일반 회원(권한이 없기 때문에0 -->
+		<input type="hidden" id="mem_birth" name="mem_birth">
+		<!-- 일반 회원(권한이 없기 때문에0) -->
 		<input type="hidden" id="mem_isAuthority" name="mem_isAuthority" value=0>
+		<!-- 체인 공개여부 1은 공개 0은 미공개 -->
+		<input type="hidden" id="mem_isDisClose" name="mem_isDisClose">
 	</form>
 </div>
 </body>

@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <title>프로젝트 만들기 ::FTBC</title>
 <!--=============================================================================================
-	펀딩 및 선물 구성
+	펀딩 및 선물 구성 2019- 10- 14(월) 정원형 뷰 수정.
 ================================================================================================  -->
 <%@ include file="../FTBC_Common/FTBC_Common.jsp"%>
-<link rel="stylesheet" type="text/css" href="/FTBC_CreateView/Project_Composition.css">
+<link rel="stylesheet" type="text/css" href="/FTBC_CreateView/Project_Composition.css?1">
 <script>
 	$(document).on("keyup", "input[class=chundanwigubun]", function() {
 		var $this = $(this);
@@ -2058,7 +2058,7 @@
 								<div id="goalMoneyInputShow" class="col-xs-10">
 									<div>
 										<input type="text" class="chundanwigubun"
-											name="goalMoneyOutput" id="goalMoneyOutput"><label>&nbsp;원</label>
+											name="goalMoneyOutput" id="goalMoneyOutput" readOnly><label>&nbsp;원</label>
 									</div>
 								</div>
 								<div id="goalMoneyEditHide" class="col-xs-2">
@@ -2174,8 +2174,8 @@
 								</div>
 								<div id="projectEndDateInputShow" class="col-xs-10">
 									<div>
-										<label><input type="text" class="ilbanText"
-											id="projectEndDateOutput" name="projectEndDateOutput"></label>
+										<input type="text" class="ilbanText"
+											id="projectEndDateOutput" name="projectEndDateOutput" readOnly>
 									</div>
 								</div>
 								<div id="projectEndDateEditHide" class="col-xs-2">
@@ -2271,10 +2271,10 @@
 									<ul>
 										<li><b>&nbsp; 결제 종료일:</b>펀딩에 성공할 경우 마감일 다음날부터 7일간 결제가
 											진행되어,<input type="text" class="ilbanText" id="payEndDate"
-											name="payEndDate">&nbsp;모든 후원자의 결제가 종료됩니다.</li>
+											name="payEndDate" readOnly>&nbsp;모든 후원자의 결제가 종료됩니다.</li>
 										<li><b>&nbsp; 예상 정산일:</b>결제 종료일로부터 7일 이후인 <input
 											type="text" class="ilbanText" id="receiptDate"
-											name="receiptDate">&nbsp;(공휴일인 경우 바로 다음 영업일)에 창작자님의
+											name="receiptDate" readOnly>&nbsp;(공휴일인 경우 바로 다음 영업일)에 창작자님의
 											계좌로 입금됩니다.</li>
 									</ul>
 								</div>
@@ -2478,7 +2478,7 @@
 							<br> <br>
 							<hr>
 							<div class="row">
-								<label>선물 설명 <span>선택 항목</span></label>
+								<label>선물 설명 </label>
 							</div>
 							<div class="row">
 								<div class="col-xs-7">구성된 선물에 대해 추가적으로 알리고 싶은 내용을 적어주세요.</div>
@@ -2618,7 +2618,7 @@
 							<div id="refundAndExchangeOutput" class="row">
 								<div class="col-xs-10">
 									<textarea id="refundAndExchangeSpan"
-										name="refundAndExchangeSpan" style="white-space: pre;"></textarea>
+										name="refundAndExchangeSpan" style="white-space: pre;" readOnly></textarea>
 								</div>
 								<div class="col-xs-2">
 									<div>
@@ -2710,11 +2710,12 @@
 					<div class="row">
 						<div class="col-xs-2">
 							<input type="text" class="ilbanText" id="GiftUlListName"
-								name="GiftUlListName">
+								name="GiftUlListName" readOnly style="text-align:center;width:auto;">
 						</div>
+						x
 						<div class="col-xs-1">
 							<input type="text" class="ilbanText" id="GiftUlListQuantity"
-								name="GiftUlListQuantity">
+								name="GiftUlListQuantity" readOnly style="text-align:center;width:50px;">
 						</div>
 					</div>
 				</div>
@@ -3249,9 +3250,9 @@
 			<tbody id="defaultHideList">
 				<tr>
 					<td><input type="text" class="ilbanText"
-						id="itemListNameInput" name="itemListNameInput"></td>
+						id="itemListNameInput" name="itemListNameInput" readOnly></td>
 					<td><input type="text" class="ilbanText"
-						id="itemListOptionInput" name="itemListOptionInput"></td>
+						id="itemListOptionInput" name="itemListOptionInput" readOnly></td>
 					<td><button id="itemListEditButton" type="button"
 							class="btn btn-default btn-lg">수정하기</button>
 						<button id="itemListDeleteButton" type="button"
@@ -3265,9 +3266,9 @@
 					<td style="text-align: center"><input type="checkbox"
 						id="YesNoGroup" name="YesNoGroup"></td>
 					<td><input type="text" class="ilbanText"
-						id="itemListNameOutput" name="itemListNameOutput"></td>
+						id="itemListNameOutput" name="itemListNameOutput" readOnly></td>
 					<td><input type="text" class="ilbanText"
-						id="itemListOptionOutput" name="itemListOptionOutput"></td>
+						id="itemListOptionOutput" name="itemListOptionOutput" readOnly></td>
 					<td style="text-align: center"><i
 						onclick="itemQuantityOption('minus')"
 						class="fa fa-minus c_pointer"></i> <input type="text"
@@ -3286,9 +3287,10 @@
 					<td>
 						<div id="giftInfo">
 							<div class="row">
-								<div class="col-xs-3">
+								<div class="col-xs-10">
 									&nbsp;<input type="text" class="chundanwigubun"
-										id="minDonationMoneyOutput" name="minDonationMoneyOutput">
+										id="minDonationMoneyOutput" name="minDonationMoneyOutput" readOnly 
+										style="text-align:center;width:100px;display:inline-block;">
 									<label>&nbsp;원 이상 밀어주시는 분께</label>
 								</div>
 							</div>
@@ -3296,7 +3298,7 @@
 								<div class="col-xs-10">
 									<div>
 										<input type="text" class="ilbanText" id="giftTextAreaOutput"
-											name="giftTextAreaOutput">
+											name="giftTextAreaOutput" readOnly style="text-align:center;width:auto;">
 									</div>
 								</div>
 							</div>
@@ -3307,7 +3309,7 @@
 								<div class="col-xs-10">
 									<div>
 										예상전달일:<input type="text" class="ilbanText"
-											id="deliveryDayOutput" name="deliveryDayOutput">
+											id="deliveryDayOutput" name="deliveryDayOutput" readOnly style="text-align:center;width:auto;">
 									</div>
 								</div>
 							</div>
@@ -3323,7 +3325,7 @@
 									<div id="remainQuantity" class="col-xs-8">
 										<div>
 											<input class="chundanwigubun" type="text"
-												id="limitedQuantityInput" name="limitedQuantityInput">개&nbsp;남음
+												id="limitedQuantityInput" name="limitedQuantityInput" readOnly style="text-align:center;width:60px;">개&nbsp;남음
 										</div>
 									</div>
 								</div>

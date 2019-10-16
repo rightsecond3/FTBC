@@ -1,6 +1,7 @@
 package com.member;
 
 
+import java.sql.SQLException;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -58,4 +59,19 @@ public class MemberLogic {
 		return result;
 	}
 /////////////////////2019-10-14 정원형 중간합산 이후 비밀번호 찾기 //////////////////////
+/////////////////////2019-10-15 정원형 비번변경/////////////////////////////
+	public String prepasswordconfirm(MemberVO mVO) {
+		String result=null;
+		logger.info("Logic 이전패스워드확인 호출");
+			result = memberDao.prepasswordConfirm(mVO);
+		return result;
+	}
+
+	public int editAccount(MemberVO mVO) {
+		int result= 0;
+		logger.info("Logic 변경할패스워드 호출 성공");
+		result = memberDao.editAccount(mVO);
+		return result;
+	}
+/////////////////////2019-10-15 정원형 비번변경/////////////////////////////
 }

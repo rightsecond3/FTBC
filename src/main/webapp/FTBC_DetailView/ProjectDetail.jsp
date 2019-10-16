@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String pjo_code = request.getParameter("pjo_code").toString();
+	String pjo_code = request.getParameter("pjo_code").toString(); 
 %>
 <!DOCTYPE html>
 <html>
@@ -25,8 +25,7 @@
 			url:'/Project/projectDetail?projectCode=<%=pjo_code%>',
 			success:function(data){
 				$("#detail_pjo").html(data);
-			} 
-				
+			} 	
 		}); 
 	}
 		function clickRewardCards() {
